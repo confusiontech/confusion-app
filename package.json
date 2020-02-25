@@ -6,7 +6,10 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "buildweb": "expo build:web"
+    "buildweb": "expo build:web",
+    "test:e2e": "npx cypress run",
+    "test:e2e:browser": "cypress open",
+    "test:unit": "jest ./tests"
   },
   "dependencies": {
     "expo": "~36.0.0",
@@ -18,7 +21,13 @@
   "devDependencies": {
     "@babel/core": "^7.0.0",
     "babel-preset-expo": "~8.0.0",
-    "expo-cli": "^3.13.1"
+    "expo-cli": "^3.13.1",
+    "cypress": "^4.0.2",
+    "jest": "^25.1.0"
+  },
+  "jest": {
+    "preset": "react-native",
+    "verbose": true
   },
   "private": true
 }
