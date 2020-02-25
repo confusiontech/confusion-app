@@ -5,7 +5,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "buildweb": "expo build:web"
   },
   "dependencies": {
     "expo": "~36.0.0",
@@ -15,8 +16,9 @@
     "react-native-web": "~0.11.7"
   },
   "devDependencies": {
+    "@babel/core": "^7.0.0",
     "babel-preset-expo": "~8.0.0",
-    "@babel/core": "^7.0.0"
+    "expo-cli": "^3.13.1"
   },
   "private": true
 }
