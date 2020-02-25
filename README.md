@@ -2,8 +2,8 @@ Como arrancar la aplicación
 ===========================
 
 1. Instalar la version 12.16 de nodejs desde https://nodejs.org
-2. npm install -g expo-cli yarn
-3. yarn start
+2. npm install
+3. npm start
 
 Esto abrirá una página en el navegador con instrucciones adicionales. 
 
