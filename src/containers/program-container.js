@@ -2,6 +2,7 @@ const programMock = require('../mocks/program-mock.json');
 import React, { useState } from 'react';
 import Program from '../components/program';
 import CategoryFilter from '../components/category-filter';
+import { View } from 'react-native';
 
 const ProgramContainer = () => {
   const [shows, setShows] = useState(programMock.program);
@@ -14,10 +15,10 @@ const ProgramContainer = () => {
   };
 
   return (
-    <div>
+    <View>
       <CategoryFilter onOptionClick={onCategoryFilterClick} />
       <Program shows={shows}/>
-    </div>
+    </View>
   )
 }
 
