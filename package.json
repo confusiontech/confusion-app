@@ -21,7 +21,7 @@
   "devDependencies": {
     "@babel/core": "^7.0.0",
     "babel-preset-expo": "~8.0.0",
-    "expo-cli": "^3.13.1",
+    "expo-cli": "^3.17.18",
     "cypress": "^4.0.2",
     "jest": "^25.1.0"
   },
