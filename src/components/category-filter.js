@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Picker } from 'react-native';
+import categoryService from '../services/category-service';
 
 export default function CategoryFilter({onOptionClick}) {
   const [selectedValue, setSelectedValue] = useState("");
@@ -12,9 +13,10 @@ export default function CategoryFilter({onOptionClick}) {
           onOptionClick(itemValue);
       }}
     >
-      <Picker.Item label="All" value="" />
-      <Picker.Item label="Health" value="health" />
-      <Picker.Item label="Music" value="music" />
+    <Picker.Item label="Todas" value="" key="" />    
+    {categoryService.getAllCategories().map(item =>
+      <Picker.Item label={item.name} value={item.id} key={item.id} />
+    )}
     </Picker>
   );
 }
