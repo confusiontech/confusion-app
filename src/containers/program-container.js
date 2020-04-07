@@ -8,10 +8,14 @@ const ProgramContainer = () => {
   const [shows, setShows] = useState(programMock.program);
 
   const onCategoryFilterClick = (selectedCategory) => {
-    const filterdShows = shows.filter( show => 
-      show.participant_category == selectedCategory
-    );
-    setShows(filterdShows);
+    if (selectedCategory) {
+      const filterdShows = programMock.program.filter( show => 
+        show.participant_category == selectedCategory
+      );
+      setShows(filterdShows);
+    } else {
+      setShows(programMock.program);
+    }
   };
 
   return (
@@ -19,7 +23,7 @@ const ProgramContainer = () => {
       <CategoryFilter onOptionClick={onCategoryFilterClick} />
       <Program shows={shows}/>
     </View>
-  )
-}
+  );
+};
 
 export default ProgramContainer;
