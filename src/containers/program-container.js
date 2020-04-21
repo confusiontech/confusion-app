@@ -1,18 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useRef } from 'react';
 import Program from '../components/program';
 import CategoryFilter from '../components/category-filter';
 import { View } from 'react-native';
 
+import { Platform } from 'react-native';
+
+
 const ProgramContainer = () => {
   const [shows, setShows] = useState([]);
-  let allShows = [];
+  const allShows = useRef([]);
   
-  useEffect(() => {
+  useEffect(() => {    
     async function fetchData() {
+      console.log('fetching')
+      const cors_url = 'https://cors-anywhere.herokuapp.com/'
+      const orfheo_url = 'https://www.orfheo.org/search/results_program'
+      const request_url = Platform.OS === 'web' ? `${cors_url}${orfheo_url}` : orfheo_url
       try {
-        let response = await fetch('https://www.orfheo.org/search/results_program', {          
+        let response = await fetch(request_url, {          
           method: "POST",
-          mode: 'no-cors',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
           },
@@ -20,23 +26,23 @@ const ProgramContainer = () => {
         });
 
         let responseJson = await response.json();
-        allShows = responseJson['program'];
-        setShows(allShows);
+        allShows.current = responseJson['program'];
+        setShows(responseJson['program']);
       } catch (error) {
         console.error(error);
       }
     }
-    fetchData();
+    if (allShows.current.length == 0) fetchData();
   });
 
   const onCategoryFilterClick = (selectedCategory) => {
     if (selectedCategory) {
-      const filterdShows = allShows.filter( show => 
+      const filteredShows = allShows.current.filter( show => 
         show.participant_category == selectedCategory
       );
-      setShows(filterdShows);
+      setShows(filteredShows);
     } else {
-      setShows(allShows);
+      setShows(allShows.current);
     }
   };
 
