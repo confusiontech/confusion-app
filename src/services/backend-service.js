@@ -1,4 +1,5 @@
 import { Platform } from 'react-native';
+import { AsyncStorage } from 'react-native';
 
 class BackendService {
   constructor() {
@@ -12,9 +13,16 @@ class BackendService {
   getUrl(path) {
     return this.urlBase + path;
   }
-  
+
   async fetchProgram() {
     const programUrl = this.getUrl("search/results_program");
+
+    const cacheKey = '@ConfusionApp:' + programUrl;
+
+    const value = await AsyncStorage.getItem(cacheKey);
+    if (value !== null) {
+      return JSON.parse(value);
+    }
 
     let response = await fetch(programUrl, {          
       method: "POST",
@@ -24,7 +32,11 @@ class BackendService {
       body: "event_id=3cb8e68a-b03f-4a7d-b714-42a7ca56870a&date=&lang=es"    
     });
 
-    return response.json();
+    const responseJson = await response.json();
+
+    await AsyncStorage.setItem(cacheKey, JSON.stringify(responseJson));
+
+    return responseJson;
   }
 }
 
