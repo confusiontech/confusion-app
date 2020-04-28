@@ -9,10 +9,12 @@
     "buildweb": "expo build:web",
     "test:e2e": "npx cypress run",
     "test:e2e:browser": "cypress open",
-    "test:unit": "jest ./tests"
+    "test:unit": "jest ./tests",
+    "proxy": "lcp --proxyUrl https://www.orfheo.org"
   },
   "dependencies": {
     "expo": "~36.0.0",
+    "local-cors-proxy": "^1.1.0",
     "react": "~16.9.0",
     "react-dom": "~16.9.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.0.tar.gz",
