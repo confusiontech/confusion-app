@@ -7,6 +7,7 @@ const withAsyncStorage = (cacheKey, fallback) => {
     const newValue = await fallback(...params, storedValue);
     if (storedValue !== newValue) {
       await AsyncStorage.setItem(cacheKey, JSON.stringify(newValue));
+      newValue.new = true;
     }
     return newValue;
   }

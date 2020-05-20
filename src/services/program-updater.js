@@ -7,13 +7,13 @@ import withAsyncStorage from '../helpers/with-async-storage';
 const PROGRAM_CACHED_KEY = '@ConfusionApp:program';
 
 const ProgramUpdater = () => {
-  const { setAllShows } = useContext(ProgramContext);
+  const { setAllShows, allShows } = useContext(ProgramContext);
   const fetchProgram = withAsyncStorage(PROGRAM_CACHED_KEY, backendService.fetchProgram);
 
   useEffect(() => {
     function updateProgram() {
       fetchProgram().then(function(response) {
-        setAllShows(response['program']);
+        if (!allShows || response.new) setAllShows(response.program);
       });
     }
 
