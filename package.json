@@ -13,11 +13,12 @@
     "proxy": "lcp --proxyUrl https://www.orfheo.org"
   },
   "dependencies": {
-    "expo": "~36.0.0",
+    "expo": "^36.0.1",
     "local-cors-proxy": "^1.1.0",
+    "native-base": "2.13.8",
     "react": "~16.9.0",
     "react-dom": "~16.9.0",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.0.tar.gz",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.1.tar.gz",
     "react-native-web": "~0.11.7"
   },
   "devDependencies": {

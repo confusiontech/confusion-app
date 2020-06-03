@@ -1,21 +1,24 @@
 import React from 'react';
-import { FlatList, Text, SafeAreaView, View } from 'react-native';
+import { FlatList, SafeAreaView, View } from 'react-native';
+import { List, ListItem, Accordion, Text, Button, Left, Right } from 'native-base';
 
 const Program = ({ shows }) => (
-  <SafeAreaView>
-    <FlatList
-      data={shows}
-      renderItem={({ item }) => <Item item={item}/>}
+    <List
+      dataArray={shows}
       keyExtractor={item => item.id + item.time[0]}
-    />
-  </SafeAreaView>
+      renderRow={(item) => Item(item)}>
+    </List>
 )
 
-function Item({ item }) {
+function Item(item) {
   return (
-    <View>
-      <Text>{item.title} | {item.participant_category}</Text>
-    </View>
+      <ListItem>
+      <View>
+      <Left>
+            <Text>{item.title} | {item.participant_category}</Text>
+      </Left>
+      </View>
+    </ListItem>
   );
 }
 
