@@ -9,17 +9,15 @@ export default function App() {
   return (
       <Container>
         <Header>
-            <Body>
-              <Title>Hello conFusión 2020</Title>
-              <Subtitle>o 2021?</Subtitle>
-            </Body>
+          <Body>
+            <Title>Hello conFusión 2020</Title>
+            <Subtitle>o 2021?</Subtitle>
+          </Body>
       </Header>
-      <Content>
         <ProgramContextProvider>
           <ProgramUpdater/>
           <ProgramContainer/>
-      </ProgramContextProvider>
-      </Content>
+        </ProgramContextProvider>
       </Container>
 
   );

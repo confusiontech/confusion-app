@@ -1,25 +1,66 @@
 import React from 'react';
-import { FlatList, SafeAreaView, View } from 'react-native';
-import { List, ListItem, Accordion, Text, Button, Left, Right } from 'native-base';
+import { FlatList, Text, SafeAreaView, View, StyleSheet, ScrollView } from 'react-native';
+import { Col, Row, Grid } from 'react-native-easy-grid';
 
-const Program = ({ shows }) => (
-    <List
-      dataArray={shows}
-      keyExtractor={item => item.id + item.time[0]}
-      renderRow={(item) => Item(item)}>
-    </List>
-)
+function msToTime(s) {
+  const date = new Date(parseInt(s));
+  return date.toLocaleTimeString();
+}
 
-function Item(item) {
+const renderItem = ({ item }) => <Item item={item}/>;
+
+const extractKey = item => item.id + item.time[0];
+
+const Program = ({ shows }) => {
   return (
-      <ListItem>
-      <View>
-      <Left>
-            <Text>{item.title} | {item.participant_category}</Text>
-      </Left>
+    <SafeAreaView>
+      <FlatList
+        data={shows}
+        renderItem={renderItem}
+        keyExtractor={extractKey}
+      />
+    </SafeAreaView>
+  )
+}
+
+function Item({ item }) {
+  return (
+    <View  style={styles.grid}>
+      <View style={{ backgroundColor: '#635DB7', width: '25%'}}>
+        <Text> 
+          {msToTime(item.time[0])}
+        </Text>
       </View>
-    </ListItem>
+      <View style={{ backgroundColor: '#635DB7', width: '25%'}}>
+        <Text> 
+          {item.title}
+        </Text>
+      </View>
+      <View size={25} style={{ backgroundColor: '#00CE9F', width: '15%'}}>
+        <Text> 
+          {item.participant_category}
+        </Text>
+      </View>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  grid: {
+    borderBottomWidth: 1,
+    borderBottomColor: 'black',
+    flex: 1, 
+    flexDirection: 'row',
+    height: 50
+  },
+  bigBlue: {
+    color: 'blue',
+    fontWeight: 'bold',
+    fontSize: 30,
+  },
+  red: {
+    color: 'red',
+  },
+});
 
 export default Program;

@@ -1,22 +1,16 @@
 import React, { useState } from 'react';
 import { Picker } from 'native-base';
-import categoryService from '../services/category-service';
 
-export default function CategoryFilter({onOptionClick}) {
-  const [selectedValue, setSelectedValue] = useState("");
+export default function CategoryFilter({ elements, selectedElement, setSelectedElement }) {
   return (
     <Picker
       style={{ width: undefined }}
-      selectedValue={selectedValue}
-      onValueChange={(itemValue) => {
-          setSelectedValue(itemValue);
-          onOptionClick(itemValue);
-      }}
+      selectedValue={selectedElement}
+      onValueChange={(itemValue) => setSelectedElement(itemValue)}
     >
-    <Picker.Item label="Todas" value="" key="" />    
-    {categoryService.getAllCategories().map(item =>
-      <Picker.Item label={item.name} value={item.id} key={item.id} />
-    )}
+      {elements.map(item =>
+        <Picker.Item label={item.label} value={item.value} key={item.key} />
+      )}
     </Picker>
   );
 }

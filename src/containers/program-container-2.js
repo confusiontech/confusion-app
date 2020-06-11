@@ -22,6 +22,21 @@ const categories = [
   })
 ]
 
+const dates = [
+  {
+    label: 'Todos',
+    value: null,
+    key: null
+  },
+  ...categoryService.getDates().map( date => {
+    return {
+      label: date,
+      value: date,
+      key: date
+    }
+  })
+]
+
 const ProgramContainer = () => {
   const { allShows } = useContext(ProgramContext);
   const [shows, setShows] = useState(allShows);
@@ -29,16 +44,16 @@ const ProgramContainer = () => {
   const [selectedDate, setSelectedDate] = useState(null);
 
   useEffect(() => {
+    let isShowSelected = show => true; 
     if (selectedCategory) {
-      const filteredShows = allShows.filter( show => 
-        show.participant_category == selectedCategory
-      );
-      setShows(filteredShows);
-    } else {
-      setShows(allShows);
+      isShowSelected = show => show.participant_category == selectedCategory
     }
-  }, [allShows, selectedCategory]);
-
+    if (selectedDate) {
+      isShowSelected = show => show.date == selectedDate && isShowSelected(show)
+    }
+    const filteredShows = allShows
+    setShows(filteredShows);
+  }, [allShows, selectedCategory, selectedDate]);
 
   return (
     <View>
@@ -46,6 +61,11 @@ const ProgramContainer = () => {
         selectedElement={selectedCategory}
         setSelectedElement={setSelectedCategory}
         elements={categories}
+      />
+      <CategoryFilter 
+        selectedElement={selectedDate}
+        setSelectedElement={setSelectedDate}
+        elements={dates}
       />
       <Program shows={shows}/>
     </View>

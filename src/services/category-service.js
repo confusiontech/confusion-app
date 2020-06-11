@@ -1,4 +1,7 @@
-class CategoryService {
+class EventService {
+    getDates() {
+        return ['2019-10-19','2019-10-20']
+    }
     getAllCategories() {
         return [
             { id: "arts", name: "Artes Escénicas" },
@@ -16,4 +19,4 @@ class CategoryService {
 }
 
 
-export default new CategoryService();
+export default new EventService();
