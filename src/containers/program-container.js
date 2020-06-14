@@ -2,50 +2,46 @@ import React, { useState, useEffect, useContext } from 'react';
 import { View } from 'react-native';
 
 import Program from '../components/program';
-import CategoryFilter from '../components/category-filter';
+import PickerFilter from '../components/picker-filter';
 import { ProgramContext } from '../services/program-context';
 
-import categoryService from '../services/category-service';
+import { filterShows, categories, dates } from '../helpers/program-helpers'
 
-const categories = [
-  {
-    label: 'Todas',
-    value: null,
-    key: null
-  },
-  ...categoryService.getAllCategories().map( category => {
-    return {
-      label: category.name,
-      value: category.id,
-      key: category.id
-    }
-  })
-]
 
 const ProgramContainer = () => {
   const { allShows } = useContext(ProgramContext);
   const [shows, setShows] = useState(allShows);
-  const [selectedCategory, setSelectedCategory] = useState(null);
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedDate, setSelectedDate] = useState('all');
 
-  useEffect(() => {
-    if (selectedCategory) {
-      const filteredShows = allShows.filter( show => 
-        show.participant_category == selectedCategory
-      );
-      setShows(filteredShows);
-    } else {
-      setShows(allShows);
+  const propertiesConditions = [
+    {
+      showProperty: 'participant_category',
+      stateProperty: selectedCategory
+    },
+    {
+      showProperty: 'date',
+      stateProperty: selectedDate
     }
-  }, [allShows, selectedCategory]);
+  ]
+  
+  useEffect(() => {
+    const filteredShows = filterShows(allShows, propertiesConditions);
+    setShows(filteredShows);
+  }, [allShows, selectedCategory, selectedDate]);
 
 
   return (
     <View>
-      <CategoryFilter 
+      <PickerFilter 
         selectedElement={selectedCategory}
         setSelectedElement={setSelectedCategory}
         elements={categories}
+      />
+      <PickerFilter 
+        selectedElement={selectedDate}
+        setSelectedElement={setSelectedDate}
+        elements={dates}
       />
       <Program shows={shows}/>
     </View>

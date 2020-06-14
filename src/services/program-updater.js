@@ -13,7 +13,7 @@ const ProgramUpdater = () => {
   useEffect(() => {
     function updateProgram() {
       fetchProgram().then(function(response) {
-        if (!allShows || response.new) setAllShows(response.program);
+        if (!(allShows && allShows.length) || response.new) setAllShows(response.program);
       });
     }
 
