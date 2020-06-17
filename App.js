@@ -1,25 +1,28 @@
 import React, { Component } from 'react';
+import 'react-native-gesture-handler';
 import { Container, Header, Content, Left, Body, Right, Title, Subtitle } from 'native-base';
 import { StyleSheet, Text, View } from 'react-native';
 import ProgramContainer from './src/containers/program-container';
+import FilterContainer from './src/containers/filter-container';
 import ProgramUpdater from './src/services/program-updater';
 import { ProgramContextProvider } from './src/services/program-context';
+import { NavigationContainer } from '@react-navigation/native';
+
+import { createStackNavigator } from '@react-navigation/stack';
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-      <Container>
-        <Header>
-          <Body>
-            <Title>Hello conFusión 2020</Title>
-            <Subtitle>o 2021?</Subtitle>
-          </Body>
-      </Header>
-        <ProgramContextProvider>
-          <ProgramUpdater/>
-          <ProgramContainer/>
-        </ProgramContextProvider>
-      </Container>
-
+    <NavigationContainer>
+      <ProgramContextProvider>
+        <ProgramUpdater/>
+        <Stack.Navigator>
+          <Stack.Screen name="Programa" component={ProgramContainer} />
+          <Stack.Screen name="Filter" component={FilterContainer} />      
+        </Stack.Navigator>
+      </ProgramContextProvider>
+    </NavigationContainer>
   );
 }
 
