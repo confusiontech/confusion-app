@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, Text, SafeAreaView, View, StyleSheet, ScrollView } from 'react-native';
+import { TouchableHighlight, FlatList, Text, SafeAreaView, View, StyleSheet, ScrollView } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 
 function msToTime(s) {
@@ -7,11 +7,12 @@ function msToTime(s) {
   return date.toLocaleTimeString();
 }
 
-const renderItem = ({ item }) => <Item item={item}/>;
-
 const extractKey = item => item.id + item.time[0];
 
-const Program = ({ shows }) => {
+const Program = ({ navigation, shows }) => {
+  // TODO: Avoid new function on every call, it breaks equality checks which causes additional re-renders
+  const renderItem = ({ item }) => <Item navigation={navigation} item={item}/>;
+
   return (
     <SafeAreaView>
       <FlatList
@@ -23,9 +24,10 @@ const Program = ({ shows }) => {
   )
 }
 
-function Item({ item }) {
+const Item = React.memo(({ navigation, item }) => {
   return (
-    <View  style={styles.grid}>
+    <TouchableHighlight onPress={() => navigation.navigate('Evento', {event: item})}>
+      <View style={styles.grid} >
       <View style={{ backgroundColor: '#635DB7', width: '25%'}}>
         <Text> 
           {msToTime(item.time[0])}
@@ -41,9 +43,10 @@ function Item({ item }) {
           {item.participant_category}
         </Text>
       </View>
-    </View>
+      </View>
+    </TouchableHighlight>
   );
-}
+});
 
 const styles = StyleSheet.create({
   grid: {

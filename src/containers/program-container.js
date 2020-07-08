@@ -30,7 +30,7 @@ const ProgramContainer = ({ navigation }) => {
   return (
       <View style={{flex: 1}}>
       <View style={{flex: 0.9998}}>
-      <Program shows={shows}/>
+      <Program navigation={navigation} shows={shows}/>
       </View>
 
       <Button
