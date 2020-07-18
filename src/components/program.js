@@ -1,6 +1,9 @@
 import React from 'react';
 import { TouchableHighlight, FlatList, Text, SafeAreaView, View, StyleSheet, ScrollView } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
+import eventService from '../services/event-service'
+
+const categoriesMap = eventService.getAllCategories();
 
 function msToTime(s) {
   const date = new Date(parseInt(s));
@@ -40,7 +43,7 @@ const Item = React.memo(({ navigation, item }) => {
       </View>
       <View size={25} style={{ backgroundColor: '#00CE9F', width: '15%'}}>
         <Text> 
-          {item.participant_category}
+          {categoriesMap.get(item.participant_subcategory)}
         </Text>
       </View>
       </View>

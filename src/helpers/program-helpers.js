@@ -1,16 +1,18 @@
 import eventService from '../services/event-service'
 
+const arrayMap = Array.from(eventService.getAllCategories());
+
 export const categories = [
   {
     label: 'Todas',
     value: 'all',
     key: 'all'
   },
-  ...eventService.getAllCategories().map( category => {
+  ...arrayMap.map( category => {
     return {
-      label: category.name,
-      value: category.id,
-      key: category.id
+      label: category[1],
+      value: category[0],
+      key: category[0]
     }
   })
 ];
@@ -33,9 +35,9 @@ export const dates = [
 export const filterShows = (allShows, propertiesConditionsObjs) => {
   const isShowSelectedConditions = propertiesConditionsObjs.reduce(
     (conditions, properties) => {
-      if (properties.stateProperty != 'all') {
+      if (properties.stateProperty.length !== 0) {
         conditions.push( 
-          show => show[properties.showProperty] == properties.stateProperty
+          show => properties.stateProperty.includes(show[properties.showProperty])
         );
       }
       return conditions;

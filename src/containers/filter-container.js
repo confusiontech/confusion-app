@@ -2,20 +2,21 @@ import React, { useState, useEffect, useContext } from 'react';
 import { View, Button } from 'react-native';
 
 import PickerFilter from '../components/picker-filter';
+import FilterGrid from '../components/filter-grid';
 import { ProgramContext } from '../services/program-context';
 import { categories, dates } from '../helpers/program-helpers';
 
 const FilterContainer = ({ navigation }) => {
   const { setFilter, filter } = useContext(ProgramContext);
 
-  const [selectedCategory, setSelectedCategory] = useState(filter.selectedCategory);
+  const [selectedCategories, setSelectedCategories] = useState(filter.selectedCategories);
   const [selectedDate, setSelectedDate] = useState(filter.selectedDate);
 
   return (
     <View>
-      <PickerFilter 
-        selectedElement={selectedCategory}
-        setSelectedElement={setSelectedCategory}
+      <FilterGrid 
+        selectedElementIds={selectedCategories}
+        setSelectedElementIds={setSelectedCategories}
         elements={categories}
       />
       <PickerFilter 
@@ -27,7 +28,7 @@ const FilterContainer = ({ navigation }) => {
         title="Search"
         onPress={() => {
           setFilter({
-            selectedCategory,
+            selectedCategories,
             selectedDate
           });
           navigation.navigate('Programa');

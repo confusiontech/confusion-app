@@ -14,12 +14,12 @@ const ProgramContainer = ({ navigation }) => {
   useEffect(() => {
     const propertiesConditions = [
       {
-        showProperty: 'participant_category',
-        stateProperty: filter.selectedCategory
+        showProperty: 'participant_subcategory',
+        stateProperty: filter.selectedCategories,
       },
       {
         showProperty: 'date',
-        stateProperty: filter.selectedDate
+        stateProperty: filter.selectedDate == 'all' ? [] : [filter.selectedDate],
       }
     ];
     const filteredShows = filterShows(allShows, propertiesConditions);

@@ -5,7 +5,7 @@ const ProgramContext = createContext();
 const ProgramContextProvider = props => {
   const [allShows, setAllShows] = useState([]);
   const [filter, setFilter] = useState({
-    selectedCategory: 'all',
+    selectedCategories: [],
     selectedDate: 'all'
   });
   
