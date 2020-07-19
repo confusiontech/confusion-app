@@ -4,7 +4,7 @@ import { Container, Header, Content, Left, Body, Right, Title, Subtitle } from '
 import { StyleSheet, Text, View } from 'react-native';
 import ProgramContainer from './src/containers/program-container';
 import FilterContainer from './src/containers/filter-container';
-import EventContainer from './src/containers/event-container';
+import ShowContainer from './src/containers/show-container';
 import ProgramUpdater from './src/services/program-updater';
 import { ProgramContextProvider } from './src/services/program-context';
 import { NavigationContainer } from '@react-navigation/native';
@@ -21,7 +21,7 @@ export default function App() {
         <Stack.Navigator>
           <Stack.Screen name="Programa" component={ProgramContainer} />
           <Stack.Screen name="Filter" component={FilterContainer} />
-          <Stack.Screen name="Evento" component={EventContainer} />
+          <Stack.Screen name="Evento" component={ShowContainer} />
         </Stack.Navigator>
       </ProgramContextProvider>
     </NavigationContainer>

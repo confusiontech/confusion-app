@@ -1,6 +1,7 @@
 import eventService from '../services/event-service'
 
-const arrayMap = Array.from(eventService.getAllCategories());
+const categoriesMap = eventService.getAllCategories();
+const arrayMap = Array.from(categoriesMap);
 
 export const categories = [
   {
@@ -46,4 +47,22 @@ export const filterShows = (allShows, propertiesConditionsObjs) => {
   const filteredShows = allShows.filter(show => 
     isShowSelectedConditions.every(condition => condition(show)));
   return filteredShows;
+}
+
+export const getParticipantCategory = show => 
+  categoriesMap.get(show.participant_subcategory);
+
+const publicMap = new Map([
+  ['all_public', 'Todos los publicos'],
+  ['baby','Infantil'],
+  ['family', 'Familiar'],
+  ['young', 'Juvenil'],
+  ['adults', 'Adultos'],
+])
+export const getPublic = show => 
+  publicMap.get(show.children);
+
+export const getAddress = show => {
+  const address = show.address;
+  return `${address.route} ${address.street_number}`;
 }

@@ -19,6 +19,7 @@
     "@react-navigation/stack": "^5.5.1",
     "expo": "^36.0.1",
     "local-cors-proxy": "^1.1.0",
+    "moment": "^2.27.0",
     "native-base": "2.13.8",
     "react": "~16.9.0",
     "react-dom": "~16.9.0",

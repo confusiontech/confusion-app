@@ -26,17 +26,15 @@ const ProgramContainer = ({ navigation }) => {
     setShows(filteredShows);
   }, [allShows, filter]);
 
+  const navigateToFilter = () => navigation.navigate('Filter');
 
   return (
-      <View style={{flex: 1}}>
-      <View style={{flex: 0.9998}}>
-      <Program navigation={navigation} shows={shows}/>
-      </View>
-
+    <View>
       <Button
         title="Filtro"
-        onPress={() => navigation.navigate('Filter')}
+        onPress={navigateToFilter}
       />
+      <Program navigation={navigation} shows={shows}/>
     </View>
   );
 };
