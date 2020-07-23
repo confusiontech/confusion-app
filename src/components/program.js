@@ -36,36 +36,42 @@ const ProgramItem = React.memo(({ navigation, show }) => {
   return (
     <TouchableHighlight onPress={navigateToEvent}>
       <View style={styles.grid} >
-        <View style={{width: '12%', justifyContent: 'center'}}>
+        <View 
+          style={styles.categoryContainer}
+        >
           <Text style={styles.icon}>
             {categoryIcon} 
           </Text>
         </View>
-        <View style={{width: '18%', justifyContent: 'center'}}>
+        <View 
+          style={styles.dateContainer}
+        >
           <Text style={styles.date}> 
             {date}
           </Text>
-          <Text style={styles.time}> 
+          <Text 
+            style={styles.time}
+          > 
             {startTime}h
           </Text>
         </View>
-        <View style={{
-            width: '60%', 
-            justifyContent: 'center',
-            paddingLeft: 4, 
-            paddingRight: 2
-          }}>
-          <Text style={styles.artistName}> 
+        <View style={styles.artistNameAndTitleContainer}>
+          <Text 
+            style={styles.artistName} 
+            numberOfLines={2}
+          > 
             {show.participant_name}
           </Text>
-          <Text style={styles.title}> 
+          <Text 
+            style={styles.title} 
+            numberOfLines={2}
+          > 
             {show.title}
           </Text>
         </View>
-        <View style={{
-            width: '10%', 
-            justifyContent: 'center',
-            }}>
+        <View 
+          style={styles.spaceContainer}
+        >
           <Text style={styles.space}> 
             {show.order}
           </Text>
@@ -83,13 +89,27 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height: 80,
   },
+  categoryContainer: {
+    width: '12%', 
+    justifyContent: 'center'
+  },
   icon: {
     textAlign:'center'
+  },
+  artistNameAndTitleContainer: {
+    width: '60%', 
+    justifyContent: 'center',
+    paddingLeft: 4, 
+    paddingRight: 2
   },
   artistName: {
   },
   title: {
     fontSize: 16
+  },
+  dateContainer: {
+    width: '18%', 
+    justifyContent: 'center'
   },
   date: {
     textAlign:'center'
@@ -98,7 +118,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign:'center'
   },
+  spaceContainer: {
+    width: '10%', 
+    justifyContent: 'center',
+  },
   space: {
+    paddingLeft: 5,
     fontSize: 16
   }
 });

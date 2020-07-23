@@ -6,7 +6,8 @@ const ProgramContextProvider = props => {
   const [allShows, setAllShows] = useState([]);
   const [filter, setFilter] = useState({
     selectedCategories: [],
-    selectedDate: 'all'
+    selectedAudience: [],
+    selectedDate: [],
   });
   
   return (

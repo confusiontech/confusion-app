@@ -18,9 +18,13 @@ const ProgramContainer = ({ navigation }) => {
         stateProperty: filter.selectedCategories,
       },
       {
+        showProperty: 'children',
+        stateProperty: filter.selectedAudience,
+      },
+      {
         showProperty: 'date',
-        stateProperty: filter.selectedDate == 'all' ? [] : [filter.selectedDate],
-      }
+        stateProperty: filter.selectedDate,
+      },
     ];
     const filteredShows = filterShows(allShows, propertiesConditions);
     setShows(filteredShows);

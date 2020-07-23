@@ -1,14 +1,10 @@
 import eventService from '../services/event-service'
+import { getEsMoment } from './date-helpers'
 
 const categoriesMap = eventService.getAllCategories();
 const arrayMap = Array.from(categoriesMap);
 
 export const categories = [
-  {
-    label: 'Todas',
-    value: 'all',
-    key: 'all'
-  },
   ...arrayMap.map( category => {
     return {
       label: category[1],
@@ -19,19 +15,42 @@ export const categories = [
 ];
 
 export const dates = [
-  {
-    label: 'Todos',
-    value: 'all',
-    key: 'all'
-  },
   ...eventService.getDates().map( date => {
     return {
-      label: date,
+      label: getEsMoment(date).format('dddd D'),
       value: date,
       key: date
     }
   })
 ];
+
+export const audiences = [
+  {
+    label: 'Todos los públicos',
+    value: 'all_public',
+    key: 'all_public'
+  },
+  {
+    label: 'Infantil',
+    value: 'baby',
+    key: 'baby'
+  },
+  {
+    label: 'Familiar',
+    value: 'family',
+    key: 'family'
+  },
+  {
+    label: 'Juvenil',
+    value: 'young',
+    key: 'young'
+  },
+  {
+    label: 'Adultos',
+    value: 'adults',
+    key: 'adults'
+  },
+]
 
 export const filterShows = (allShows, propertiesConditionsObjs) => {
   const isShowSelectedConditions = propertiesConditionsObjs.reduce(

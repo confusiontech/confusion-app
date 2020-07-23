@@ -4,12 +4,13 @@ import { View, Button } from 'react-native';
 import PickerFilter from '../components/picker-filter';
 import FilterGrid from '../components/filter-grid';
 import { ProgramContext } from '../services/program-context';
-import { categories, dates } from '../helpers/program-helpers';
+import { categories, dates, audiences } from '../helpers/program-helpers';
 
 const FilterContainer = ({ navigation }) => {
   const { setFilter, filter } = useContext(ProgramContext);
 
   const [selectedCategories, setSelectedCategories] = useState(filter.selectedCategories);
+  const [selectedAudience, setSelectedAudience] = useState(filter.selectedAudience);
   const [selectedDate, setSelectedDate] = useState(filter.selectedDate);
 
   return (
@@ -19,9 +20,14 @@ const FilterContainer = ({ navigation }) => {
         setSelectedElementIds={setSelectedCategories}
         elements={categories}
       />
-      <PickerFilter 
-        selectedElement={selectedDate}
-        setSelectedElement={setSelectedDate}
+      <FilterGrid 
+        selectedElementIds={selectedAudience}
+        setSelectedElementIds={setSelectedAudience}
+        elements={audiences}
+      />
+      <FilterGrid 
+        selectedElementIds={selectedDate}
+        setSelectedElementIds={setSelectedDate}
         elements={dates}
       />
       <Button
@@ -29,7 +35,8 @@ const FilterContainer = ({ navigation }) => {
         onPress={() => {
           setFilter({
             selectedCategories,
-            selectedDate
+            selectedAudience,
+            selectedDate,
           });
           navigation.navigate('Programa');
         }}
