@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, StyleSheet, Dimensions, Text, View, Linking } from 'react-native';
+import { Button, StyleSheet, Dimensions, Text, View, Linking, Image } from 'react-native';
 import MapView from 'react-native-maps';
 import { Marker, Callout } from 'react-native-maps';
 import { getParticipantCategory, getPublic, getAddress } from '../helpers/program-helpers';
@@ -22,6 +22,11 @@ const ShowContainer = ({ route }) => {
 
   const mapUrl = `https://www.google.com/maps/place/${latitude},${longitude}/@${latitude},${longitude},15z`;
   const openMapUrl = ()=> Linking.openURL(mapUrl);
+
+  const showCallout = ( ) => {
+    if(!marker) setTimeout(showCallout, 1);
+    else marker.showCallout();
+  }
 
   return (
       <View>
@@ -46,13 +51,34 @@ const ShowContainer = ({ route }) => {
             latitudeDelta: 0.0022,
             longitudeDelta: 0.002
           }}
-    onLayout={() => marker.showCallout()} >
-          <Marker coordinate={{latitude: latitude, longitude: longitude}} onPress={openMapUrl} ref={setMarkerRef}>
-            <Callout onPress={openMapUrl}>
-              <View>
-                <Text>{`${show.order}: ${show.host_name}`}</Text>
-              </View>
-            </Callout>
+        >
+          <Marker 
+            coordinate={{latitude: latitude, longitude: longitude}}
+            onPress={openMapUrl}
+            ref={setMarkerRef}
+            anchor={{x: 0.5, y: 0.5}}
+          >
+            <View style={
+              {
+                justifyContent: 'center', 
+                alignItems: 'center',
+                verticalAlign: 'center',
+                backgroundColor: 'blue',
+                borderRadius: 17
+              }
+            }>
+              <Text style={
+                {
+                  textAlign: 'center',
+                  fontSize: 24,
+                  width: 34,
+                  height: 34,
+                  color: 'white'
+                }
+              }>
+                {`${show.order}`}
+              </Text>
+            </View>
           </Marker>
         </MapView>
       </View>

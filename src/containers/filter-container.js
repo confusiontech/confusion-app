@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { View, Button } from 'react-native';
+import { View, Button, Text } from 'react-native';
 
 import PickerFilter from '../components/picker-filter';
 import FilterGrid from '../components/filter-grid';
 import { ProgramContext } from '../services/program-context';
 import { categories, dates, audiences } from '../helpers/program-helpers';
+import { iconsMap } from '../helpers/icon-helpers';
 
 const FilterContainer = ({ navigation }) => {
   const { setFilter, filter } = useContext(ProgramContext);

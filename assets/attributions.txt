@@ -1,0 +1,1 @@
+map_marker_icon: https://commons.wikimedia.org/wiki/File:Map_icons_by_Scott_de_Jonge_-_postal-code-prefix.svg
