@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { View, Button, Text } from 'react-native';
+import React, { useState, useContext } from 'react';
+import { View, Button, Text, StyleSheet } from 'react-native';
 
-import PickerFilter from '../components/picker-filter';
 import FilterGrid from '../components/filter-grid';
 import { ProgramContext } from '../services/program-context';
 import { categories, dates, audiences } from '../helpers/program-helpers';
@@ -14,12 +13,27 @@ const FilterContainer = ({ navigation }) => {
   const [selectedAudience, setSelectedAudience] = useState(filter.selectedAudience);
   const [selectedDate, setSelectedDate] = useState(filter.selectedDate);
 
+  const props = {size: 16, color: 'black', styleClass: styles.icon};
+
+  const categoriesWithIcon = categories.map(category => (
+    {
+      ...category,
+      label: (
+          <Text >
+            {iconsMap.get(category.value, props)}
+            {'\n'}
+            {category.label}
+          </Text>
+      )
+    }
+  ));
+
   return (
     <View>
       <FilterGrid 
         selectedElementIds={selectedCategories}
         setSelectedElementIds={setSelectedCategories}
-        elements={categories}
+        elements={categoriesWithIcon}
       />
       <FilterGrid 
         selectedElementIds={selectedAudience}
@@ -47,3 +61,10 @@ const FilterContainer = ({ navigation }) => {
 };
 
 export default FilterContainer;
+
+// TODO: Copied and pasted from project.js, refactor
+const styles = StyleSheet.create({
+  icon: {
+    textAlign: 'center',
+  }
+});
