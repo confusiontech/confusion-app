@@ -1,12 +1,13 @@
 import React, {PureComponent} from 'react';
-import { TouchableHighlight, FlatList, Text, SafeAreaView, View, StyleSheet, ScrollView } from 'react-native';
-// import { Col, Row, Grid } from 'react-native-easy-grid';
+import { Button, TouchableHighlight, FlatList, Text, SafeAreaView, View, StyleSheet, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { iconsMap } from '../helpers/icon-helpers'
 import eventService from '../services/event-service'
 import moment from 'moment'
 import 'moment/locale/es';
 
+const TEN_MINUTES = 10*60*1000;
+const ROW_HEIGHT = 80;
 
 const categoriesMap = eventService.getAllCategories();
 
@@ -16,14 +17,35 @@ const Program = ({ navigation, shows }) => {
   // TODO: Avoid new function on every call, it breaks equality checks which causes additional re-renders
   const renderItem = ({ item }) => <ProgramItem navigation={navigation} show={item} />;
 
+  const scrollProgramListToNow = () => {
+    const now = new Date(2019, 9, 20, 17, 50).getTime();
+    let nowIndex = shows.findIndex(show => show.time[0] > now - TEN_MINUTES);
+    nowIndex = Math.max(0, nowIndex);
+
+    return flatListRef.scrollToIndex({index: nowIndex, viewPosition: 0});
+  }
+
   return (
-    <SafeAreaView>
-      <FlatList
-        data={shows}
-        renderItem={renderItem}
-        keyExtractor={extractKey}
+    <View>
+      <Button
+        title="Ahora"
+        onPress={scrollProgramListToNow}
       />
-    </SafeAreaView>
+      <SafeAreaView>
+        <FlatList
+          data={shows}
+          renderItem={renderItem}
+          keyExtractor={extractKey}
+          ref={(ref) => { flatListRef = ref; }}
+          getItemLayout= {(show, index) => ({
+              offset: ROW_HEIGHT * index,
+              length: ROW_HEIGHT,
+              index
+            })
+          }
+        />
+      </SafeAreaView>
+    </View>
   )
 }
 
