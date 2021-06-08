@@ -13,24 +13,22 @@ const categoriesMap = eventService.getAllCategories();
 
 const extractKey = item => item.id + item.time[0];
 
-const Program = ({ navigation, shows }) => {
+const Program = ({ navigation, shows, gotToNowEvent }) => {
   // TODO: Avoid new function on every call, it breaks equality checks which causes additional re-renders
   const renderItem = ({ item }) => <ProgramItem navigation={navigation} show={item} />;
 
-  const scrollProgramListToNow = () => {
+  gotToNowEvent.current = () => {
+  // TODO: Remove hardcoded date
     const now = new Date(2019, 9, 20, 17, 50).getTime();
+    // const now = new Date().getTime();
     let nowIndex = shows.findIndex(show => show.time[0] > now - TEN_MINUTES);
     nowIndex = Math.max(0, nowIndex);
 
     return flatListRef.scrollToIndex({index: nowIndex, viewPosition: 0});
-  }
+  };
 
   return (
     <View>
-      <Button
-        title="Ahora"
-        onPress={scrollProgramListToNow}
-      />
       <SafeAreaView>
         <FlatList
           data={shows}

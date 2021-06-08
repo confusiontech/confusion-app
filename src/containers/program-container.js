@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { View, Button } from 'react-native';
+import React, { useState, useEffect, useContext, useRef } from 'react';
+import { View, Button, StyleSheet } from 'react-native';
 
 import Program from '../components/program';
 import { ProgramContext } from '../services/program-context';
@@ -30,17 +30,42 @@ const ProgramContainer = ({ navigation }) => {
     setShows(filteredShows);
   }, [allShows, filter]);
 
+  const gotToNowEvent = useRef(null);
+
   const navigateToFilter = () => navigation.navigate('Filter');
 
   return (
     <View>
-      <Button
-        title="Filtro"
-        onPress={navigateToFilter}
-      />
-      <Program navigation={navigation} shows={shows}/>
+      <View style={styles.buttonContainer}>
+        <View style={styles.filterButton}>
+          <Button
+            title="Filtro"
+            onPress={navigateToFilter}
+          />
+        </View>
+        <View style={styles.nowButton}>
+          <Button
+            title="Ahora"
+            onPress={() => gotToNowEvent.current()}
+          />
+        </View>
+      </View>
+      <Program navigation={navigation} shows={shows} gotToNowEvent={gotToNowEvent}/>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  buttonContainer: {
+    flexDirection: 'row',
+  },
+  filterButton: {
+    width:'50%',
+    borderLeftWidth: 1,
+  },
+  nowButton: {
+    width: '50%',
+  }
+})
 
 export default ProgramContainer;

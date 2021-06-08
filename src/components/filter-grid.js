@@ -45,7 +45,7 @@ export default function FilterGrid({ elements, selectedElementIds, setSelectedEl
   const extractKey = item => item.value;
 
   return (
-    <View style={styles.container}>
+    <View>
       <FlatList
         contentContainerStyle={styles.flatList}
         columnWrapperStyle={{}}
