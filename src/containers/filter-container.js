@@ -3,7 +3,7 @@ import { View, Button, Text, StyleSheet } from 'react-native';
 
 import FilterGrid from '../components/filter-grid';
 import { ProgramContext } from '../services/program-context';
-import { categories, dates, audiences } from '../helpers/program-helpers';
+import { categories, dates, audiences, favoriteOptions } from '../helpers/program-helpers';
 import { iconsMap } from '../helpers/icon-helpers';
 
 const FilterContainer = ({ navigation }) => {
@@ -12,6 +12,7 @@ const FilterContainer = ({ navigation }) => {
   const [selectedCategories, setSelectedCategories] = useState(filter.selectedCategories);
   const [selectedAudience, setSelectedAudience] = useState(filter.selectedAudience);
   const [selectedDate, setSelectedDate] = useState(filter.selectedDate);
+  const [selectedFavoriteOptions, setSelectedFavoriteOptions] = useState(filter.selectedFavoriteOptions);
 
   const props = {size: 16, color: 'black', styleClass: styles.icon};
 
@@ -45,6 +46,11 @@ const FilterContainer = ({ navigation }) => {
         setSelectedElementIds={setSelectedDate}
         elements={dates}
       />
+      <FilterGrid 
+        selectedElementIds={selectedFavoriteOptions}
+        setSelectedElementIds={setSelectedFavoriteOptions}
+        elements={favoriteOptions}
+      />
       <Button
         title="Search"
         onPress={() => {
@@ -52,6 +58,7 @@ const FilterContainer = ({ navigation }) => {
             selectedCategories,
             selectedAudience,
             selectedDate,
+            selectedFavoriteOptions,
           });
           navigation.navigate('Programa');
         }}

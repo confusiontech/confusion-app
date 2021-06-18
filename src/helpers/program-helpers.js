@@ -24,6 +24,14 @@ export const dates = [
   })
 ];
 
+export const favoriteOptions = [
+  {
+    label: 'Favoritos',
+    value: true,
+    key: true,
+  }
+]
+
 export const audiences = [
   {
     label: 'Todos los públicos',
@@ -52,13 +60,22 @@ export const audiences = [
   },
 ]
 
-export const filterShows = (allShows, propertiesConditionsObjs) => {
+export const filterShows = (allShows, favorites, propertiesConditionsObjs) => {
   const isShowSelectedConditions = propertiesConditionsObjs.reduce(
     (conditions, properties) => {
       if (properties.stateProperty.length !== 0) {
-        conditions.push( 
-          show => properties.stateProperty.includes(show[properties.showProperty])
-        );
+        if (properties.showProperty == 'favorites') {
+          conditions.push( 
+            show => {
+              return properties.stateProperty.includes(favorites.has(show.id))
+            } 
+          )
+        }
+        else {
+          conditions.push( 
+            show => properties.stateProperty.includes(show[properties.showProperty])
+          );
+        }
       }
       return conditions;
     }, [show => true]

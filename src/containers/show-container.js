@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Button, StyleSheet, Dimensions, Text, View, Linking, Image } from 'react-native';
+import React, { useState, useEffect, useContext } from 'react';
+import { StyleSheet, Dimensions, Text, View, Linking, Image, TouchableHighlight } from 'react-native';
 import MapView from 'react-native-maps';
 import { Marker, Callout } from 'react-native-maps';
 import { getParticipantCategory, getPublic, getAddress } from '../helpers/program-helpers';
 import { capitalize } from '../helpers/text-helpers';
 import { getEsMoment } from '../helpers/date-helpers';
+import { iconsMap } from '../helpers/icon-helpers';
+import { ProgramContext } from '../services/program-context';
 
 const ShowContainer = ({ route }) => {
   const show = route.params.show;
@@ -13,6 +15,14 @@ const ShowContainer = ({ route }) => {
   const momentEndTime = getEsMoment(parseInt(show.time[1]));
   const latitude = parseFloat(show.address.location.lat);
   const longitude = parseFloat(show.address.location.lng);
+
+  const { favorites, setFavorites, filter, setFilter, } = useContext(ProgramContext);
+
+  const toggleFavorite = () => {
+    const newFavorites = new Set(favorites)
+    newFavorites.has(show.id) ? newFavorites.delete(show.id) : newFavorites.add(show.id);
+    setFavorites(newFavorites);
+  } 
 
   let marker = null;
 
@@ -30,6 +40,11 @@ const ShowContainer = ({ route }) => {
 
   return (
       <View>
+        <TouchableHighlight onPress={toggleFavorite}>
+          <View>
+            { iconsMap.get('favorites') }
+          </View>
+        </TouchableHighlight>
         <Text>{show.participant_name}</Text>
         <Text>{show.title}</Text>
         <Text>{show.short_description}</Text>

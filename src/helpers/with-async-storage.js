@@ -1,4 +1,4 @@
-import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const withAsyncStorage = (cacheKey, fallback) => {
   return async (...params) => {
@@ -11,6 +11,10 @@ const withAsyncStorage = (cacheKey, fallback) => {
     }
     return newValue;
   }
+};
+
+const store = (storageKey, favorites) => {
+  
 };
 
 export default withAsyncStorage;

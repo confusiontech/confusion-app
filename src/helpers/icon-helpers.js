@@ -15,16 +15,8 @@ const values = new Map([
   ['6', ({size, color, styleClass}) => <FontAwesome5 name="feather-alt" size={size} color={color} style={styleClass} /> ],
   ['7', ({size, color, styleClass}) => <Ionicons name="ios-people" size={size} color={color} style={styleClass} /> ],
   ['8', ({size, color, styleClass}) => <FontAwesome5 name="building" size={size} color={color} style={styleClass} />],
-	  //   ["0", "Artes Escénicas" ],
-	  //   ["1", "Arte Urbano" ],
-	  //   ["2", "Audiovisual" ],
-	  //   ["3", "Exposición" ],
-	  //   ["4", "Música" ],
-	  //   ["5", "Otros" ],
-	  //   ["6", "Poesía" ],
-	  //   ["7", "Talleres / Charlas" ],
-	  //   ["8", "Instalaciones Urbanas"],
-    ]);
+  ['favorites', ({size, color, styleClass}) => <FontAwesome5 name="heart" size={size} color={color} style={styleClass} />],
+]);
 
 export const iconsMap = {
   get: function(category, props = {}) {

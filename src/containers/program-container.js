@@ -8,7 +8,7 @@ import { filterShows } from '../helpers/program-helpers';
 
 
 const ProgramContainer = ({ navigation }) => {
-  const { allShows, filter } = useContext(ProgramContext);
+  const { allShows, filter, favorites } = useContext(ProgramContext);
   const [shows, setShows] = useState(allShows);
 
   useEffect(() => {
@@ -25,10 +25,14 @@ const ProgramContainer = ({ navigation }) => {
         showProperty: 'date',
         stateProperty: filter.selectedDate,
       },
+      {
+        showProperty: 'favorites',
+        stateProperty: filter.selectedFavoriteOptions,
+      },
     ];
-    const filteredShows = filterShows(allShows, propertiesConditions);
+    const filteredShows = filterShows(allShows, favorites, propertiesConditions);
     setShows(filteredShows);
-  }, [allShows, filter]);
+  }, [allShows, filter, favorites]);
 
   const gotToNowEvent = useRef(null);
 
