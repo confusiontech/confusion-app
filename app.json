@@ -25,6 +25,9 @@
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "android": {
+      "package": "es.beniconfusionfest.confusion"
     }
   }
 }
