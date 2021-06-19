@@ -1,30 +1,32 @@
-import React, {PureComponent} from 'react';
-import { Button, TouchableHighlight, FlatList, Text, SafeAreaView, View, StyleSheet, ScrollView } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { iconsMap } from '../helpers/icon-helpers'
-import eventService from '../services/event-service'
-import moment from 'moment'
+import React from 'react';
+import { TouchableHighlight, FlatList, Text, SafeAreaView, View, StyleSheet } from 'react-native';
+import { iconsMap } from '../helpers/icon-helpers';
+import moment from 'moment';
 import 'moment/locale/es';
+import DrawAttentionView from './drawattentionview';
 
 const TEN_MINUTES = 10*60*1000;
 const ROW_HEIGHT = 80;
 
-const categoriesMap = eventService.getAllCategories();
-
 const extractKey = item => item.id + item.time[0];
 
-const Program = ({ navigation, shows, gotToNowEvent }) => {
+// TODO: Remove hardcoded date, use `new Date().getTime()`
+const getNow = () => new Date(2019, 9, 20, 19, 9).getTime();
+
+const Program = ({ navigation, shows, goToNowEvent }) => {
   // TODO: Avoid new function on every call, it breaks equality checks which causes additional re-renders
-  const renderItem = ({ item }) => <ProgramItem navigation={navigation} show={item} />;
+  const renderItem = ({ item }) => <ProgramItem navigation={navigation} show={item} now={getNow()}/>;
 
-  gotToNowEvent.current = () => {
-  // TODO: Remove hardcoded date
-    const now = new Date(2019, 9, 20, 17, 50).getTime();
-    // const now = new Date().getTime();
-    let nowIndex = shows.findIndex(show => show.time[0] > now - TEN_MINUTES);
-    nowIndex = Math.max(0, nowIndex);
+  goToNowEvent.current = () => {
+    if (shows.length > 0) {
+      const now = getNow();
+      let nowIndex = shows.findIndex(show => show.time[0] > now - TEN_MINUTES);
+      nowIndex = Math.max(0, nowIndex);
 
-    return flatListRef.scrollToIndex({index: nowIndex, viewPosition: 0});
+      return flatListRef.scrollToIndex({index: nowIndex, viewPosition: 0});
+    } else {
+      return false;
+    }
   };
 
   return (
@@ -35,7 +37,7 @@ const Program = ({ navigation, shows, gotToNowEvent }) => {
           renderItem={renderItem}
           keyExtractor={extractKey}
           ref={(ref) => { flatListRef = ref; }}
-          getItemLayout= {(show, index) => ({
+          getItemLayout= {(_show, index) => ({
               offset: ROW_HEIGHT * index,
               length: ROW_HEIGHT,
               index
@@ -44,24 +46,39 @@ const Program = ({ navigation, shows, gotToNowEvent }) => {
         />
       </SafeAreaView>
     </View>
-  )
-}
+  );
+};
 
-const ProgramItem = React.memo(({ navigation, show }) => {
+const ProgramItem = React.memo(({ navigation, show, now }) => {
   const date = moment(show.date).format('DD MMM');
-  const startTime = moment(parseInt(show.time[0])).format('hh:mm');
+  const startTime = moment(parseInt(show.time[0])).format('HH:mm');
   const categoryIcon = iconsMap.get(show.participant_subcategory);
   const navigateToEvent = () => navigation.navigate('Evento', {show: show});
+  
+  const start = parseInt(show.time[0]);
+  const end = parseInt(show.time[1]);
 
+  const baseIcon = (<Text style={styles.icon}>
+                      {categoryIcon}
+                    </Text>);
+
+  var icon = baseIcon;
+
+  const isLive = start <= now && now < end;
+
+  if (isLive) {
+    icon = (<DrawAttentionView>
+              {baseIcon}
+            </DrawAttentionView>);
+  }
+  
   return (
     <TouchableHighlight onPress={navigateToEvent}>
       <View style={styles.grid} >
         <View 
           style={styles.categoryContainer}
         >
-          <Text style={styles.icon}>
-            {categoryIcon} 
-          </Text>
+          {icon}
         </View>
         <View 
           style={styles.dateContainer}
@@ -145,6 +162,10 @@ const styles = StyleSheet.create({
   space: {
     paddingLeft: 5,
     fontSize: 16
+  },
+  smallCaption: {
+    fontSize: 10,
+    textAlign:'center'
   }
 });
 
