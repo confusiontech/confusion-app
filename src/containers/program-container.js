@@ -34,7 +34,7 @@ const ProgramContainer = ({ navigation }) => {
     setShows(filteredShows);
   }, [allShows, filter, favorites]);
 
-  const gotToNowEvent = useRef(null);
+  const goToNowEvent = useRef(null);
 
   const navigateToFilter = () => navigation.navigate('Filter');
 
@@ -50,11 +50,11 @@ const ProgramContainer = ({ navigation }) => {
         <View style={styles.nowButton}>
           <Button
             title="Ahora"
-            onPress={() => gotToNowEvent.current()}
+            onPress={() => goToNowEvent.current()}
           />
         </View>
       </View>
-      <Program navigation={navigation} shows={shows} gotToNowEvent={gotToNowEvent}/>
+      <Program navigation={navigation} shows={shows} goToNowEvent={goToNowEvent}/>
     </View>
   );
 };
