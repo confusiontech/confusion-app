@@ -21,7 +21,20 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm install
+    - name: Get NPM Version
+      id: get-npm-version
+      run: |
+        echo "::set-output name=npmversion::$(npm --version | tr -d '\n'; echo -n _; node --version)"
+      shell: bash
+    - name: Cache node_modules
+      uses: actions/cache@v2
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-node_modules-${{ steps.get-npm-version.outputs.npmversion }}-${{ hashFiles('package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node_modules-${{ steps.get-npm-version.outputs.npmversion }}-
+    - run: npm install --no-audit
+    - run: npm prune --no-audit
     # - run: npm run buildweb # Falta arreglar AsyncStorage
     - run: npm run test:unit
       env:
