@@ -39,3 +39,4 @@ jobs:
     - run: npm run test:unit
       env:
         CI: true
+    - run: npm run eslint
