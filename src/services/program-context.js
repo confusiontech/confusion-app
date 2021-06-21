@@ -8,12 +8,12 @@ const ProgramContextProvider = props => {
     selectedCategories: [],
     selectedAudience: [],
     selectedDate: [],
-    selectedFavoriteOptions: [],
+    selectedFavoriteOptions: []
   });
-  const [favorites, setFavorites] = useState(new Set())
-  
+  const [favorites, setFavorites] = useState(new Set());
+
   return (
-    <ProgramContext.Provider 
+    <ProgramContext.Provider
       value={{ allShows, setAllShows, filter, setFilter, favorites, setFavorites }}
     >
       {props.children}

@@ -1,26 +1,26 @@
-import eventService from '../services/event-service'
-import { getEsMoment } from './date-helpers'
+import eventService from '../services/event-service';
+import { getEsMoment } from './date-helpers';
 
 const categoriesMap = eventService.getAllCategories();
 const arrayMap = Array.from(categoriesMap);
 
 export const categories = [
-  ...arrayMap.map( category => {
+  ...arrayMap.map(category => {
     return {
       label: category[1],
       value: category[0],
       key: category[0]
-    }
+    };
   })
 ];
 
 export const dates = [
-  ...eventService.getDates().map( date => {
+  ...eventService.getDates().map(date => {
     return {
       label: getEsMoment(date).format('dddd D'),
       value: date,
       key: date
-    }
+    };
   })
 ];
 
@@ -28,9 +28,9 @@ export const favoriteOptions = [
   {
     label: 'Favoritos',
     value: true,
-    key: true,
+    key: true
   }
-]
+];
 
 export const audiences = [
   {
@@ -57,48 +57,47 @@ export const audiences = [
     label: 'Adultos',
     value: 'adults',
     key: 'adults'
-  },
-]
+  }
+];
 
 export const filterShows = (allShows, favorites, propertiesConditionsObjs) => {
   const isShowSelectedConditions = propertiesConditionsObjs.reduce(
     (conditions, properties) => {
       if (properties.stateProperty.length !== 0) {
-        if (properties.showProperty == 'favorites') {
-          conditions.push( 
+        if (properties.showProperty === 'favorites') {
+          conditions.push(
             show => {
-              return properties.stateProperty.includes(favorites.has(show.id))
-            } 
-          )
-        }
-        else {
-          conditions.push( 
+              return properties.stateProperty.includes(favorites.has(show.id));
+            }
+          );
+        } else {
+          conditions.push(
             show => properties.stateProperty.includes(show[properties.showProperty])
           );
         }
       }
       return conditions;
     }, [show => true]
-  ) 
-  const filteredShows = allShows.filter(show => 
+  );
+  const filteredShows = allShows.filter(show =>
     isShowSelectedConditions.every(condition => condition(show)));
   return filteredShows;
-}
+};
 
-export const getParticipantCategory = show => 
+export const getParticipantCategory = show =>
   categoriesMap.get(show.participant_subcategory);
 
 const publicMap = new Map([
   ['all_public', 'Todos los publicos'],
-  ['baby','Infantil'],
+  ['baby', 'Infantil'],
   ['family', 'Familiar'],
   ['young', 'Juvenil'],
-  ['adults', 'Adultos'],
-])
-export const getPublic = show => 
+  ['adults', 'Adultos']
+]);
+export const getPublic = show =>
   publicMap.get(show.children);
 
 export const getAddress = show => {
   const address = show.address;
   return `${address.route} ${address.street_number}`;
-}
+};

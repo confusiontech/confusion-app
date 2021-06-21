@@ -1,7 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import 'react-native-gesture-handler';
-import { Container, Header, Content, Left, Body, Right, Title, Subtitle } from 'native-base';
-import { StyleSheet, Text, View } from 'react-native';
 import ProgramContainer from './src/containers/program-container';
 import FilterContainer from './src/containers/filter-container';
 import ShowContainer from './src/containers/show-container';
@@ -17,26 +15,13 @@ export default function App() {
   return (
     <NavigationContainer>
       <ProgramContextProvider>
-        <ProgramUpdater/>
+        <ProgramUpdater />
         <Stack.Navigator>
-          <Stack.Screen name="Programa" component={ProgramContainer} />
-          <Stack.Screen name="Filter" component={FilterContainer} />
-          <Stack.Screen name="Evento" component={ShowContainer} />
+          <Stack.Screen name='Programa' component={ProgramContainer} />
+          <Stack.Screen name='Filter' component={FilterContainer} />
+          <Stack.Screen name='Evento' component={ShowContainer} />
         </Stack.Navigator>
       </ProgramContextProvider>
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  text: {
-    color: '#fff'
-  },
-  container: {
-    flex: 1,
-    color: '#fff',
-    backgroundColor: '#8C1D98',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

@@ -9,8 +9,8 @@ const BACKEND_BASE_URL = 'https://www.orfheo.org/';
 
 const PROGRAM_PATH = 'search/results_program';
 const PROGRAM_HEADERS = {
-    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-  }
+  'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+};
 
 class BackendService {
   constructor() {
@@ -26,13 +26,13 @@ class BackendService {
     storedValue = storedValue || {};
     const programUrl = this._getUrl(PROGRAM_PATH);
 
-    let response = await fetch(programUrl, {          
+    const response = await fetch(programUrl, {
       method: 'POST',
       headers: PROGRAM_HEADERS,
       body: this._requestBody(storedValue.program_timestamp)
     });
 
-    if (response.status === NOT_MODIFIED_STATUS_CODE){
+    if (response.status === NOT_MODIFIED_STATUS_CODE) {
       return storedValue;
     }
     const responseJson = await response.json();
@@ -44,8 +44,8 @@ class BackendService {
     return this.urlBase + path;
   }
 
-  _requestBody(timestamp){
-    return `event_id=${EVENT_ID}&lang=es&program_timestamp=${timestamp}`
+  _requestBody(timestamp) {
+    return `event_id=${EVENT_ID}&lang=es&program_timestamp=${timestamp}`;
   }
 }
 
