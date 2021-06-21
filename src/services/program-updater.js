@@ -26,11 +26,10 @@ const ProgramUpdater = () => {
     return () => {
       clearInterval(taskId);
     };
-
   }, []);
 
   return (
-      <View/>
+    <View />
   );
 };
 

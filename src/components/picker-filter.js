@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Picker } from 'native-base';
 
 export default function PickerFilter({ elements, selectedElement, setSelectedElement }) {
   const setElementState = itemValue => setSelectedElement(itemValue);
-  const pickerItems =  elements.map( item =>
+  const pickerItems = elements.map(item =>
     <Picker.Item label={item.label} value={item.value} key={item.key} />
   );
   return (

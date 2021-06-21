@@ -14,51 +14,51 @@ const FilterContainer = ({ navigation }) => {
   const [selectedDate, setSelectedDate] = useState(filter.selectedDate);
   const [selectedFavoriteOptions, setSelectedFavoriteOptions] = useState(filter.selectedFavoriteOptions);
 
-  const props = {size: 16, color: 'black', styleClass: styles.icon};
+  const props = { size: 16, color: 'black', styleClass: styles.icon };
 
   const categoriesWithIcon = categories.map(category => (
     {
       ...category,
       label: (
-          <Text >
-            {iconsMap.get(category.value, props)}
-            {'\n'}
-            {category.label}
-          </Text>
+        <Text>
+          {iconsMap.get(category.value, props)}
+          {'\n'}
+          {category.label}
+        </Text>
       )
     }
   ));
 
   return (
     <View>
-      <FilterGrid 
+      <FilterGrid
         selectedElementIds={selectedCategories}
         setSelectedElementIds={setSelectedCategories}
         elements={categoriesWithIcon}
       />
-      <FilterGrid 
+      <FilterGrid
         selectedElementIds={selectedAudience}
         setSelectedElementIds={setSelectedAudience}
         elements={audiences}
       />
-      <FilterGrid 
+      <FilterGrid
         selectedElementIds={selectedDate}
         setSelectedElementIds={setSelectedDate}
         elements={dates}
       />
-      <FilterGrid 
+      <FilterGrid
         selectedElementIds={selectedFavoriteOptions}
         setSelectedElementIds={setSelectedFavoriteOptions}
         elements={favoriteOptions}
       />
       <Button
-        title="Search"
+        title='Search'
         onPress={() => {
           setFilter({
             selectedCategories,
             selectedAudience,
             selectedDate,
-            selectedFavoriteOptions,
+            selectedFavoriteOptions
           });
           navigation.navigate('Programa');
         }}
@@ -72,6 +72,6 @@ export default FilterContainer;
 // TODO: Copied and pasted from project.js, refactor
 const styles = StyleSheet.create({
   icon: {
-    textAlign: 'center',
+    textAlign: 'center'
   }
 });

@@ -4,11 +4,11 @@ import { Button } from 'native-base';
 
 export default function FilterGrid({ elements, selectedElementIds, setSelectedElementIds }) {
   const buttonsPerRow = 3;
-  
+
   const elementsToRender = elements.map(element => ({
-      ...element,
-      selected: selectedElementIds.includes(element.value),
-    })
+    ...element,
+    selected: selectedElementIds.includes(element.value)
+  })
   );
   const [items, setItems] = useState(elementsToRender);
 
@@ -40,17 +40,17 @@ export default function FilterGrid({ elements, selectedElementIds, setSelectedEl
       <View
         onPress={() => toggleSelect(item)}
         style={[item.selected ? styles.selected : styles.normal,
-                {
-                  maxWidth: maxWidthPcnt,
-                  height: buttonHeight,
-                }]}
+          {
+            maxWidth: maxWidthPcnt,
+            height: buttonHeight
+          }]}
       >
         <Button
           transparent
           onPress={() => toggleSelect(item)}
           style={styles.filterButton}
         >
-          <Text style={{textAlign:'center'}}>{item.label}</Text>
+          <Text style={{ textAlign: 'center' }}>{item.label}</Text>
         </Button>
       </View>
     );
@@ -77,26 +77,26 @@ const generalBoxStyle = {
   borderWidth: 1,
   marginRight: 0,
   justifyContent: 'center',
-  borderLeftWidth:0,
-  borderTopWidth:0,
+  borderLeftWidth: 0,
+  borderTopWidth: 0
 };
 
 const styles = StyleSheet.create({
   flatList: {
-    borderTopWidth:1,
+    borderTopWidth: 1,
     borderLeftWidth: 1,
     marginLeft: 3,
-    marginRight: 3,
+    marginRight: 3
   },
   selected: {
     ...generalBoxStyle,
-    backgroundColor: 'yellow',
+    backgroundColor: 'yellow'
   },
   normal: {
-    ...generalBoxStyle,
+    ...generalBoxStyle
   },
-  filterButton:{
+  filterButton: {
     height: '100%',
-    justifyContent: 'center',
+    justifyContent: 'center'
   }
 });

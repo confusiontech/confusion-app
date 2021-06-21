@@ -10,7 +10,9 @@
     "test:e2e": "npx cypress run",
     "test:e2e:browser": "cypress open",
     "test:unit": "jest ./tests",
-    "proxy": "lcp --proxyUrl https://www.orfheo.org"
+    "proxy": "lcp --proxyUrl https://www.orfheo.org",
+    "eslint": "eslint App.js 'src/**/*.js'",
+    "eslint:fix": "eslint --fix App.js 'src/**/*.js'"
   },
   "dependencies": {
     "@babel/runtime": "^7.10.2",
@@ -37,8 +39,16 @@
     "@babel/core": "^7.10.2",
     "babel-preset-expo": "~8.0.0",
     "cypress": "^4.11.0",
+    "eslint": "^7.29.0",
+    "eslint-config-semistandard": "^16.0.0",
+    "eslint-config-standard-jsx": "^10.0.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-react": "^7.24.0",
     "expo-cli": "^3.22.3",
-    "jest": "^25.1.0"
+    "jest": "^25.1.0",
+    "semistandard": "^16.0.1"
   },
   "jest": {
     "preset": "react-native",

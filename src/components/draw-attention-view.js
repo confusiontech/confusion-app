@@ -1,8 +1,8 @@
-import React, {useRef, useEffect} from 'react';
-import {Animated} from 'react-native';
+import React, { useRef, useEffect } from 'react';
+import { Animated } from 'react-native';
 
 // Vista que anima su contenido para llamar la atención.
-export default DrawAttentionView = props => {
+export default function DrawAttentionView(props) {
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -11,14 +11,14 @@ export default DrawAttentionView = props => {
         Animated.timing(fadeAnim, {
           toValue: 1,
           duration: 666,
-          useNativeDriver: true,
+          useNativeDriver: true
         }),
         Animated.timing(fadeAnim, {
           toValue: 0.0,
           duration: 666,
-          useNativeDriver: true,
-        }),
-      ]),
+          useNativeDriver: true
+        })
+      ])
     ).start();
   }, [fadeAnim]);
 
@@ -32,10 +32,11 @@ export default DrawAttentionView = props => {
     <Animated.View
       style={{
         ...props.style,
-        opacity: fadeAnim, 
+        opacity: fadeAnim
         /* transform: [{rotateZ: spinZ}] */
-      }}>
+      }}
+    >
       {props.children}
     </Animated.View>
   );
-};
+}

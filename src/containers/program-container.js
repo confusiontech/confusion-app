@@ -6,7 +6,6 @@ import { ProgramContext } from '../services/program-context';
 
 import { filterShows } from '../helpers/program-helpers';
 
-
 const ProgramContainer = ({ navigation }) => {
   const { allShows, filter, favorites } = useContext(ProgramContext);
   const [shows, setShows] = useState(allShows);
@@ -15,20 +14,20 @@ const ProgramContainer = ({ navigation }) => {
     const propertiesConditions = [
       {
         showProperty: 'participant_subcategory',
-        stateProperty: filter.selectedCategories,
+        stateProperty: filter.selectedCategories
       },
       {
         showProperty: 'children',
-        stateProperty: filter.selectedAudience,
+        stateProperty: filter.selectedAudience
       },
       {
         showProperty: 'date',
-        stateProperty: filter.selectedDate,
+        stateProperty: filter.selectedDate
       },
       {
         showProperty: 'favorites',
-        stateProperty: filter.selectedFavoriteOptions,
-      },
+        stateProperty: filter.selectedFavoriteOptions
+      }
     ];
     const filteredShows = filterShows(allShows, favorites, propertiesConditions);
     setShows(filteredShows);
@@ -43,33 +42,33 @@ const ProgramContainer = ({ navigation }) => {
       <View style={styles.buttonContainer}>
         <View style={styles.filterButton}>
           <Button
-            title="Filtro"
+            title='Filtro'
             onPress={navigateToFilter}
           />
         </View>
         <View style={styles.nowButton}>
           <Button
-            title="Ahora"
+            title='Ahora'
             onPress={() => goToNowEvent.current()}
           />
         </View>
       </View>
-      <Program navigation={navigation} shows={shows} goToNowEvent={goToNowEvent}/>
+      <Program navigation={navigation} shows={shows} goToNowEvent={goToNowEvent} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   buttonContainer: {
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   filterButton: {
-    width:'50%',
-    borderLeftWidth: 1,
+    width: '50%',
+    borderLeftWidth: 1
   },
   nowButton: {
-    width: '50%',
+    width: '50%'
   }
-})
+});
 
 export default ProgramContainer;

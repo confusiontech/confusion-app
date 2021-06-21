@@ -10,11 +10,12 @@ const withAsyncStorage = (cacheKey, fallback) => {
       newValue.new = true;
     }
     return newValue;
-  }
+  };
 };
 
-const store = (storageKey, favorites) => {
-  
+// TODO: Implementar
+const store = (storageKey, favorites) => { // eslint-disable-line no-unused-vars
+
 };
 
 export default withAsyncStorage;
