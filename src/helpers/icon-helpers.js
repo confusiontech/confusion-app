@@ -11,7 +11,8 @@ const values = new Map([
   ['6', ({ size, color, styleClass }) => <FontAwesome5 name='feather-alt' size={size} color={color} style={styleClass} />],
   ['7', ({ size, color, styleClass }) => <Ionicons name='ios-people' size={size} color={color} style={styleClass} />],
   ['8', ({ size, color, styleClass }) => <FontAwesome5 name='building' size={size} color={color} style={styleClass} />],
-  ['favorites', ({ size, color, styleClass }) => <FontAwesome5 name='heart' size={size} color={color} style={styleClass} />]
+  ['favorites', ({ size, color, styleClass }) => <FontAwesome5 name='heart' size={size} color={color} style={styleClass} />],
+  ['favorites-chosen', ({ size, color, styleClass }) => <FontAwesome5 name='heart' size={size} color={color} style={styleClass} solid />]
 ]);
 
 export const iconsMap = {
