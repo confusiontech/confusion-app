@@ -24,6 +24,8 @@ const ShowContainer = ({ route }) => {
     setFavorites(newFavorites);
   };
 
+  const favoriteIconId = favorites.has(show.id) ? 'favorites-chosen' : 'favorites';
+
   let marker = null;
 
   const setMarkerRef = (ref) => {
@@ -43,7 +45,7 @@ const ShowContainer = ({ route }) => {
     <View>
       <TouchableHighlight onPress={toggleFavorite}>
         <View>
-          {iconsMap.get('favorites')}
+          {iconsMap.get(favoriteIconId)}
         </View>
       </TouchableHighlight>
       <Text>{show.participant_name}</Text>
