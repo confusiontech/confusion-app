@@ -95,7 +95,7 @@ const publicMap = new Map([
   ['adults', 'Adultos']
 ]);
 export const getPublic = show =>
-  publicMap.get(show.children);
+  publicMap.get(show.children) || publicMap.get('all_public');
 
 export const getAddress = show => {
   const address = show.address;

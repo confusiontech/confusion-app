@@ -78,7 +78,11 @@ const ProgramItem = React.memo(({ navigation, show, now }) => {
   }
 
   return (
-    <TouchableHighlight onPress={navigateToEvent}>
+    <TouchableHighlight
+      onPress={navigateToEvent}
+      activeOpacity={0.9}
+      underlayColor='#DDDDDD'
+    >
       <View style={styles.grid}>
         <View
           style={styles.categoryContainer}
