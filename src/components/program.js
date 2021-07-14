@@ -33,19 +33,23 @@ const Program = ({ navigation, shows, goToNowEvent }) => {
 
   return (
     <View>
-      <SafeAreaView>
-        <FlatList
-          data={shows}
-          renderItem={renderItem}
-          keyExtractor={extractKey}
-          ref={flatListRef}
-          getItemLayout={(_show, index) => ({
-            offset: ROW_HEIGHT * index,
-            length: ROW_HEIGHT,
-            index
-          })}
-        />
-      </SafeAreaView>
+      {shows.length
+        ? <SafeAreaView>
+          <FlatList
+            data={shows}
+            renderItem={renderItem}
+            keyExtractor={extractKey}
+            ref={flatListRef}
+            getItemLayout={(_show, index) => ({
+              offset: ROW_HEIGHT * index,
+              length: ROW_HEIGHT,
+              index
+            })}
+          />
+          </SafeAreaView>
+        : <Text style={{ textAlign: 'center', marginTop: 20, fontSize: 16 }}>
+          Ningún resultado
+        </Text>}
     </View>
   );
 };
