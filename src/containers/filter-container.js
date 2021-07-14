@@ -45,6 +45,7 @@ const FilterContainer = ({ navigation }) => {
         selectedElementIds={selectedDate}
         setSelectedElementIds={setSelectedDate}
         elements={dates}
+        contentStyle={{ text: { textTransform: 'capitalize' } }}
       />
       <FilterGrid
         selectedElementIds={selectedFavoriteOptions}
