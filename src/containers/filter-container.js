@@ -52,7 +52,7 @@ const FilterContainer = ({ navigation }) => {
         elements={favoriteOptions}
       />
       <Button
-        title='Search'
+        title='Ver'
         onPress={() => {
           setFilter({
             selectedCategories,

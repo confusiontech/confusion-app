@@ -35,7 +35,7 @@ const ProgramContainer = ({ navigation }) => {
 
   const goToNowEvent = useRef(null);
 
-  const navigateToFilter = () => navigation.navigate('Filter');
+  const navigateToFilter = () => navigation.navigate('Filtro');
 
   return (
     <View>
