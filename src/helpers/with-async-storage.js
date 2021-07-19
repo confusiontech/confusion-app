@@ -1,21 +1,24 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const withAsyncStorage = (cacheKey, fallback) => {
+export const PROGRAM_STORAGE_KEY = '@ConfusionApp:program';
+export const FAVORITES_STORAGE_KEY = '@ConfusionApp:favorites';
+
+export const withAsyncStorage = (cacheKey, fallback) => {
   return async (...params) => {
-    let storedValue = await AsyncStorage.getItem(cacheKey);
-    if (storedValue) storedValue = JSON.parse(storedValue);
+    const storedValue = await Storage.get(cacheKey);
     const newValue = await fallback(...params, storedValue);
     if (storedValue !== newValue) {
-      await AsyncStorage.setItem(cacheKey, JSON.stringify(newValue));
+      await Storage.setItem(cacheKey, newValue);
       newValue.new = true;
     }
     return newValue;
   };
 };
 
-// TODO: Implementar
-const store = (storageKey, favorites) => { // eslint-disable-line no-unused-vars
-
+export const Storage = {
+  set: async (storageKey, itemToBeStored) => await AsyncStorage.setItem(storageKey, JSON.stringify(itemToBeStored)),
+  get: async (storageKey) => {
+    const storedValue = await AsyncStorage.getItem(storageKey);
+    if (storedValue) return JSON.parse(storedValue);
+  }
 };
-
-export default withAsyncStorage;
