@@ -4,6 +4,7 @@ import { iconsMap } from '../helpers/icon-helpers';
 import moment from 'moment';
 import 'moment/locale/es';
 import DrawAttentionView from './draw-attention-view';
+import { TOUCHABLE_UNDERLAY_COLOR } from '../styles/colors';
 
 const TEN_MINUTES = 10 * 60 * 1000;
 const ROW_HEIGHT = 80;
@@ -85,7 +86,7 @@ const ProgramItem = React.memo(({ navigation, show, now }) => {
     <TouchableHighlight
       onPress={navigateToEvent}
       activeOpacity={0.9}
-      underlayColor='#DDDDDD'
+      underlayColor={TOUCHABLE_UNDERLAY_COLOR}
     >
       <View style={styles.grid}>
         <View
