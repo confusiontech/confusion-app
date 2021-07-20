@@ -12,7 +12,6 @@ const FilterContainer = ({ navigation }) => {
   const [selectedCategories, setSelectedCategories] = useState(filter.selectedCategories);
   const [selectedAudience, setSelectedAudience] = useState(filter.selectedAudience);
   const [selectedDate, setSelectedDate] = useState(filter.selectedDate);
-  const [selectedFavoriteOptions, setSelectedFavoriteOptions] = useState(filter.selectedFavoriteOptions);
 
   const props = { size: 16, color: 'black', styleClass: styles.icon };
 
@@ -46,19 +45,14 @@ const FilterContainer = ({ navigation }) => {
         setSelectedElementIds={setSelectedDate}
         elements={dates}
       />
-      <FilterGrid
-        selectedElementIds={selectedFavoriteOptions}
-        setSelectedElementIds={setSelectedFavoriteOptions}
-        elements={favoriteOptions}
-      />
       <Button
         title='Search'
         onPress={() => {
           setFilter({
+            ...filter,
             selectedCategories,
             selectedAudience,
-            selectedDate,
-            selectedFavoriteOptions
+            selectedDate
           });
           navigation.navigate('Programa');
         }}

@@ -38,7 +38,6 @@ export default function FilterGrid({ elements, selectedElementIds, setSelectedEl
   const renderItem = ({ item }) => {
     return (
       <View
-        onPress={() => toggleSelect(item)}
         style={[item.selected ? styles.selected : styles.normal,
           {
             maxWidth: maxWidthPcnt,
