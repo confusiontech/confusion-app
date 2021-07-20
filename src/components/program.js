@@ -14,7 +14,7 @@ const extractKey = item => item.id + item.time[0];
 // TODO: Remove hardcoded date, use `new Date().getTime()`
 const getNow = () => new Date(2019, 9, 20, 19, 9).getTime();
 
-const Program = ({ navigation, shows, goToNowEvent }) => {
+const Program = ({ navigation, shows, goToNowEvent, isFilterActive }) => {
   // TODO: Avoid new function on every call, it breaks equality checks which causes additional re-renders
   const renderItem = ({ item }) => <ProgramItem navigation={navigation} show={item} now={getNow()} />;
 
@@ -32,25 +32,31 @@ const Program = ({ navigation, shows, goToNowEvent }) => {
     }
   };
 
+  const program = (
+    <SafeAreaView>
+      <FlatList
+        data={shows}
+        renderItem={renderItem}
+        keyExtractor={extractKey}
+        ref={flatListRef}
+        getItemLayout={(_show, index) => ({
+          offset: ROW_HEIGHT * index,
+          length: ROW_HEIGHT,
+          index
+        })}
+      />
+    </SafeAreaView>
+  );
+
+  const noResults = (
+    <Text style={{ textAlign: 'center', marginTop: 20, fontSize: 16 }}>
+      Ningún resultado
+    </Text>
+  );
+
   return (
     <View>
-      {shows.length
-        ? <SafeAreaView>
-          <FlatList
-            data={shows}
-            renderItem={renderItem}
-            keyExtractor={extractKey}
-            ref={flatListRef}
-            getItemLayout={(_show, index) => ({
-              offset: ROW_HEIGHT * index,
-              length: ROW_HEIGHT,
-              index
-            })}
-          />
-          </SafeAreaView>
-        : <Text style={{ textAlign: 'center', marginTop: 20, fontSize: 16 }}>
-          Ningún resultado
-        </Text>}
+      {(!shows.length && isFilterActive) ? noResults : program}
     </View>
   );
 };

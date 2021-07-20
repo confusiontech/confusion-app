@@ -53,7 +53,12 @@ const ProgramContainer = ({ navigation }) => {
           />
         </View>
       </View>
-      <Program navigation={navigation} shows={shows} goToNowEvent={goToNowEvent} />
+      <Program
+        navigation={navigation}
+        shows={shows}
+        goToNowEvent={goToNowEvent}
+        isFilterActive={!!Object.values(filter).flat().length}
+      />
     </View>
   );
 };
