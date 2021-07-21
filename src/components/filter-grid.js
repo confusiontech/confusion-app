@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { View, Text, FlatList, StyleSheet, Dimensions } from 'react-native';
 import { Button } from 'native-base';
 
+import { BUTTON_ACTIVE_COLOR } from '../styles/colors';
+
 export default function FilterGrid({
   elements,
   selectedElementIds,
@@ -99,7 +101,7 @@ const styles = StyleSheet.create({
   },
   selected: {
     ...generalBoxStyle,
-    backgroundColor: 'yellow'
+    backgroundColor: BUTTON_ACTIVE_COLOR
   },
   normal: {
     ...generalBoxStyle
