@@ -18,7 +18,7 @@ export default function App() {
         <ProgramUpdater />
         <Stack.Navigator>
           <Stack.Screen name='Programa' component={ProgramContainer} />
-          <Stack.Screen name='Filter' component={FilterContainer} />
+          <Stack.Screen name='Filtro' component={FilterContainer} />
           <Stack.Screen name='Evento' component={ShowContainer} />
         </Stack.Navigator>
       </ProgramContextProvider>

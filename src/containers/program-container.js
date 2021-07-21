@@ -35,7 +35,7 @@ const ProgramContainer = ({ navigation }) => {
 
   const goToNowEvent = useRef(null);
 
-  const navigateToFilter = () => navigation.navigate('Filter');
+  const navigateToFilter = () => navigation.navigate('Filtro');
 
   return (
     <View>
@@ -53,7 +53,12 @@ const ProgramContainer = ({ navigation }) => {
           />
         </View>
       </View>
-      <Program navigation={navigation} shows={shows} goToNowEvent={goToNowEvent} />
+      <Program
+        navigation={navigation}
+        shows={shows}
+        goToNowEvent={goToNowEvent}
+        isFilterActive={!!Object.values(filter).flat().length}
+      />
     </View>
   );
 };
