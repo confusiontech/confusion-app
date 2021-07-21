@@ -39,8 +39,13 @@ const ProgramContainer = ({ navigation }) => {
 
   return (
     <View>
-      <ProgramButtons navigation={navigation} goToNowEvent={goToNowEvent}/>
-      <Program navigation={navigation} shows={shows} goToNowEvent={goToNowEvent} />
+      <ProgramButtons navigation={navigation} goToNowEvent={goToNowEvent} />
+      <Program
+        navigation={navigation}
+        shows={shows}
+        goToNowEvent={goToNowEvent}
+        isFilterActive={!!Object.values(filter).flat().length}
+      />
     </View>
   );
 };

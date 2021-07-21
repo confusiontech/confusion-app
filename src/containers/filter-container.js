@@ -3,7 +3,7 @@ import { View, Button, Text, StyleSheet } from 'react-native';
 
 import FilterGrid from '../components/filter-grid';
 import { ProgramContext } from '../services/program-context';
-import { categories, dates, audiences, favoriteOptions } from '../helpers/program-helpers';
+import { categories, dates, audiences } from '../helpers/program-helpers';
 import { iconsMap } from '../helpers/icon-helpers';
 
 const FilterContainer = ({ navigation }) => {
@@ -44,9 +44,10 @@ const FilterContainer = ({ navigation }) => {
         selectedElementIds={selectedDate}
         setSelectedElementIds={setSelectedDate}
         elements={dates}
+        contentStyle={{ text: { textTransform: 'capitalize' } }}
       />
       <Button
-        title='Search'
+        title='Ver'
         onPress={() => {
           setFilter({
             ...filter,

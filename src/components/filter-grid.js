@@ -2,7 +2,12 @@ import React, { useState } from 'react';
 import { View, Text, FlatList, StyleSheet, Dimensions } from 'react-native';
 import { Button } from 'native-base';
 
-export default function FilterGrid({ elements, selectedElementIds, setSelectedElementIds }) {
+export default function FilterGrid({
+  elements,
+  selectedElementIds,
+  setSelectedElementIds,
+  contentStyle = {}
+}) {
   const buttonsPerRow = 3;
 
   const elementsToRender = elements.map(element => ({
@@ -35,6 +40,11 @@ export default function FilterGrid({ elements, selectedElementIds, setSelectedEl
     setSelectedElementIds(selectedItemIds);
   };
 
+  const textStyle = {
+    textAlign: 'center',
+    ...contentStyle.text
+  };
+
   const renderItem = ({ item }) => {
     return (
       <View
@@ -49,7 +59,7 @@ export default function FilterGrid({ elements, selectedElementIds, setSelectedEl
           onPress={() => toggleSelect(item)}
           style={styles.filterButton}
         >
-          <Text style={{ textAlign: 'center' }}>{item.label}</Text>
+          <Text style={textStyle}>{item.label}</Text>
         </Button>
       </View>
     );

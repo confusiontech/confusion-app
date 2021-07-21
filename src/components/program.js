@@ -4,6 +4,7 @@ import { iconsMap } from '../helpers/icon-helpers';
 import moment from 'moment';
 import 'moment/locale/es';
 import DrawAttentionView from './draw-attention-view';
+import { TOUCHABLE_UNDERLAY_COLOR } from '../styles/colors';
 
 const TEN_MINUTES = 10 * 60 * 1000;
 const ROW_HEIGHT = 80;
@@ -13,7 +14,7 @@ const extractKey = item => item.id + item.time[0];
 // TODO: Remove hardcoded date, use `new Date().getTime()`
 const getNow = () => new Date(2019, 9, 20, 19, 9).getTime();
 
-const Program = ({ navigation, shows, goToNowEvent }) => {
+const Program = ({ navigation, shows, goToNowEvent, isFilterActive }) => {
   // TODO: Avoid new function on every call, it breaks equality checks which causes additional re-renders
   const renderItem = ({ item }) => <ProgramItem navigation={navigation} show={item} now={getNow()} />;
 
@@ -31,21 +32,31 @@ const Program = ({ navigation, shows, goToNowEvent }) => {
     }
   };
 
+  const program = (
+    <SafeAreaView>
+      <FlatList
+        data={shows}
+        renderItem={renderItem}
+        keyExtractor={extractKey}
+        ref={flatListRef}
+        getItemLayout={(_show, index) => ({
+          offset: ROW_HEIGHT * index,
+          length: ROW_HEIGHT,
+          index
+        })}
+      />
+    </SafeAreaView>
+  );
+
+  const noResults = (
+    <Text style={{ textAlign: 'center', marginTop: 20, fontSize: 16 }}>
+      Ningún resultado
+    </Text>
+  );
+
   return (
     <View>
-      <SafeAreaView>
-        <FlatList
-          data={shows}
-          renderItem={renderItem}
-          keyExtractor={extractKey}
-          ref={flatListRef}
-          getItemLayout={(_show, index) => ({
-            offset: ROW_HEIGHT * index,
-            length: ROW_HEIGHT,
-            index
-          })}
-        />
-      </SafeAreaView>
+      {(!shows.length && isFilterActive) ? noResults : program}
     </View>
   );
 };
@@ -81,7 +92,7 @@ const ProgramItem = React.memo(({ navigation, show, now }) => {
     <TouchableHighlight
       onPress={navigateToEvent}
       activeOpacity={0.9}
-      underlayColor='#DDDDDD'
+      underlayColor={TOUCHABLE_UNDERLAY_COLOR}
     >
       <View style={styles.grid}>
         <View
