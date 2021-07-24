@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { View, Text, FlatList, StyleSheet, Dimensions } from 'react-native';
 import { Button } from 'native-base';
 
+import { BUTTON_ACTIVE_COLOR } from '../styles/colors';
+
 export default function FilterGrid({
   elements,
   selectedElementIds,
@@ -48,7 +50,6 @@ export default function FilterGrid({
   const renderItem = ({ item }) => {
     return (
       <View
-        onPress={() => toggleSelect(item)}
         style={[item.selected ? styles.selected : styles.normal,
           {
             maxWidth: maxWidthPcnt,
@@ -100,7 +101,7 @@ const styles = StyleSheet.create({
   },
   selected: {
     ...generalBoxStyle,
-    backgroundColor: 'yellow'
+    backgroundColor: BUTTON_ACTIVE_COLOR
   },
   normal: {
     ...generalBoxStyle
