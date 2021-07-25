@@ -7,7 +7,12 @@ import { capitalize } from '../helpers/text-helpers';
 import { getEsMoment } from '../helpers/date-helpers';
 import { iconsMap } from '../helpers/icon-helpers';
 import { ProgramContext } from '../services/program-context';
-import { LINK_COLOR, TOUCHABLE_UNDERLAY_COLOR } from '../styles/colors';
+import {
+  LINK_COLOR,
+  TOUCHABLE_UNDERLAY_COLOR,
+  BUTTON_TEXT_COLOR,
+  PRIMARY_COLOR
+} from '../styles/colors';
 
 const EXTERNAL_GMAP_ZOOM = 15;
 const MAP_VIEW_DELTA = 0.0030;
@@ -59,7 +64,7 @@ const ShowContainer = ({ route }) => {
             activeOpacity={0.9}
             underlayColor={TOUCHABLE_UNDERLAY_COLOR}
           >
-            {iconsMap.get(favoriteIconId, { size: 30 })}
+            {iconsMap.get(favoriteIconId, { size: 30, color: PRIMARY_COLOR })}
           </TouchableHighlight>
         </View>
       </View>
@@ -87,7 +92,7 @@ const ShowContainer = ({ route }) => {
           <View style={styles.grid}>
             <View style={styles.spaceNumberContainer}>
               <Text style={styles.spaceNumber}>
-                {`${show.order}`}
+                {`${parseInt(show.order) + 1}`}
               </Text>
             </View>
             <Text style={styles.space}>
@@ -118,7 +123,7 @@ const ShowContainer = ({ route }) => {
         >
           <View style={styles.marker}>
             <Text style={styles.markerText}>
-              {`${show.order}`}
+              {`${parseInt(show.order) + 1}`}
             </Text>
           </View>
         </Marker>
@@ -142,12 +147,12 @@ const textStyleBase = {
 const spaceNumberContainer = {
   justifyContent: 'center',
   alignItems: 'center',
-  backgroundColor: 'blue'
+  backgroundColor: LINK_COLOR
 };
 
 const spaceNumber = {
   textAlign: 'center',
-  color: 'white'
+  color: BUTTON_TEXT_COLOR
 };
 
 const grid = {

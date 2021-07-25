@@ -1,4 +1,13 @@
-export const TOUCHABLE_UNDERLAY_COLOR = '#DDDDDD';
-export const LINK_COLOR = '#3366BB';
-export const BUTTON_COLOR = 'pink';
-export const BUTTON_ACTIVE_COLOR = 'yellow';
+export const PRIMARY_COLOR = '#26336A';
+export const SECONDARY_COLOR = '#059192';
+
+export const CREAM_COLOR = '#FFF4E2';
+export const LIGHT_GREY = '#DDDDDD';
+export const BLUE_LINK = '#3366BB';
+
+export const TOUCHABLE_UNDERLAY_COLOR = LIGHT_GREY;
+export const LINK_COLOR = PRIMARY_COLOR;
+export const BUTTON_COLOR = PRIMARY_COLOR;
+export const BUTTON_TEXT_COLOR = 'white';
+export const BUTTON_ACTIVE_COLOR = SECONDARY_COLOR;
+export const LAYOUT_COLOR = CREAM_COLOR;

@@ -41,16 +41,19 @@ const FilterContainer = ({ navigation }) => {
           selectedElementIds={selectedAudience}
           setSelectedElementIds={setSelectedAudience}
           elements={audiences}
+          buttonsPerRow={5}
         />
         <FilterGrid
           selectedElementIds={selectedDate}
           setSelectedElementIds={setSelectedDate}
           elements={dates}
           contentStyle={{ text: { textTransform: 'capitalize' } }}
+          buttonsPerRow={2}
         />
       </View>
       <View style={{ position: 'absolute', left: 0, right: 0, bottom: 0 }}>
         <TextButton
+          iconKey='search'
           text='Ver'
           onPress={() => {
             setFilter({

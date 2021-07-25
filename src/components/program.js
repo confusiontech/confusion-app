@@ -130,7 +130,7 @@ const ProgramItem = React.memo(({ navigation, show, now }) => {
           style={styles.spaceContainer}
         >
           <Text style={styles.space}>
-            {show.order}
+            {parseInt(show.order) + 1}
           </Text>
         </View>
       </View>
