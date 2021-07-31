@@ -7,6 +7,7 @@ import { capitalize } from '../helpers/text-helpers';
 import { getEsMoment } from '../helpers/date-helpers';
 import { iconsMap } from '../helpers/icon-helpers';
 import { ProgramContext } from '../services/program-context';
+import { Storage, FAVORITES_STORAGE_KEY } from '../helpers/with-async-storage';
 import {
   LINK_COLOR,
   TOUCHABLE_UNDERLAY_COLOR,
@@ -30,6 +31,7 @@ const ShowContainer = ({ route }) => {
   const toggleFavorite = () => {
     const newFavorites = new Set(favorites);
     newFavorites.has(show.id) ? newFavorites.delete(show.id) : newFavorites.add(show.id);
+    Storage.set(FAVORITES_STORAGE_KEY, [...newFavorites]);
     setFavorites(newFavorites);
   };
 
