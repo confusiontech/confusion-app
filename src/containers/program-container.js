@@ -4,7 +4,6 @@ import { View } from 'react-native';
 import Program from '../components/program';
 import ProgramButtons from '../components/program-buttons';
 import { ProgramContext } from '../services/program-context';
-import { LAYOUT_COLOR } from '../styles/colors';
 
 import { filterShows } from '../helpers/program-helpers';
 

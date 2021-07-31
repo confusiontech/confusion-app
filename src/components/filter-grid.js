@@ -71,7 +71,7 @@ export default function FilterGrid({
   console.log(buttonsPerRow);
 
   return (
-    <View style={{marginBottom: 20}}>
+    <View style={{ marginBottom: 20 }}>
       <FlatList
         contentContainerStyle={styles.flatList}
         columnWrapperStyle={{}}
