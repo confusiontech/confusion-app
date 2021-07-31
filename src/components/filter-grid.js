@@ -68,8 +68,6 @@ export default function FilterGrid({
 
   const extractKey = item => item.value;
 
-  console.log(buttonsPerRow);
-
   return (
     <View style={{ marginBottom: 20 }}>
       <FlatList
