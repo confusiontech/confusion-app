@@ -1,10 +1,11 @@
 import React, { useState, useContext } from 'react';
-import { View, Button, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 import FilterGrid from '../components/filter-grid';
 import { ProgramContext } from '../services/program-context';
-import { categories, dates, audiences, favoriteOptions } from '../helpers/program-helpers';
+import { categories, dates, audiences } from '../helpers/program-helpers';
 import { iconsMap } from '../helpers/icon-helpers';
+import TextButton from '../components/text-button';
 
 const FilterContainer = ({ navigation }) => {
   const { setFilter, filter } = useContext(ProgramContext);
@@ -12,7 +13,6 @@ const FilterContainer = ({ navigation }) => {
   const [selectedCategories, setSelectedCategories] = useState(filter.selectedCategories);
   const [selectedAudience, setSelectedAudience] = useState(filter.selectedAudience);
   const [selectedDate, setSelectedDate] = useState(filter.selectedDate);
-  const [selectedFavoriteOptions, setSelectedFavoriteOptions] = useState(filter.selectedFavoriteOptions);
 
   const props = { size: 16, color: 'black', styleClass: styles.icon };
 
@@ -30,39 +30,42 @@ const FilterContainer = ({ navigation }) => {
   ));
 
   return (
-    <View>
-      <FilterGrid
-        selectedElementIds={selectedCategories}
-        setSelectedElementIds={setSelectedCategories}
-        elements={categoriesWithIcon}
-      />
-      <FilterGrid
-        selectedElementIds={selectedAudience}
-        setSelectedElementIds={setSelectedAudience}
-        elements={audiences}
-      />
-      <FilterGrid
-        selectedElementIds={selectedDate}
-        setSelectedElementIds={setSelectedDate}
-        elements={dates}
-      />
-      <FilterGrid
-        selectedElementIds={selectedFavoriteOptions}
-        setSelectedElementIds={setSelectedFavoriteOptions}
-        elements={favoriteOptions}
-      />
-      <Button
-        title='Search'
-        onPress={() => {
-          setFilter({
-            selectedCategories,
-            selectedAudience,
-            selectedDate,
-            selectedFavoriteOptions
-          });
-          navigation.navigate('Programa');
-        }}
-      />
+    <View style={{ flex: 1 }}>
+      <View>
+        <FilterGrid
+          selectedElementIds={selectedCategories}
+          setSelectedElementIds={setSelectedCategories}
+          elements={categoriesWithIcon}
+        />
+        <FilterGrid
+          selectedElementIds={selectedAudience}
+          setSelectedElementIds={setSelectedAudience}
+          elements={audiences}
+          buttonsPerRow={5}
+        />
+        <FilterGrid
+          selectedElementIds={selectedDate}
+          setSelectedElementIds={setSelectedDate}
+          elements={dates}
+          contentStyle={{ text: { textTransform: 'capitalize' } }}
+          buttonsPerRow={2}
+        />
+      </View>
+      <View style={{ position: 'absolute', left: 0, right: 0, bottom: 0 }}>
+        <TextButton
+          iconKey='search'
+          text='Ver'
+          onPress={() => {
+            setFilter({
+              ...filter,
+              selectedCategories,
+              selectedAudience,
+              selectedDate
+            });
+            navigation.navigate('Programa');
+          }}
+        />
+      </View>
     </View>
   );
 };

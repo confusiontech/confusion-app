@@ -1,7 +1,8 @@
 import { Platform } from 'react-native';
 
+import { EVENT_ID } from '../event-properties';
+
 const NOT_MODIFIED_STATUS_CODE = 304;
-const EVENT_ID = '3cb8e68a-b03f-4a7d-b714-42a7ca56870a';
 
 // Usamos el proxy para tema de CORS
 const PROXY_URL = 'http://localhost:8010/proxy/';

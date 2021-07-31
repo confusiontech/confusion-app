@@ -2,9 +2,44 @@ import React, { useState } from 'react';
 import { View, Text, FlatList, StyleSheet, Dimensions } from 'react-native';
 import { Button } from 'native-base';
 
-export default function FilterGrid({ elements, selectedElementIds, setSelectedElementIds }) {
-  const buttonsPerRow = 3;
+import { BUTTON_ACTIVE_COLOR } from '../styles/colors';
 
+const BUTTONS_PER_ROW = 3;
+
+const renderItem = ({ item, textStyle, onClick, buttonsPerRow }) => {
+  const maxWidthPcnt = (0.999 * 100 / buttonsPerRow) + '%';
+  const buttonHeight = Dimensions.get('window').height * 0.11;
+  const finalTextStyle = {
+    textAlign: 'center',
+    ...textStyle
+  };
+
+  return (
+    <View
+      style={[item.selected ? styles.selected : styles.normal,
+        {
+          maxWidth: maxWidthPcnt,
+          height: buttonHeight
+        }]}
+    >
+      <Button
+        transparent
+        onPress={onClick}
+        style={styles.filterButton}
+      >
+        <Text style={finalTextStyle}>{item.label}</Text>
+      </Button>
+    </View>
+  );
+};
+
+export default function FilterGrid({
+  elements,
+  selectedElementIds,
+  setSelectedElementIds,
+  contentStyle = {},
+  buttonsPerRow = BUTTONS_PER_ROW
+}) {
   const elementsToRender = elements.map(element => ({
     ...element,
     selected: selectedElementIds.includes(element.value)
@@ -12,16 +47,12 @@ export default function FilterGrid({ elements, selectedElementIds, setSelectedEl
   );
   const [items, setItems] = useState(elementsToRender);
 
-  const maxWidthPcnt = (0.999 * 100 / buttonsPerRow) + '%';
-
   // Creo que es imposible usar FlatList con dimensiones proporcionales, el % se aplica
   // siempre dos veces, y acabamos con filas de altura correcta, pero botones demasiado
   // pequeños...
   // Así que para que nos quepa el filtro en pantalla usamos valores absolutos, pero calculados
   // en base a las dimensiones de la pantalla.
   // TODO: probar `columnWrapperStyle={{ flexWrap: 'wrap', flex: 1}}`
-  const buttonHeight = Dimensions.get('window').height * 0.11;
-
   const toggleSelect = item => {
     const selectedItemIds = [];
     const modifiedItems = items.map(i => {
@@ -35,37 +66,21 @@ export default function FilterGrid({ elements, selectedElementIds, setSelectedEl
     setSelectedElementIds(selectedItemIds);
   };
 
-  const renderItem = ({ item }) => {
-    return (
-      <View
-        onPress={() => toggleSelect(item)}
-        style={[item.selected ? styles.selected : styles.normal,
-          {
-            maxWidth: maxWidthPcnt,
-            height: buttonHeight
-          }]}
-      >
-        <Button
-          transparent
-          onPress={() => toggleSelect(item)}
-          style={styles.filterButton}
-        >
-          <Text style={{ textAlign: 'center' }}>{item.label}</Text>
-        </Button>
-      </View>
-    );
-  };
-
   const extractKey = item => item.value;
 
   return (
-    <View>
+    <View style={{ marginBottom: 20 }}>
       <FlatList
         contentContainerStyle={styles.flatList}
         columnWrapperStyle={{}}
         numColumns={buttonsPerRow}
         data={items}
-        renderItem={renderItem}
+        renderItem={({ item }) => renderItem({
+          item,
+          textStyle: contentStyle.text,
+          onClick: () => toggleSelect(item),
+          buttonsPerRow
+        })}
         keyExtractor={extractKey}
       />
     </View>
@@ -78,19 +93,18 @@ const generalBoxStyle = {
   marginRight: 0,
   justifyContent: 'center',
   borderLeftWidth: 0,
-  borderTopWidth: 0
+  borderTopWidth: 1
 };
 
 const styles = StyleSheet.create({
   flatList: {
-    borderTopWidth: 1,
     borderLeftWidth: 1,
     marginLeft: 3,
     marginRight: 3
   },
   selected: {
     ...generalBoxStyle,
-    backgroundColor: 'yellow'
+    backgroundColor: BUTTON_ACTIVE_COLOR
   },
   normal: {
     ...generalBoxStyle

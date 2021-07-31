@@ -8,6 +8,12 @@ import { getEsMoment } from '../helpers/date-helpers';
 import { iconsMap } from '../helpers/icon-helpers';
 import { ProgramContext } from '../services/program-context';
 import { Storage, FAVORITES_STORAGE_KEY } from '../helpers/with-async-storage';
+import {
+  LINK_COLOR,
+  TOUCHABLE_UNDERLAY_COLOR,
+  BUTTON_TEXT_COLOR,
+  PRIMARY_COLOR
+} from '../styles/colors';
 
 const EXTERNAL_GMAP_ZOOM = 15;
 const MAP_VIEW_DELTA = 0.0030;
@@ -58,9 +64,9 @@ const ShowContainer = ({ route }) => {
             onPress={toggleFavorite}
             style={styles.favoritesIcon}
             activeOpacity={0.9}
-            underlayColor='#DDDDDD'
+            underlayColor={TOUCHABLE_UNDERLAY_COLOR}
           >
-            {iconsMap.get(favoriteIconId, { size: 30 })}
+            {iconsMap.get(favoriteIconId, { size: 30, color: PRIMARY_COLOR })}
           </TouchableHighlight>
         </View>
       </View>
@@ -78,17 +84,29 @@ const ShowContainer = ({ route }) => {
       <Text style={styles.dateTime}>
         {capitalize(momentDate.format('dddd D'))} de {momentStartTime.format('hh:mm')}h a {momentEndTime.format('hh:mm')}h
       </Text>
-      <View style={styles.grid}>
-        <View style={styles.spaceNumberContainer}>
-          <Text style={styles.spaceNumber}>
-            {`${show.order}`}
-          </Text>
+      <TouchableHighlight
+        onPress={openMapUrl}
+        activeOpacity={0.9}
+        underlayColor={TOUCHABLE_UNDERLAY_COLOR}
+        style={styles.spaceContainer}
+      >
+        <View>
+          <View style={styles.grid}>
+            <View style={styles.spaceNumberContainer}>
+              <Text style={styles.spaceNumber}>
+                {`${parseInt(show.order) + 1}`}
+              </Text>
+            </View>
+            <Text style={styles.space}>
+              {show.host_name}
+            </Text>
+          </View>
+          <View style={styles.grid}>
+            <Text style={styles.address}>{getAddress(show)}</Text>
+            {iconsMap.get('external-link', { size: 16, color: LINK_COLOR })}
+          </View>
         </View>
-        <Text style={styles.space}>
-          {show.host_name}
-        </Text>
-      </View>
-      <Text style={styles.address}>{getAddress(show)}</Text>
+      </TouchableHighlight>
 
       <MapView
         style={styles.mapStyle}
@@ -107,7 +125,7 @@ const ShowContainer = ({ route }) => {
         >
           <View style={styles.marker}>
             <Text style={styles.markerText}>
-              {`${show.order}`}
+              {`${parseInt(show.order) + 1}`}
             </Text>
           </View>
         </Marker>
@@ -131,12 +149,12 @@ const textStyleBase = {
 const spaceNumberContainer = {
   justifyContent: 'center',
   alignItems: 'center',
-  backgroundColor: 'blue'
+  backgroundColor: LINK_COLOR
 };
 
 const spaceNumber = {
   textAlign: 'center',
-  color: 'white'
+  color: BUTTON_TEXT_COLOR
 };
 
 const grid = {
@@ -182,6 +200,10 @@ const styles = StyleSheet.create({
   public: {
     ...textStyleBase
   },
+  spaceContainer: {
+    ...grid,
+    alignSelf: 'flex-start'
+  },
   spaceNumberContainer: {
     ...spaceNumberContainer,
     width: 20,
@@ -194,9 +216,13 @@ const styles = StyleSheet.create({
   },
   space: {
     fontSize: FONT_SIZES.NORMAL,
-    paddingLeft: 5
+    paddingLeft: 5,
+    color: LINK_COLOR
   },
-  address: { },
+  address: {
+    color: LINK_COLOR,
+    marginEnd: 10
+  },
   favoritesIconContainer: {
     justifyContent: 'center'
   },

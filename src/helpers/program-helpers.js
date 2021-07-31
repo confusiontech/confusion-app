@@ -39,14 +39,9 @@ export const audiences = [
     key: 'all_public'
   },
   {
-    label: 'Infantil',
-    value: 'baby',
-    key: 'baby'
-  },
-  {
-    label: 'Familiar',
-    value: 'family',
-    key: 'family'
+    label: 'Adultos',
+    value: 'adults',
+    key: 'adults'
   },
   {
     label: 'Juvenil',
@@ -54,9 +49,14 @@ export const audiences = [
     key: 'young'
   },
   {
-    label: 'Adultos',
-    value: 'adults',
-    key: 'adults'
+    label: 'Familiar',
+    value: 'family',
+    key: 'family'
+  },
+  {
+    label: 'Infantil',
+    value: 'baby',
+    key: 'baby'
   }
 ];
 
