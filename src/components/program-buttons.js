@@ -3,7 +3,9 @@ import { View, StyleSheet, Text } from 'react-native';
 
 import StandardButton from './standard-button';
 import { ProgramContext } from '../services/program-context';
-import { BUTTON_COLOR, BUTTON_ACTIVE_COLOR } from '../styles/colors';
+import { BUTTON_COLOR, BUTTON_ACTIVE_COLOR, BUTTON_TEXT_COLOR } from '../styles/colors';
+
+import { iconsMap } from '../helpers/icon-helpers';
 
 const ProgramButtons = ({ navigation, goToNowEvent }) => {
   const { filter, setFilter } = useContext(ProgramContext);
@@ -45,13 +47,9 @@ const ProgramButtons = ({ navigation, goToNowEvent }) => {
           backgroundColor: isFilterSelected ? BUTTON_ACTIVE_COLOR : BUTTON_COLOR
         }}
       >
-        <Text style={styles.favoritesText}> Filtro </Text>
-      </StandardButton>
-      <StandardButton
-        buttonContainerStyle={styles.nowButtonContainer}
-        onPress={() => goToNowEvent.current()}
-      >
-        <Text style={styles.favoritesText}> Ahora </Text>
+        <Text style={styles.buttonText}>
+          {iconsMap.get('filter', iconProps)} Filtro
+        </Text>
       </StandardButton>
       <StandardButton
         onPress={toggleFavorites}
@@ -60,11 +58,23 @@ const ProgramButtons = ({ navigation, goToNowEvent }) => {
           backgroundColor: isFavoritesSelected ? BUTTON_ACTIVE_COLOR : BUTTON_COLOR
         }}
       >
-        <Text style={styles.favoritesText}> Favoritos </Text>
+        <Text style={styles.buttonText}>
+          {iconsMap.get('favorites-chosen', iconProps)} Favoritos
+        </Text>
+      </StandardButton>
+      <StandardButton
+        buttonContainerStyle={styles.nowButtonContainer}
+        onPress={() => goToNowEvent.current()}
+      >
+        <Text style={styles.buttonText}>
+          {iconsMap.get('now', iconProps)} Ahora
+        </Text>
       </StandardButton>
     </View>
   );
 };
+
+const iconProps = { color: BUTTON_TEXT_COLOR, size: 16 };
 
 const styles = StyleSheet.create({
   buttonsContainer: {
@@ -78,6 +88,11 @@ const styles = StyleSheet.create({
   },
   favoritesButtonContainer: {
     width: '33.333%'
+  },
+  buttonText: {
+    color: BUTTON_TEXT_COLOR,
+    fontWeight: 'bold',
+    letterSpacing: 0.5
   }
 });
 

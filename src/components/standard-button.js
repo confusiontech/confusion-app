@@ -33,13 +33,11 @@ const StandardButton = ({
 const styles = StyleSheet.create({
   buttonContainer: {
     backgroundColor: BUTTON_COLOR,
-    borderWidth: 1,
     width: '100%'
   },
   button: {
     justifyContent: 'center'
-  },
-  favoritesText: {}
+  }
 });
 
 export default StandardButton;

@@ -13,7 +13,10 @@ const values = new Map([
   ['8', ({ size, color, styleClass }) => <FontAwesome5 name='building' size={size} color={color} style={styleClass} />],
   ['favorites', ({ size, color, styleClass }) => <FontAwesome5 name='heart' size={size} color={color} style={styleClass} />],
   ['favorites-chosen', ({ size, color, styleClass }) => <FontAwesome5 name='heart' size={size} color={color} style={styleClass} solid />],
-  ['external-link', ({ size, color, styleClass }) => <FontAwesome5 name='external-link-alt' size={size} color={color} style={styleClass} solid />]
+  ['external-link', ({ size, color, styleClass }) => <FontAwesome5 name='external-link-alt' size={size} color={color} style={styleClass} solid />],
+  ['filter', ({ size, color, styleClass }) => <Ionicons name='funnel' size={size} color={color} style={styleClass} />],
+  ['now', ({ size, color, styleClass }) => <FontAwesome5 name='clock' size={size} color={color} style={styleClass} solid />],
+  ['search', ({ size, color, styleClass }) => <FontAwesome5 name='search' size={size} color={color} style={styleClass} solid />]
 ]);
 
 export const iconsMap = {
