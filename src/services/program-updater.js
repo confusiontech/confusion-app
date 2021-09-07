@@ -23,7 +23,7 @@ const ProgramUpdater = () => {
 
     const taskId = setInterval(() => {
       updateProgram();
-    }, 60000);
+    }, 600000);
 
     return () => {
       clearInterval(taskId);
