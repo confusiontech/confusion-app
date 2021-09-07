@@ -8,7 +8,7 @@ export const withAsyncStorage = (cacheKey, fallback) => {
     const storedValue = await Storage.get(cacheKey);
     const newValue = await fallback(...params, storedValue);
     if (storedValue !== newValue) {
-      await Storage.setItem(cacheKey, newValue);
+      await Storage.set(cacheKey, newValue);
       newValue.new = true;
     }
     return newValue;
