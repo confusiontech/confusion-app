@@ -31,9 +31,10 @@ const ProgramButtons = ({ navigation, goToNowEvent }) => {
         if (key !== 'selectedFavoriteOptions') filter[key] = [];
       });
     }
+    const selectedFavoriteOptions = isFavoritesSelected ? [] : [!isFavoritesSelected];
     setFilter({
       ...filter,
-      selectedFavoriteOptions: [!isFavoritesSelected]
+      selectedFavoriteOptions
     });
     setIsFavoritesSelected(!isFavoritesSelected);
   };
