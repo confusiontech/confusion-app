@@ -12,7 +12,8 @@ const ROW_HEIGHT = 80;
 const extractKey = item => item.id + item.time[0];
 
 // TODO: Remove hardcoded date, use `new Date().getTime()`
-const getNow = () => new Date(2019, 9, 20, 19, 9).getTime();
+// const getNow = () => new Date(2019, 9, 20, 19, 9).getTime();
+const getNow = () => new Date().getTime();
 
 const Program = ({ navigation, shows, goToNowEvent, isFilterActive }) => {
   // TODO: Avoid new function on every call, it breaks equality checks which causes additional re-renders
