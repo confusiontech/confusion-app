@@ -16,3 +16,4 @@ web-report/
 cypress/screenshots
 cypress/videos
 
+app.config.js

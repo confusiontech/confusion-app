@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Blank Template",
+    "name": "conFusión 2021",
     "slug": "confusionapp",
     "privacy": "public",
     "sdkVersion": "41.0.0",
@@ -9,13 +9,14 @@
       "android",
       "web"
     ],
-    "version": "1.0.0",
+    "version": "0.1.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "adaptiveIcon": true,
+      "backgroundColor": "#FFF4E2"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -24,10 +25,19 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "es.beniconfusionfest.confusion"
     },
     "android": {
-      "package": "es.beniconfusionfest.confusion"
+      "package": "es.beniconfusionfest.confusion",
+      "adaptiveIcon": {
+        "foregroundImage": "assets/adaptive_icon_foreground.png",
+        "backgroundColor": "#FFF4E2"
+      },
+      "permissions": [
+        "INTERNET",
+        "WRITE_SETTINGS"
+      ]
     }
   }
 }
