@@ -17,8 +17,11 @@ export default ({ config }) => {
   config.android.config.googleMaps = config.android.config.googleMaps || {};
   config.android.config.googleMaps.apiKey = mapsApiKey;
 
+  config.ios = config.ios || {};
+  config.ios.config = config.ios.config || {};
+  config.ios.config.googleMapsApiKey = mapsApiKey;
+
   return {
     ...config,
   };
 };
-

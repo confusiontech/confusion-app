@@ -1,7 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export const PROGRAM_STORAGE_KEY = '@ConfusionApp:program';
-export const FAVORITES_STORAGE_KEY = '@ConfusionApp:favorites';
+import { EVENT_ID } from '../event-properties';
+
+export const PROGRAM_STORAGE_KEY = `@ConfusionApp:program:${EVENT_ID}`;
+export const FAVORITES_STORAGE_KEY = `@ConfusionApp:favorites:${EVENT_ID}`;
 
 export const withAsyncStorage = (cacheKey, fallback) => {
   return async (...params) => {
