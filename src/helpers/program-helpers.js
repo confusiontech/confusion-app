@@ -79,6 +79,7 @@ export const filterShows = (allShows, favorites, propertiesConditionsObjs) => {
       return conditions;
     }, [show => true]
   );
+
   const filteredShows = allShows.filter(show =>
     isShowSelectedConditions.every(condition => condition(show)));
   return filteredShows;
@@ -101,3 +102,6 @@ export const getAddress = show => {
   const address = show.address;
   return `${address.route} ${address.street_number}`;
 };
+
+// export const getNow = () => new Date(2021, 9, 16, 19, 9).getTime();
+export const getNow = () => new Date().getTime();
