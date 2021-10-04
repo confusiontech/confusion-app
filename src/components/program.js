@@ -12,7 +12,7 @@ const ROW_HEIGHT = 80;
 const extractKey = item => item.id + item.time[0];
 
 // TODO: Remove hardcoded date, use `new Date().getTime()`
-// const getNow = () => new Date(2019, 9, 20, 19, 9).getTime();
+// const getNow = () => new Date(2021, 9, 16, 19, 9).getTime();
 const getNow = () => new Date().getTime();
 
 const Program = ({ navigation, shows, goToNowEvent, isFilterActive }) => {
@@ -34,19 +34,21 @@ const Program = ({ navigation, shows, goToNowEvent, isFilterActive }) => {
   };
 
   const program = (
-    <SafeAreaView>
-      <FlatList
-        data={shows}
-        renderItem={renderItem}
-        keyExtractor={extractKey}
-        ref={flatListRef}
-        getItemLayout={(_show, index) => ({
-          offset: ROW_HEIGHT * index,
-          length: ROW_HEIGHT,
-          index
-        })}
-      />
-    </SafeAreaView>
+    <View style={{ height: '92%' }}>
+      <SafeAreaView>
+        <FlatList
+          data={shows}
+          renderItem={renderItem}
+          keyExtractor={extractKey}
+          ref={flatListRef}
+          getItemLayout={(_show, index) => ({
+            offset: ROW_HEIGHT * index,
+            length: ROW_HEIGHT,
+            index
+          })}
+        />
+      </SafeAreaView>
+    </View>
   );
 
   const noResults = (

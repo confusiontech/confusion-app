@@ -16,7 +16,8 @@ const values = new Map([
   ['external-link', ({ size, color, styleClass }) => <FontAwesome5 name='external-link-alt' size={size} color={color} style={styleClass} solid />],
   ['filter', ({ size, color, styleClass }) => <Ionicons name='funnel' size={size} color={color} style={styleClass} />],
   ['now', ({ size, color, styleClass }) => <FontAwesome5 name='clock' size={size} color={color} style={styleClass} solid />],
-  ['search', ({ size, color, styleClass }) => <FontAwesome5 name='search' size={size} color={color} style={styleClass} solid />]
+  ['search', ({ size, color, styleClass }) => <FontAwesome5 name='search' size={size} color={color} style={styleClass} solid />],
+  ['map', ({ size, color, styleClass }) => <FontAwesome5 name='map-marked-alt' size={size} color={color} style={styleClass} solid />]
 ]);
 
 export const iconsMap = {
