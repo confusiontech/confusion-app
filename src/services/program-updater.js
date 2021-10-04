@@ -9,13 +9,35 @@ const ProgramUpdater = () => {
   const fetchProgram = withAsyncStorage(PROGRAM_STORAGE_KEY, backendService.fetchProgram);
 
   useEffect(() => {
-    Storage.get(FAVORITES_STORAGE_KEY).then(storedFavorites => {
-      if (storedFavorites) setFavorites(new Set(storedFavorites));
-    });
+    function hasProgram() {
+      return allShows && allShows.length;
+    }
+
+    const initialiseProgramData = async () => {
+      try {
+        const storedFavorites = await Storage.get(FAVORITES_STORAGE_KEY);
+        if (storedFavorites) {
+          setFavorites(new Set(storedFavorites));
+        }
+      } catch (error) {
+        console.error(error);
+      }
+
+      try {
+        const programResponse = await fetchProgram.getCachedValue();
+        if (programResponse && !hasProgram()) {
+          setAllShows(programResponse.program);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    initialiseProgramData();
 
     function updateProgram() {
       fetchProgram().then(function(response) {
-        if (!(allShows && allShows.length) || response.new) setAllShows(response.program);
+        if (!hasProgram() || response.new) setAllShows(response.program);
       });
     }
 
