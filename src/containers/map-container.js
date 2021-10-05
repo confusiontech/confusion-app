@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { View, StyleSheet, Text, Linking } from 'react-native';
+import { View, StyleSheet, Text, Linking, Platform } from 'react-native';
 import MapView, { Marker, PROVIDER_DEFAULT } from 'react-native-maps';
 
 import { ProgramContext } from '../services/program-context';
@@ -62,17 +62,11 @@ const MapMarker = ({ show }) => {
 
   const openMapUrl = () => Linking.openURL(mapUrl);
 
-  let marker;
-  const setMarkerRef = (ref) => {
-    marker = ref;
-  };
-
   return (
     <View>
       <Marker
         coordinate={{ latitude: latitude, longitude: longitude }}
         onPress={openMapUrl}
-        ref={setMarkerRef}
         anchor={{ x: 0.5, y: 0.5 }}
       >
         <View style={styles.marker}>
