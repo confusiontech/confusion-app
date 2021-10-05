@@ -8,8 +8,7 @@ import { BUTTON_COLOR, BUTTON_ACTIVE_COLOR, BUTTON_TEXT_COLOR } from '../styles/
 import { iconsMap } from '../helpers/icon-helpers';
 
 const ProgramButtons = ({ navigation, goToNowEvent }) => {
-  const { filter, setFilter } = useContext(ProgramContext);
-  const [isFavoritesSelected, setIsFavoritesSelected] = useState(filter.selectedFavoriteOptions[0]);
+  const { filter } = useContext(ProgramContext);
 
   const isFilterActive = () => {
     return !!Object.keys(filter)
@@ -25,20 +24,6 @@ const ProgramButtons = ({ navigation, goToNowEvent }) => {
 
   const navigateToFilter = () => navigation.navigate('Filtro');
 
-  const toggleFavorites = () => {
-    if (!isFavoritesSelected) {
-      Object.keys(filter).forEach(key => {
-        if (key !== 'selectedFavoriteOptions') filter[key] = [];
-      });
-    }
-    const selectedFavoriteOptions = isFavoritesSelected ? [] : [!isFavoritesSelected];
-    setFilter({
-      ...filter,
-      selectedFavoriteOptions
-    });
-    setIsFavoritesSelected(!isFavoritesSelected);
-  };
-
   return (
     <View style={styles.buttonsContainer}>
       <StandardButton
@@ -53,10 +38,9 @@ const ProgramButtons = ({ navigation, goToNowEvent }) => {
         </Text>
       </StandardButton>
       <StandardButton
-        onPress={toggleFavorites}
+        onPress={() => navigation.navigate('Favoritos')}
         buttonContainerStyle={{
-          ...styles.favoritesButtonContainer,
-          backgroundColor: isFavoritesSelected ? BUTTON_ACTIVE_COLOR : BUTTON_COLOR
+          ...styles.favoritesButtonContainer
         }}
       >
         <Text style={styles.buttonText}>

@@ -3,6 +3,8 @@ import 'react-native-gesture-handler';
 import ProgramContainer from './src/containers/program-container';
 import FilterContainer from './src/containers/filter-container';
 import ShowContainer from './src/containers/show-container';
+import MapContainer from './src/containers/map-container';
+import FavoritesContainer from './src/containers/favorites-container';
 import ProgramUpdater from './src/services/program-updater';
 import { ProgramContextProvider } from './src/services/program-context';
 import { NavigationContainer } from '@react-navigation/native';
@@ -20,6 +22,8 @@ export default function App() {
           <Stack.Screen name='Programa' component={ProgramContainer} />
           <Stack.Screen name='Filtro' component={FilterContainer} />
           <Stack.Screen name='Evento' component={ShowContainer} />
+          <Stack.Screen name='Mapa' component={MapContainer} />
+          <Stack.Screen name='Favoritos' component={FavoritesContainer} />
         </Stack.Navigator>
       </ProgramContextProvider>
     </NavigationContainer>

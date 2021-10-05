@@ -87,7 +87,7 @@ const ShowContainer = ({ route }) => {
       </View>
       <Text style={styles.public}>{getPublic(show)}</Text>
       <Text style={styles.dateTime}>
-        {capitalize(momentDate.format('dddd D'))} de {momentStartTime.format('hh:mm')}h a {momentEndTime.format('hh:mm')}h
+        {capitalize(momentDate.format('dddd D'))} de {momentStartTime.format('HH:mm')}h a {momentEndTime.format('HH:mm')}h
       </Text>
       <TouchableHighlight
         onPress={openMapUrl}
