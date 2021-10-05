@@ -6,7 +6,7 @@ export const PROGRAM_STORAGE_KEY = `@ConfusionApp:program:${EVENT_ID}`;
 export const FAVORITES_STORAGE_KEY = `@ConfusionApp:favorites:${EVENT_ID}`;
 
 export const withAsyncStorage = (cacheKey, fallback) => {
-  return async (...params) => {
+  const retVal = async (...params) => {
     const storedValue = await Storage.get(cacheKey);
     const newValue = await fallback(...params, storedValue);
     if (storedValue !== newValue) {
@@ -15,6 +15,12 @@ export const withAsyncStorage = (cacheKey, fallback) => {
     }
     return newValue;
   };
+
+  retVal.getCachedValue = async () => {
+    return await Storage.get(cacheKey);
+  };
+
+  return retVal;
 };
 
 export const Storage = {
