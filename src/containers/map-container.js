@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { View, StyleSheet, Text, Linking, Platform } from 'react-native';
+import { View, StyleSheet, Text, Linking } from 'react-native';
 import MapView, { Marker, PROVIDER_DEFAULT } from 'react-native-maps';
 
 import { ProgramContext } from '../services/program-context';
@@ -13,13 +13,14 @@ const MAP_VIEW_DELTA = 0.0092;
 const MAP_CENTER_LATITUDE = 39.487282;
 const MAP_CENTER_LONGITUDE = -0.358120;
 
-const MapContainer = () => {
+const MapContainer = ({ navigation }) => {
   const { allShows } = useContext(ProgramContext);
 
   const spaces = Object.values(allShows.reduce((spaceMemo, show) => {
     spaceMemo[show.order] = {
       address: show.address,
-      order: show.order
+      order: show.order,
+      host_name: show.host_name
     };
 
     return spaceMemo;
@@ -40,7 +41,8 @@ const MapContainer = () => {
         {
         spaces.map(space =>
           <MapMarker
-            show={space}
+            navigation={navigation}
+            space={space}
             key={space.address.location.lat}
           />)
         }
@@ -49,29 +51,22 @@ const MapContainer = () => {
   );
 };
 
-const MapMarker = ({ show }) => {
-  const latitude = parseFloat(show.address.location.lat);
-  const longitude = parseFloat(show.address.location.lng);
+const MapMarker = ({ navigation, space }) => {
+  const latitude = parseFloat(space.address.location.lat);
+  const longitude = parseFloat(space.address.location.lng);
 
-  let mapUrl;
-  if (Platform.OS === 'ios') {
-    mapUrl = `https://maps.apple.com/?daddr=${latitude},${longitude}&z=${EXTERNAL_MAP_ZOOM}`;
-  } else {
-    mapUrl = `https://www.google.com/maps/place/${latitude},${longitude}/@${latitude},${longitude},${EXTERNAL_MAP_ZOOM}z`;
-  }
-
-  const openMapUrl = () => Linking.openURL(mapUrl);
+  const openSpaceProgram = () => navigation.navigate('ProgramaEspacio', { space: space });
 
   return (
     <View>
       <Marker
         coordinate={{ latitude: latitude, longitude: longitude }}
-        onPress={openMapUrl}
+        onPress={openSpaceProgram}
         anchor={{ x: 0.5, y: 0.5 }}
       >
         <View style={styles.marker}>
           <Text style={styles.markerText}>
-            {`${parseInt(show.order) + 1}`}
+            {`${parseInt(space.order) + 1}`}
           </Text>
         </View>
       </Marker>

@@ -4,6 +4,7 @@ import MapView, { Marker, PROVIDER_DEFAULT } from 'react-native-maps';
 
 import { getParticipantCategory, getPublic, getAddress } from '../helpers/program-helpers';
 import { capitalize } from '../helpers/text-helpers';
+import { getMapAppLink } from '../helpers/link-helpers';
 import { getEsMoment } from '../helpers/date-helpers';
 import { iconsMap } from '../helpers/icon-helpers';
 import { ProgramContext } from '../services/program-context';
@@ -15,7 +16,6 @@ import {
   PRIMARY_COLOR
 } from '../styles/colors';
 
-const EXTERNAL_MAP_ZOOM = 15;
 const MAP_VIEW_DELTA = 0.0030;
 
 const ShowContainer = ({ route }) => {
@@ -43,13 +43,8 @@ const ShowContainer = ({ route }) => {
     marker = ref;
   };
 
-  let mapUrl;
-  if (Platform.OS === 'ios') {
-    mapUrl = `https://maps.apple.com/?daddr=${latitude},${longitude}&z=${EXTERNAL_MAP_ZOOM}`;
-  } else {
-    mapUrl = `https://www.google.com/maps/place/${latitude},${longitude}/@${latitude},${longitude},${EXTERNAL_MAP_ZOOM}z`;
-  }
-
+  const mapUrl = getMapAppLink(latitude, longitude);
+  
   const openMapUrl = () => Linking.openURL(mapUrl);
 
   // TODO: Aqui falta acabar algo, esta función no se usa.
