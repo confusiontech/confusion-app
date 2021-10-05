@@ -25,8 +25,6 @@ const MapContainer = () => {
     return spaceMemo;
   }, {}));
 
-  console.log(spaces.length);
-
   return (
     <View>
       <MapView
