@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { StyleSheet, Text, View, Linking, TouchableHighlight, ScrollView, Platform } from 'react-native';
+import { StyleSheet, Text, View, Linking, TouchableHighlight, ScrollView } from 'react-native';
 import MapView, { Marker, PROVIDER_DEFAULT } from 'react-native-maps';
 
 import { getParticipantCategory, getPublic, getAddress } from '../helpers/program-helpers';
@@ -44,7 +44,7 @@ const ShowContainer = ({ route }) => {
   };
 
   const mapUrl = getMapAppLink(latitude, longitude);
-  
+
   const openMapUrl = () => Linking.openURL(mapUrl);
 
   // TODO: Aqui falta acabar algo, esta función no se usa.

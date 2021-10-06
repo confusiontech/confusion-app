@@ -1,8 +1,6 @@
 import React, { useContext } from 'react';
 import { View, StyleSheet, Text, Linking } from 'react-native';
 
-import { HeaderTitle } from '@react-navigation/stack';
-
 import ShowList from '../components/show-list';
 import { ProgramContext } from '../services/program-context';
 import { filterShows } from '../helpers/program-helpers';
@@ -46,7 +44,8 @@ const SpaceProgramContainer = ({ navigation, route }) => {
     <View style={styles.buttonsContainer}>
       <StandardButton
         onPress={() => Linking.openURL(mapLink)}
-        buttonContainerStyle={{...styles.goButtonContainer}}>
+        buttonContainerStyle={{ ...styles.goButtonContainer }}
+      >
         <Text style={styles.buttonText}>
           {iconsMap.get('directions', { color: BUTTON_TEXT_COLOR, size: 16 })} Cómo llegar
         </Text>

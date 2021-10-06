@@ -1,14 +1,13 @@
 import React, { useContext } from 'react';
-import { View, StyleSheet, Text, Linking } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import MapView, { Marker, PROVIDER_DEFAULT } from 'react-native-maps';
 
 import { ProgramContext } from '../services/program-context';
 import {
-  LINK_COLOR,
+  BUTTON_ACTIVE_COLOR,
   BUTTON_TEXT_COLOR
 } from '../styles/colors';
 
-const EXTERNAL_MAP_ZOOM = 15;
 const MAP_VIEW_DELTA = 0.0092;
 const MAP_CENTER_LATITUDE = 39.487282;
 const MAP_CENTER_LONGITUDE = -0.358120;
@@ -28,6 +27,9 @@ const MapContainer = ({ navigation }) => {
 
   return (
     <View>
+      <Text style={styles.initialText}>
+        Pincha el marcador de un espacio para ver su programación
+      </Text>
       <MapView
         style={styles.mapStyle}
         provider={PROVIDER_DEFAULT}
@@ -77,7 +79,7 @@ const MapMarker = ({ navigation, space }) => {
 const spaceNumberContainer = {
   justifyContent: 'center',
   alignItems: 'center',
-  backgroundColor: LINK_COLOR
+  backgroundColor: BUTTON_ACTIVE_COLOR
 };
 
 const spaceNumber = {
@@ -99,6 +101,16 @@ const styles = StyleSheet.create({
   markerText: {
     ...spaceNumber,
     fontSize: 14
+  },
+  initialText: {
+    fontWeight: 'bold',
+    position: 'absolute',
+    top: 4,
+    right: 7,
+    zIndex: 9,
+    fontSize: 16,
+    textAlign: 'right',
+    width: '65%'
   }
 });
 
