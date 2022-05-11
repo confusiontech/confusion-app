@@ -1,5 +1,6 @@
 import eventService from '../services/event-service';
 import { getEsMoment } from './date-helpers';
+import { EVENT_SUBCATEGORIES_BY_KEY } from '../event-properties';
 
 const categoriesMap = eventService.getAllCategories();
 const arrayMap = Array.from(categoriesMap);
@@ -105,3 +106,46 @@ export const getAddress = show => {
 
 // export const getNow = () => new Date(2021, 9, 16, 19, 9).getTime();
 export const getNow = () => new Date().getTime();
+
+const tryMatchSubcategories = line => {
+  const categoryNames = line.match(/(?<=\()[^\)]*(?=\))/);
+
+  const categoryKeys = categoryNames && categoryNames[0].split(',').map(
+    categoryName => matchCategoryByName(categoryName)
+  ).filter(categoryKey => categoryKey);
+
+  return categoryKeys && categoryKeys.length ? categoryKeys : undefined;
+};
+
+const eventCategoriesByKeyMap = new Map(EVENT_SUBCATEGORIES_BY_KEY);
+
+const matchCategoryByName = categoryName => {
+  return eventCategoriesByKeyMap.get(categoryName.trim());
+};
+
+export const programAdapter = programItem => {
+  const { short_description: shortDescription, participant_subcategory: participantSubcategory } = programItem;
+  const lines = shortDescription.split('\n');
+
+  let participantSubcategories;
+  let finalShortDescription = shortDescription;
+
+  for (let i = lines.length - 1; i >= 0; i--) {
+    const lineContent = lines[i].trim();
+    if (lineContent !== '') {
+      participantSubcategories = tryMatchSubcategories(lineContent);
+      if (participantSubcategories) {
+        finalShortDescription = lines.slice(0, i).join('\n');
+      }
+      break;
+    }
+  }
+
+  participantSubcategories = participantSubcategories || [participantSubcategory];
+
+  return {
+    ...programItem,
+    participant_subcategories: participantSubcategories,
+    short_description: finalShortDescription
+  };
+};

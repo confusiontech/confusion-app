@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import backendService from './backend-service';
 import { ProgramContext } from './program-context';
 import { withAsyncStorage, Storage, PROGRAM_STORAGE_KEY, FAVORITES_STORAGE_KEY } from '../helpers/with-async-storage';
+import { programAdapter } from '../helpers/program-helpers';
 
 const ProgramUpdater = () => {
   const { setAllShows, allShows, setFavorites } = useContext(ProgramContext);
@@ -26,6 +27,7 @@ const ProgramUpdater = () => {
       try {
         const programResponse = await fetchProgram.getCachedValue();
         if (programResponse && !hasProgram()) {
+          programAdapter(programResponse.program);
           setAllShows(programResponse.program);
         }
       } catch (error) {
