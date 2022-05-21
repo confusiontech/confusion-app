@@ -1,6 +1,6 @@
 import eventService from '../services/event-service';
 import { getEsMoment } from './date-helpers';
-import { EVENT_SUBCATEGORIES_BY_KEY } from '../event-properties';
+import { matchCategoryByName } from './category-matcher';
 
 const categoriesMap = eventService.getAllCategories();
 const arrayMap = Array.from(categoriesMap);
@@ -108,19 +108,13 @@ export const getAddress = show => {
 export const getNow = () => new Date().getTime();
 
 const tryMatchSubcategories = line => {
-  const categoryNames = line.match(/(?<=\()[^\)]*(?=\))/);
+  const categoryNames = line.match(/(?<=\()[^)]*(?=\))/);
 
   const categoryKeys = categoryNames && categoryNames[0].split(',').map(
     categoryName => matchCategoryByName(categoryName)
   ).filter(categoryKey => categoryKey);
 
   return categoryKeys && categoryKeys.length ? categoryKeys : undefined;
-};
-
-const eventCategoriesByKeyMap = new Map(EVENT_SUBCATEGORIES_BY_KEY);
-
-const matchCategoryByName = categoryName => {
-  return eventCategoriesByKeyMap.get(categoryName.trim());
 };
 
 export const programAdapter = programItem => {
