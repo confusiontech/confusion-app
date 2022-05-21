@@ -108,9 +108,10 @@ export const getAddress = show => {
 export const getNow = () => new Date().getTime();
 
 const tryMatchSubcategories = line => {
-  const categoryNames = line.match(/(?<=\()[^)]*(?=\))/);
+  // Lookahead and lookbehind don't work in Android, so we won't use them
+  const categoryNames = line.match(/^\s*\((?<categories>[^)]+)\)\s*$/);
 
-  const categoryKeys = categoryNames && categoryNames[0].split(',').map(
+  const categoryKeys = categoryNames && categoryNames.groups && categoryNames.groups.categories.split(',').map(
     categoryName => matchCategoryByName(categoryName)
   ).filter(categoryKey => categoryKey);
 
