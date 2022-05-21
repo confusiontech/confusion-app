@@ -1,16 +1,21 @@
 // export const EVENT_ID = '3cb8e68a-b03f-4a7d-b714-42a7ca56870a';
+
 // export const EVENT_DATES = ['2019-10-19', '2019-10-20'];
 export const EVENT_ID = '79a00aa4-2704-4581-9f2e-84b6549668b1'; // 2021
 export const EVENT_DATES = ['2021-10-16', '2021-10-17']; // 2021
 
-export const EVENT_CATEGORIES = [
-  ['0', 'Artes Escénicas'],
-  ['1', 'Arte Urbano'],
-  ['2', 'Audiovisual'],
-  ['3', 'Exposición'],
-  ['4', 'Música'],
-  ['5', 'Otros'],
-  ['6', 'Poesía'],
-  ['7', 'Talleres / Charlas'],
-  ['8', 'Instalaciones Urbanas']
+export const EVENT_CATEGORIES_INFO = [
+  { id: '0', name: 'Artes Escénicas', keys: ['ESCENICAS', 'ARTES_ESCENICAS'] },
+  { id: '1', name: 'Arte Urbano', keys: ['ARTE_URBANO'] },
+  { id: '2', name: 'Audiovisual', keys: ['AUDIOVISUAL'] },
+  { id: '3', name: 'Exposición', keys: ['EXPOSICION', 'EXPO'] },
+  { id: '4', name: 'Música', keys: ['MUSICA'] },
+  { id: '5', name: 'Otros', keys: ['OTROS'] },
+  { id: '6', name: 'Poesía', keys: ['POESIA'] },
+  { id: '7', name: 'Talleres / Charlas', keys: ['TALLERES', 'CHARLAS', 'TALLERES_CHARLAS', 'CHARLAS_TALLERES'] },
+  { id: '8', name: 'Instalaciones Urbanas', keys: ['INSTALACIONES', 'INSTALACIONES_URBANAS'] }
 ];
+
+export const EVENT_CATEGORIES = EVENT_CATEGORIES_INFO.map(categoryInfo =>
+  [categoryInfo.id, categoryInfo.name]
+);
