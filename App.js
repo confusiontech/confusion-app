@@ -1,4 +1,5 @@
 import React from 'react';
+import { NativeBaseProvider } from 'native-base';
 import 'react-native-gesture-handler';
 import ProgramContainer from './src/containers/program-container';
 import FilterContainer from './src/containers/filter-container';
@@ -16,18 +17,20 @@ const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <ProgramContextProvider>
-        <ProgramUpdater />
-        <Stack.Navigator>
-          <Stack.Screen name='Programa' component={ProgramContainer} />
-          <Stack.Screen name='Filtro' component={FilterContainer} />
-          <Stack.Screen name='Evento' component={ShowContainer} />
-          <Stack.Screen name='Mapa' component={MapContainer} />
-          <Stack.Screen name='Favoritos' component={FavoritesContainer} />
-          <Stack.Screen name='ProgramaEspacio' component={SpaceProgramContainer} />
-        </Stack.Navigator>
-      </ProgramContextProvider>
-    </NavigationContainer>
+    <NativeBaseProvider>
+      <NavigationContainer>
+        <ProgramContextProvider>
+          <ProgramUpdater />
+          <Stack.Navigator>
+            <Stack.Screen name='Programa' component={ProgramContainer} />
+            <Stack.Screen name='Filtro' component={FilterContainer} />
+            <Stack.Screen name='Evento' component={ShowContainer} />
+            <Stack.Screen name='Mapa' component={MapContainer} />
+            <Stack.Screen name='Favoritos' component={FavoritesContainer} />
+            <Stack.Screen name='ProgramaEspacio' component={SpaceProgramContainer} />
+          </Stack.Navigator>
+        </ProgramContextProvider>
+      </NavigationContainer>
+    </NativeBaseProvider>
   );
 }

@@ -8,7 +8,9 @@ describe('programAdapter', () => {
         participant_subcategory: '3'
       };
 
-      expect(programAdapter(programItem)).toStrictEqual(
+      programAdapter([programItem]);
+
+      expect(programItem).toStrictEqual(
         {
           ...programItem,
           participant_subcategories: [programItem.participant_subcategory],
@@ -25,7 +27,9 @@ describe('programAdapter', () => {
         participant_subcategory: '3'
       };
 
-      expect(programAdapter(programItem)).toStrictEqual(
+      programAdapter([programItem]);
+
+      expect(programItem).toStrictEqual(
         {
           ...programItem,
           participant_subcategories: ['0', '4'],
@@ -42,7 +46,9 @@ describe('programAdapter', () => {
         participant_subcategory: '3'
       };
 
-      expect(programAdapter(programItem)).toStrictEqual(
+      programAdapter([programItem]);
+
+      expect(programItem).toStrictEqual(
         {
           ...programItem,
           participant_subcategories: ['2', '0', '4', '6', '8', '0', '7', '3', '1', '8'],
@@ -59,7 +65,9 @@ describe('programAdapter', () => {
         participant_subcategory: '3'
       };
 
-      expect(programAdapter(programItem)).toStrictEqual(
+      programAdapter([programItem]);
+
+      expect(programItem).toStrictEqual(
         {
           ...programItem,
           participant_subcategories: ['3'],
