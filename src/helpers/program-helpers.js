@@ -86,8 +86,11 @@ export const filterShows = (allShows, favorites, propertiesConditionsObjs) => {
   return filteredShows;
 };
 
+export const getParticipantCategoryById = categoryId =>
+  categoriesMap.get(categoryId);
+
 export const getParticipantCategory = show =>
-  categoriesMap.get(show.participant_subcategory);
+  getParticipantCategoryById(show.participant_subcategory);
 
 const publicMap = new Map([
   ['all_public', 'Todos los publicos'],
@@ -118,29 +121,28 @@ const tryMatchSubcategories = line => {
   return categoryKeys && categoryKeys.length ? categoryKeys : undefined;
 };
 
-export const programAdapter = programItem => {
-  const { short_description: shortDescription, participant_subcategory: participantSubcategory } = programItem;
-  const lines = shortDescription.split('\n');
+export const programAdapter = program => {
+  program.forEach(programItem => {
+    const { short_description: shortDescription, participant_subcategory: participantSubcategory } = programItem;
+    const lines = shortDescription.split('\n');
 
-  let participantSubcategories;
-  let finalShortDescription = shortDescription;
+    let participantSubcategories;
+    let finalShortDescription = shortDescription;
 
-  for (let i = lines.length - 1; i >= 0; i--) {
-    const lineContent = lines[i].trim();
-    if (lineContent !== '') {
-      participantSubcategories = tryMatchSubcategories(lineContent);
-      if (participantSubcategories) {
-        finalShortDescription = lines.slice(0, i).join('\n');
+    for (let i = lines.length - 1; i >= 0; i--) {
+      const lineContent = lines[i].trim();
+      if (lineContent !== '') {
+        participantSubcategories = tryMatchSubcategories(lineContent);
+        if (participantSubcategories) {
+          finalShortDescription = lines.slice(0, i).join('\n');
+        }
+        break;
       }
-      break;
     }
-  }
 
-  participantSubcategories = participantSubcategories || [participantSubcategory];
+    participantSubcategories = participantSubcategories || [participantSubcategory];
 
-  return {
-    ...programItem,
-    participant_subcategories: participantSubcategories,
-    short_description: finalShortDescription
-  };
+    programItem.participant_subcategories = participantSubcategories;
+    programItem.short_description = finalShortDescription;
+  });
 };

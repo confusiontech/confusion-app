@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { StyleSheet, Text, View, Linking, TouchableHighlight, ScrollView } from 'react-native';
 import MapView, { Marker, PROVIDER_DEFAULT } from 'react-native-maps';
 
-import { getParticipantCategory, getPublic, getAddress } from '../helpers/program-helpers';
+import { getParticipantCategoryById, getPublic, getAddress } from '../helpers/program-helpers';
 import { capitalize } from '../helpers/text-helpers';
 import { getMapAppLink } from '../helpers/link-helpers';
 import { getEsMoment } from '../helpers/date-helpers';
@@ -72,14 +72,20 @@ const ShowContainer = ({ route }) => {
       </View>
       <Text style={styles.artist}>{show.participant_name}</Text>
       <Text style={styles.short_description}>{show.short_description}</Text>
-      <View style={styles.grid}>
-        <View style={styles.categoryIcon}>
-          {iconsMap.get(show.participant_subcategory, { size: 16 })}
-        </View>
-        <Text style={styles.category}>
-          {getParticipantCategory(show)}
-        </Text>
-      </View>
+
+      {show.participant_subcategories.map(id =>
+        (
+          <View key={id} style={styles.grid}>
+            <View style={styles.categoryIcon}>
+              {iconsMap.get(id, { size: 16 })}
+            </View>
+            <Text style={styles.category}>
+              {getParticipantCategoryById(id)}
+            </Text>
+          </View>
+        )
+      )}
+
       <Text style={styles.public}>{getPublic(show)}</Text>
       <Text style={styles.dateTime}>
         {capitalize(momentDate.format('dddd D'))} de {momentStartTime.format('HH:mm')}h a {momentEndTime.format('HH:mm')}h

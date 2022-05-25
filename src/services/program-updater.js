@@ -27,7 +27,6 @@ const ProgramUpdater = () => {
       try {
         const programResponse = await fetchProgram.getCachedValue();
         if (programResponse && !hasProgram()) {
-          programAdapter(programResponse.program);
           setAllShows(programResponse.program);
         }
       } catch (error) {
@@ -39,7 +38,10 @@ const ProgramUpdater = () => {
 
     function updateProgram() {
       fetchProgram().then(function(response) {
-        if (!hasProgram() || response.new) setAllShows(response.program);
+        if (!hasProgram() || response.new) {
+          programAdapter(response.program);
+          setAllShows(response.program);
+        }
       });
     }
 

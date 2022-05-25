@@ -3,7 +3,6 @@
     "name": "conFusión 2021",
     "slug": "confusionapp",
     "privacy": "public",
-    "sdkVersion": "41.0.0",
     "platforms": [
       "ios",
       "android",
