@@ -13,7 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [16.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -33,7 +33,7 @@ jobs:
         key: ${{ runner.os }}-node_modules-${{ steps.get-npm-version.outputs.npmversion }}-${{ hashFiles('package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-node_modules-${{ steps.get-npm-version.outputs.npmversion }}-
-    - run: npm install --no-audit
+    - run: npm ci --no-audit
     - run: npm prune --no-audit
     # - run: npm run buildweb # Falta arreglar AsyncStorage
     - run: npm run test:unit
