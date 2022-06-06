@@ -146,3 +146,50 @@ export const programAdapter = program => {
     programItem.short_description = finalShortDescription;
   });
 };
+
+const TEN_MINUTES = 10 * 60 * 1000;
+
+export const findCurrentShowIndex = (shows, nowDt) => {
+  if (shows.length === 0) {
+    return -1;
+  }
+
+  let next = null;
+  let active = null;
+
+  for (let index = 0; index < shows.length; ++index) {
+    const show = shows[index];
+    const start = show.time[0];
+    const end = show.time[1];
+
+    if (start < nowDt) {
+      if (end > nowDt && start >= nowDt - TEN_MINUTES) {
+        // Prioridad 1: actividad en curso que ha comenzado hace menos de 10 minutos
+        return index;
+      } else if (active == null && end > nowDt) {
+        // Guardamos la primera actividad en curso por si no encontramos ninguna
+        // candidata mejor para devolver.
+        active = index;
+      }
+    } else {
+      if (start <= nowDt + TEN_MINUTES * 2) {
+        // Prioridad 2: actividad que comienza dentro de menos de 20 minutos
+        return index;
+      } else {
+        next = index;
+        break;
+      }
+    }
+  }
+
+  if (active != null) {
+    // Prioridad 3: actividad en curso que ha comenzado hace más de 10 minutos
+    return active;
+  } else if (next != null) {
+    // Prioridad 4: la siguiente actividad
+    return next;
+  } else {
+    // Si todas las actividades han pasado ya, devolvemos la primera actividad
+    return 0;
+  }
+};

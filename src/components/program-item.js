@@ -5,9 +5,8 @@ import moment from 'moment';
 import 'moment/locale/es';
 import DrawAttentionView from './draw-attention-view';
 import { TOUCHABLE_UNDERLAY_COLOR } from '../styles/colors';
-import { getNow } from '../helpers/program-helpers';
 
-const ProgramItem = React.memo(({ navigation, show }) => {
+const ProgramItem = React.memo(({ navigation, show, nowDt }) => {
   const date = moment(show.date).format('DD MMM');
   const startTime = moment(parseInt(show.time[0])).format('HH:mm');
   const categoryIcon = iconsMap.get(show.participant_subcategory);
@@ -24,8 +23,7 @@ const ProgramItem = React.memo(({ navigation, show }) => {
 
   let icon = baseIcon;
 
-  const now = getNow();
-  const isLive = start <= now && now < end;
+  const isLive = start <= nowDt && nowDt < end;
 
   if (isLive) {
     icon = (

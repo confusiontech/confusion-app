@@ -6,9 +6,9 @@ import ProgramItem from './program-item';
 
 const ROW_HEIGHT = 80;
 
-const ShowList = ({ shows, flatListRef, navigation }) => {
+const ShowList = ({ shows, flatListRef, navigation, nowDt }) => {
   const extractKey = item => item.id + item.time[0];
-  const renderItem = ({ item }) => <ProgramItem navigation={navigation} show={item} />;
+  const renderItem = ({ item }) => <ProgramItem navigation={navigation} show={item} nowDt={nowDt} />;
 
   return (
     <SafeAreaView>
