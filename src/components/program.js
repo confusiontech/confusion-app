@@ -1,20 +1,39 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View } from 'react-native';
 import ShowList from './show-list';
-import { getNow } from '../helpers/program-helpers';
-
-const TEN_MINUTES = 10 * 60 * 1000;
+import { getNow, findCurrentShowIndex } from '../helpers/program-helpers';
 
 const Program = ({ navigation, shows, goToNowEvent, isFilterActive }) => {
+  const [nowDt, setNowDt] = useState(null);
+
+  // Actualizamos la hora actual cada un minuto, que es suficiente
+  // resolución para cualquier operación sobre las actividades del
+  // programa. Así evitamos redraws innecesarios
+  const UPDATE_INTERVAL_MS = 60000;
+
+  const toDateTimeByInterval = (dt) => {
+    return dt - dt % UPDATE_INTERVAL_MS;
+  };
+
+  useEffect(() => {
+    setNowDt(toDateTimeByInterval(getNow()));
+
+    const taskId = setInterval(() => {
+      setNowDt(toDateTimeByInterval(getNow()));
+    }, UPDATE_INTERVAL_MS);
+
+    return () => {
+      clearInterval(taskId);
+    };
+  }, [shows]);
+
   // TODO: Avoid new function on every call, it breaks equality checks which causes additional re-renders
   const flatListRef = React.createRef();
 
   goToNowEvent.current = () => {
-    if (shows.length > 0) {
-      const now = getNow();
-      let nowIndex = shows.findIndex(show => show.time[0] > now - TEN_MINUTES);
-      nowIndex = Math.max(0, nowIndex);
+    const nowIndex = findCurrentShowIndex(shows, nowDt);
 
+    if (nowIndex >= 0) {
       return flatListRef.current.scrollToIndex({ index: nowIndex, viewPosition: 0 });
     } else {
       return false;
@@ -24,6 +43,7 @@ const Program = ({ navigation, shows, goToNowEvent, isFilterActive }) => {
   const program = (
     <View style={{ height: '92%' }}>
       <ShowList
+        nowDt={nowDt}
         flatListRef={flatListRef}
         shows={shows}
         navigation={navigation}
