@@ -7,7 +7,11 @@ import { programAdapter } from '../helpers/program-helpers';
 
 const ProgramUpdater = () => {
   const { setAllShows, allShows, setFavorites } = useContext(ProgramContext);
-  const fetchProgram = withAsyncStorage(PROGRAM_STORAGE_KEY, backendService.fetchProgram);
+  const fetchProgram = withAsyncStorage(PROGRAM_STORAGE_KEY, async () => {
+    const response = await backendService.fetchProgram();
+    programAdapter(response.program);
+    return response;
+  });
 
   useEffect(() => {
     function hasProgram() {
@@ -39,7 +43,6 @@ const ProgramUpdater = () => {
     function updateProgram() {
       fetchProgram().then(function(response) {
         if (!hasProgram() || response.new) {
-          programAdapter(response.program);
           setAllShows(response.program);
         }
       });

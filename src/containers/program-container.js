@@ -14,7 +14,7 @@ const ProgramContainer = ({ navigation }) => {
 
   const propertiesConditions = [
     {
-      showProperty: 'participant_subcategory',
+      showProperty: 'participant_subcategories',
       stateProperty: filter.selectedCategories
     },
     {
