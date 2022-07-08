@@ -71,6 +71,17 @@ export const filterShows = (allShows, favorites, propertiesConditionsObjs) => {
               return properties.stateProperty.includes(favorites.has(show.id));
             }
           );
+        } else if (properties.showProperty === 'participant_subcategories') {
+          conditions.push(
+            show => {
+              for (const category of show[properties.showProperty]) {
+                if (properties.stateProperty.includes(category)) {
+                  return true;
+                }
+              }
+              return false;
+            }
+          );
         } else {
           conditions.push(
             show => properties.stateProperty.includes(show[properties.showProperty])
