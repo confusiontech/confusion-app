@@ -77,3 +77,6 @@ buck-out/
 web-build/
 
 # @end expo-cli
+
+#Pietro tokens
+.github_pietro_auth_token

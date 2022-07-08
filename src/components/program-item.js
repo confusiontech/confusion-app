@@ -6,18 +6,29 @@ import 'moment/locale/es';
 import DrawAttentionView from './draw-attention-view';
 import { TOUCHABLE_UNDERLAY_COLOR } from '../styles/colors';
 
+const iconStyles = {
+  '1_icon': { size: 26 },
+  '2_icon': { size: 22 },
+  '3_icon': { size: 18 },
+  '4_icon': { size: 18 }
+};
+
 const ProgramItem = React.memo(({ navigation, show, nowDt }) => {
   const date = moment(show.date).format('DD MMM');
   const startTime = moment(parseInt(show.time[0])).format('HH:mm');
-  const categoryIcon = iconsMap.get(show.participant_subcategory);
-  const navigateToEvent = () => navigation.navigate('Evento', { show: show });
+
+  const subcategoriesNumber = show.participant_subcategories.length;
+  const iconStyleKey = `${subcategoriesNumber}_icon`;
+  const categoryIcons = show.participant_subcategories.map(subcat => iconsMap.get(subcat, iconStyles[iconStyleKey] || iconStyles['4_icon']));
+
+  const navigateToEvent = () => navigation.navigate('Evento', { show });
 
   const start = parseInt(show.time[0]);
   const end = parseInt(show.time[1]);
 
   const baseIcon = (
     <Text style={styles.icon}>
-      {categoryIcon}
+      {categoryIcons}
     </Text>
   );
 
