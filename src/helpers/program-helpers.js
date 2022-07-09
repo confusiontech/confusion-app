@@ -204,3 +204,15 @@ export const findCurrentShowIndex = (shows, nowDt) => {
     return 0;
   }
 };
+
+export const getSpaceList = allShows => {
+  return Object.values(allShows.reduce((spaceMemo, show) => {
+    spaceMemo[show.order] = {
+      address: show.address,
+      order: show.order,
+      host_name: show.host_name
+    };
+
+    return spaceMemo;
+  }, {}));
+};

@@ -41,14 +41,12 @@ const Program = ({ navigation, shows, goToNowEvent, isFilterActive }) => {
   };
 
   const program = (
-    <View style={{ height: '92%' }}>
-      <ShowList
-        nowDt={nowDt}
-        flatListRef={flatListRef}
-        shows={shows}
-        navigation={navigation}
-      />
-    </View>
+    <ShowList
+      nowDt={nowDt}
+      flatListRef={flatListRef}
+      shows={shows}
+      navigation={navigation}
+    />
   );
 
   const noResults = (
