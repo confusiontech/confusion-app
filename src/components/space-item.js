@@ -51,7 +51,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   spaceNumber: {
-    textAlign: 'center'
+    textAlign: 'center',
+    fontSize: 20
   },
   spaceNameAndAddressContainer: {
     width: '85%',

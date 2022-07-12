@@ -55,11 +55,7 @@ const Program = ({ navigation, shows, goToNowEvent, isFilterActive }) => {
     </Text>
   );
 
-  return (
-    <View>
-      {(!shows.length && isFilterActive) ? noResults : program}
-    </View>
-  );
+  return (!shows.length && isFilterActive) ? noResults : program;
 };
 
 export default Program;

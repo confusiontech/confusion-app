@@ -43,14 +43,16 @@ const ProgramContainer = ({ navigation }) => {
 
   return (
     <View style={{ flex: 1 }}>
-      <ProgramButtons navigation={navigation} goToNowEvent={goToNowEvent} />
-      <View style={{ height: '92%' }}>
-        <Program
-          navigation={navigation}
-          shows={shows}
-          goToNowEvent={goToNowEvent}
-          isFilterActive={!!Object.values(filter).flat().length}
-        />
+      <View>
+        <View style={{ height: '92%' }}>
+          <ProgramButtons navigation={navigation} goToNowEvent={goToNowEvent} />
+          <Program
+            navigation={navigation}
+            shows={shows}
+            goToNowEvent={goToNowEvent}
+            isFilterActive={!!Object.values(filter).flat().length}
+          />
+        </View>
       </View>
       <View style={styles.buttonsContainer}>
         <MapButton
