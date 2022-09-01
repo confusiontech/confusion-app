@@ -1,16 +1,11 @@
 import React, { useContext } from 'react';
-import { View, StyleSheet, Text, Linking, SafeAreaView, FlatList } from 'react-native';
+import { View, SafeAreaView, FlatList } from 'react-native';
 
 import SpaceItem from '../components/space-item';
 import { ProgramContext } from '../services/program-context';
 import { getSpaceList } from '../helpers/program-helpers';
-import { getMapAppLink } from '../helpers/link-helpers';
-import StandardButton from '../components/standard-button';
 import MapButton from '../components/map-button';
-
-import {
-  BUTTON_TEXT_COLOR
-} from '../styles/colors';
+import PageLayout from './page-layout';
 
 const ROW_HEIGHT = 80;
 
@@ -23,32 +18,25 @@ const SpaceListContainer = ({ navigation }) => {
   const renderItem = ({ item }) => <SpaceItem navigation={navigation} space={item} />;
 
   return (
-    <View style={{ flex: 1 }}>
-      <View style={{ height: '92%' }}>
-        <SafeAreaView>
-          <FlatList
-            data={spaces}
-            renderItem={renderItem}
-            keyExtractor={extractKey}
-            getItemLayout={(_show, index) => ({
-              offset: ROW_HEIGHT * index,
-              length: ROW_HEIGHT,
-              index
-            })}
-          />
-        </SafeAreaView>
+    <PageLayout navigation={navigation}>
+      <View style={{ flex: 1 }}>
+        <View style={{ height: '92%' }}>
+          <SafeAreaView>
+            <FlatList
+              data={spaces}
+              renderItem={renderItem}
+              keyExtractor={extractKey}
+              getItemLayout={(_show, index) => ({
+                offset: ROW_HEIGHT * index,
+                length: ROW_HEIGHT,
+                index
+              })}
+            />
+          </SafeAreaView>
+        </View>
       </View>
-      <View style={{ height: '8%' }}>
-        <MapButton
-          navigation={navigation}
-        />
-      </View>
-    </View>
+    </PageLayout>
   );
 };
-
-const styles = StyleSheet.create({
-
-});
 
 export default SpaceListContainer;

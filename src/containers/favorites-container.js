@@ -5,8 +5,12 @@ import ShowList from '../components/show-list';
 import { ProgramContext } from '../services/program-context';
 import { filterShows } from '../helpers/program-helpers';
 
+import PageLayout from './page-layout';
+
 const FavoritesContainer = ({ navigation }) => {
-  const { favorites, allShows } = useContext(ProgramContext);
+  const context = useContext(ProgramContext);
+
+  const { favorites, allShows } = context;
 
   const propertiesConditions = [
     {
@@ -40,9 +44,9 @@ const FavoritesContainer = ({ navigation }) => {
   );
 
   return (
-    <View>
+    <PageLayout navigation={navigation}>
       {(!favoriteShows.length) ? noResults : program}
-    </View>
+    </PageLayout>
   );
 };
 

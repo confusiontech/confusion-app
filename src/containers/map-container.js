@@ -9,6 +9,8 @@ import {
   BUTTON_TEXT_COLOR
 } from '../styles/colors';
 
+import PageLayout from './page-layout';
+
 const MAP_VIEW_DELTA = 0.0092;
 const MAP_CENTER_LATITUDE = 39.487282;
 const MAP_CENTER_LONGITUDE = -0.358120;
@@ -19,30 +21,35 @@ const MapContainer = ({ navigation }) => {
   const spaces = getSpaceList(allShows);
 
   return (
-    <View>
-      <Text style={styles.initialText}>
-        Pincha el marcador de un espacio para ver su programación
-      </Text>
-      <MapView
-        style={styles.mapStyle}
-        provider={PROVIDER_DEFAULT}
-        initialRegion={{
-          latitude: MAP_CENTER_LATITUDE,
-          longitude: MAP_CENTER_LONGITUDE,
-          latitudeDelta: MAP_VIEW_DELTA,
-          longitudeDelta: MAP_VIEW_DELTA
-        }}
-      >
-        {
-        spaces.map(space =>
-          <MapMarker
-            navigation={navigation}
-            space={space}
-            key={space.address.location.lat}
-          />)
+    <PageLayout navigation={navigation}>
+      <View>
+        <Text style={styles.initialText}>
+          Pincha el marcador de un espacio para ver su programación
+        </Text>
+        <MapView
+          style={styles.mapStyle}
+          provider={PROVIDER_DEFAULT}
+          initialRegion={{
+            latitude: MAP_CENTER_LATITUDE,
+            longitude: MAP_CENTER_LONGITUDE,
+            latitudeDelta: MAP_VIEW_DELTA,
+            longitudeDelta: MAP_VIEW_DELTA
+          }}
+        >
+          {
+        spaces.map(space => {
+          return (
+            <MapMarker
+              navigation={navigation}
+              space={space}
+              key={space.address.location.lat + space.address.location.lng + space.order}
+            />
+          );
+        })
         }
-      </MapView>
-    </View>
+        </MapView>
+      </View>
+    </PageLayout>
   );
 };
 

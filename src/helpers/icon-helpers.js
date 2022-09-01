@@ -2,23 +2,23 @@ import React from 'react';
 import { Feather, FontAwesome5, MaterialCommunityIcons, AntDesign, Ionicons } from '@expo/vector-icons';
 
 const values = new Map([
-  ['0', ({ size, color, styleClass }) => <FontAwesome5 name='theater-masks' size={size} color={color} style={styleClass} />],
-  ['1', ({ size, color, styleClass }) => <MaterialCommunityIcons name='spray' size={size} color={color} style={styleClass} />],
-  ['2', ({ size, color, styleClass }) => <AntDesign name='videocamera' size={size} color={color} style={styleClass} />],
-  ['3', ({ size, color, styleClass }) => <AntDesign name='picture' size={size} color={color} style={styleClass} />],
-  ['4', ({ size, color, styleClass }) => <Feather name='music' size={size} color={color} style={styleClass} />],
-  ['5', ({ size, color, styleClass }) => <FontAwesome5 name='lightbulb' size={size} color={color} style={styleClass} />],
-  ['6', ({ size, color, styleClass }) => <FontAwesome5 name='feather-alt' size={size} color={color} style={styleClass} />],
-  ['7', ({ size, color, styleClass }) => <Ionicons name='ios-people' size={size} color={color} style={styleClass} />],
-  ['8', ({ size, color, styleClass }) => <FontAwesome5 name='building' size={size} color={color} style={styleClass} />],
-  ['favorites', ({ size, color, styleClass }) => <FontAwesome5 name='heart' size={size} color={color} style={styleClass} />],
-  ['favorites-chosen', ({ size, color, styleClass }) => <FontAwesome5 name='heart' size={size} color={color} style={styleClass} solid />],
-  ['external-link', ({ size, color, styleClass }) => <FontAwesome5 name='external-link-alt' size={size} color={color} style={styleClass} solid />],
-  ['filter', ({ size, color, styleClass }) => <Ionicons name='funnel' size={size} color={color} style={styleClass} />],
-  ['now', ({ size, color, styleClass }) => <FontAwesome5 name='clock' size={size} color={color} style={styleClass} solid />],
-  ['search', ({ size, color, styleClass }) => <FontAwesome5 name='search' size={size} color={color} style={styleClass} solid />],
-  ['map', ({ size, color, styleClass }) => <FontAwesome5 name='map-marked-alt' size={size} color={color} style={styleClass} solid />],
-  ['directions', ({ size, color, styleClass }) => <FontAwesome5 name='directions' size={size} color={color} style={styleClass} solid />]
+  ['0', ({ size, color, styleClass }) => <FontAwesome5 name='theater-masks' size={size} color={color} style={styleClass} key='theater-masks' />],
+  ['1', ({ size, color, styleClass }) => <MaterialCommunityIcons name='spray' size={size} color={color} style={styleClass} key='spray'/>],
+  ['2', ({ size, color, styleClass }) => <AntDesign name='videocamera' size={size} color={color} style={styleClass} key='videocamera' />],
+  ['3', ({ size, color, styleClass }) => <AntDesign name='picture' size={size} color={color} style={styleClass} key='picture' />],
+  ['4', ({ size, color, styleClass }) => <Feather name='music' size={size} color={color} style={styleClass} key='music' />],
+  ['5', ({ size, color, styleClass }) => <FontAwesome5 name='lightbulb' size={size} color={color} style={styleClass} key='lightbulb' />],
+  ['6', ({ size, color, styleClass }) => <FontAwesome5 name='feather-alt' size={size} color={color} style={styleClass} key='feather-alt' />],
+  ['7', ({ size, color, styleClass }) => <Ionicons name='ios-people' size={size} color={color} style={styleClass} key='ios-people' />],
+  ['8', ({ size, color, styleClass }) => <FontAwesome5 name='building' size={size} color={color} style={styleClass} key='building' />],
+  ['favorites', ({ size, color, styleClass }) => <FontAwesome5 name='heart' size={size} color={color} style={styleClass} key='heart' />],
+  ['favorites-chosen', ({ size, color, styleClass }) => <FontAwesome5 name='heart' size={size} color={color} style={styleClass} solid key='hearth' />],
+  ['external-link', ({ size, color, styleClass }) => <FontAwesome5 name='external-link-alt' size={size} color={color} style={styleClass} solid key='external-link-alt' />],
+  ['filter', ({ size, color, styleClass }) => <Ionicons name='funnel' size={size} color={color} style={styleClass} key='funnel' />],
+  ['now', ({ size, color, styleClass }) => <FontAwesome5 name='clock' size={size} color={color} style={styleClass} solid key='clock' />],
+  ['search', ({ size, color, styleClass }) => <FontAwesome5 name='search' size={size} color={color} style={styleClass} solid key='search' />],
+  ['map', ({ size, color, styleClass }) => <FontAwesome5 name='map-marked-alt' size={size} color={color} style={styleClass} solid key='map-marked-alt' />],
+  ['directions', ({ size, color, styleClass }) => <FontAwesome5 name='directions' size={size} color={color} style={styleClass} solid key='directions' />]
 ]);
 
 export const iconsMap = {

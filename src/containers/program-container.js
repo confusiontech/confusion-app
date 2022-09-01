@@ -1,15 +1,12 @@
 import React, { useState, useEffect, useContext, useRef } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 
 import Program from '../components/program';
 import ProgramButtons from '../components/program-buttons';
 import { ProgramContext } from '../services/program-context';
-import StandardButton from '../components/standard-button';
-import MapButton from '../components/map-button';
-
 import { filterShows } from '../helpers/program-helpers';
 
-import { BUTTON_TEXT_COLOR } from '../styles/colors';
+import PageLayout from './page-layout';
 
 const ProgramContainer = ({ navigation }) => {
   const { allShows, filter, favorites } = useContext(ProgramContext);
@@ -41,58 +38,23 @@ const ProgramContainer = ({ navigation }) => {
 
   const goToNowEvent = useRef(null);
 
-  return (
-    <View style={{ flex: 1 }}>
-      <View>
-        <View style={{ height: '92%' }}>
-          <ProgramButtons navigation={navigation} goToNowEvent={goToNowEvent} />
-          <Program
-            navigation={navigation}
-            shows={shows}
-            goToNowEvent={goToNowEvent}
-            isFilterActive={!!Object.values(filter).flat().length}
-          />
-        </View>
-      </View>
-      <View style={styles.buttonsContainer}>
-        <MapButton
-          navigation={navigation}
-          buttonContainerStyle={{
-            ...styles.bottomButtonContainer
-          }}
-        />
-        <StandardButton
-          onPress={() => navigation.navigate('Espacios')}
-          buttonContainerStyle={{
-            ...styles.bottomButtonContainer
-          }}
-        >
-          <Text style={styles.buttonText}>
-            Espacios
-          </Text>
-        </StandardButton>
-      </View>
+  const programContent = (
+    <View>
+      <ProgramButtons navigation={navigation} goToNowEvent={goToNowEvent} />
+      <Program
+        navigation={navigation}
+        shows={shows}
+        goToNowEvent={goToNowEvent}
+        isFilterActive={!!Object.values(filter).flat().length}
+      />
     </View>
   );
-};
 
-const styles = StyleSheet.create({
-  buttonsContainer: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 0,
-    height: '8%',
-    flexDirection: 'row'
-  },
-  bottomButtonContainer: {
-    width: '50%'
-  },
-  buttonText: {
-    color: BUTTON_TEXT_COLOR,
-    fontWeight: 'bold',
-    letterSpacing: 0.5
-  }
-});
+  return (
+    <PageLayout navigation={navigation}>
+      {programContent}
+    </PageLayout>
+  );
+};
 
 export default ProgramContainer;

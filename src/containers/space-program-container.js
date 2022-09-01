@@ -12,6 +12,8 @@ import {
   BUTTON_TEXT_COLOR
 } from '../styles/colors';
 
+import PageLayout from './page-layout';
+
 const SpaceProgramContainer = ({ navigation, route }) => {
   const { favorites, allShows } = useContext(ProgramContext);
   const space = route.params.space;
@@ -19,7 +21,10 @@ const SpaceProgramContainer = ({ navigation, route }) => {
   const spaceName = `${route.params.space.order + 1} - ${route.params.space.host_name}`;
 
   React.useLayoutEffect(() => {
-    navigation.setOptions({ title: spaceName });
+    navigation.setOptions({
+      title: spaceName
+      // headerLeft: () => iconsMap.get('favorites')
+    });
   }, [navigation, spaceName]);
 
   const propertiesConditions = [
@@ -70,10 +75,12 @@ const SpaceProgramContainer = ({ navigation, route }) => {
   );
 
   return (
-    <View>
-      {goButton}
-      {(!selectedShows.length) ? noResults : program}
-    </View>
+    <PageLayout navigation={navigation}>
+      <View>
+        {goButton}
+        {(!selectedShows.length) ? noResults : program}
+      </View>
+    </PageLayout>
   );
 };
 
