@@ -1,10 +1,9 @@
 import React, { useContext } from 'react';
-import { View, SafeAreaView, FlatList } from 'react-native';
+import { SafeAreaView, FlatList } from 'react-native';
 
 import SpaceItem from '../components/space-item';
 import { ProgramContext } from '../services/program-context';
 import { getSpaceList } from '../helpers/program-helpers';
-import MapButton from '../components/map-button';
 import PageLayout from './page-layout';
 
 const ROW_HEIGHT = 80;
@@ -19,22 +18,18 @@ const SpaceListContainer = ({ navigation }) => {
 
   return (
     <PageLayout navigation={navigation}>
-      <View style={{ flex: 1 }}>
-        <View style={{ height: '92%' }}>
-          <SafeAreaView>
-            <FlatList
-              data={spaces}
-              renderItem={renderItem}
-              keyExtractor={extractKey}
-              getItemLayout={(_show, index) => ({
-                offset: ROW_HEIGHT * index,
-                length: ROW_HEIGHT,
-                index
-              })}
-            />
-          </SafeAreaView>
-        </View>
-      </View>
+      <SafeAreaView>
+        <FlatList
+          data={spaces}
+          renderItem={renderItem}
+          keyExtractor={extractKey}
+          getItemLayout={(_show, index) => ({
+            offset: ROW_HEIGHT * index,
+            length: ROW_HEIGHT,
+            index
+          })}
+        />
+      </SafeAreaView>
     </PageLayout>
   );
 };

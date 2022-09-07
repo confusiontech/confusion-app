@@ -3,7 +3,7 @@ import { Feather, FontAwesome5, MaterialCommunityIcons, AntDesign, Ionicons } fr
 
 const values = new Map([
   ['0', ({ size, color, styleClass }) => <FontAwesome5 name='theater-masks' size={size} color={color} style={styleClass} key='theater-masks' />],
-  ['1', ({ size, color, styleClass }) => <MaterialCommunityIcons name='spray' size={size} color={color} style={styleClass} key='spray'/>],
+  ['1', ({ size, color, styleClass }) => <MaterialCommunityIcons name='spray' size={size} color={color} style={styleClass} key='spray' />],
   ['2', ({ size, color, styleClass }) => <AntDesign name='videocamera' size={size} color={color} style={styleClass} key='videocamera' />],
   ['3', ({ size, color, styleClass }) => <AntDesign name='picture' size={size} color={color} style={styleClass} key='picture' />],
   ['4', ({ size, color, styleClass }) => <Feather name='music' size={size} color={color} style={styleClass} key='music' />],
@@ -18,7 +18,9 @@ const values = new Map([
   ['now', ({ size, color, styleClass }) => <FontAwesome5 name='clock' size={size} color={color} style={styleClass} solid key='clock' />],
   ['search', ({ size, color, styleClass }) => <FontAwesome5 name='search' size={size} color={color} style={styleClass} solid key='search' />],
   ['map', ({ size, color, styleClass }) => <FontAwesome5 name='map-marked-alt' size={size} color={color} style={styleClass} solid key='map-marked-alt' />],
-  ['directions', ({ size, color, styleClass }) => <FontAwesome5 name='directions' size={size} color={color} style={styleClass} solid key='directions' />]
+  ['directions', ({ size, color, styleClass }) => <FontAwesome5 name='directions' size={size} color={color} style={styleClass} solid key='directions' />],
+  ['book', ({ size, color, styleClass }) => <FontAwesome5 name='book-open' size={size} color={color} style={styleClass} solid key='book-open' />],
+  ['home', ({ size, color, styleClass }) => <FontAwesome5 name='home' size={size} color={color} style={styleClass} solid key='home' />]
 ]);
 
 export const iconsMap = {

@@ -38,16 +38,6 @@ const ProgramButtons = ({ navigation, goToNowEvent }) => {
         </Text>
       </StandardButton>
       <StandardButton
-        onPress={() => navigation.navigate('Favoritos')}
-        buttonContainerStyle={{
-          ...styles.favoritesButtonContainer
-        }}
-      >
-        <Text style={styles.buttonText}>
-          {iconsMap.get('favorites-chosen', iconProps)} Favoritos
-        </Text>
-      </StandardButton>
-      <StandardButton
         buttonContainerStyle={styles.nowButtonContainer}
         onPress={() => goToNowEvent.current()}
       >
@@ -66,13 +56,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   filterButtonContainer: {
-    width: '33.333%'
+    width: '50%'
   },
   nowButtonContainer: {
-    width: '33.333%'
-  },
-  favoritesButtonContainer: {
-    width: '33.333%'
+    width: '50%'
   },
   buttonText: {
     color: BUTTON_TEXT_COLOR,

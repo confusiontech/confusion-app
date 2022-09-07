@@ -1,30 +1,26 @@
-import React, { useState, useEffect, useContext, useRef } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React from 'react';
+import { View } from 'react-native';
 import NavigationBar from '../components/navigation-bar';
 
-const PageLayout = ({ children, navigation }) => {
+const PageLayout = ({ children, navigation, showBackArrow }) => {
+  React.useLayoutEffect(() => {
+    if (!showBackArrow) {
+      navigation.setOptions({
+        headerLeft: () => {}
+      });
+    }
+  }, [navigation]);
+
   return (
     <View style={{ flex: 1 }}>
-      <View>
-        <View style={{ height: '92%' }}>
-          {children}
-        </View>
+      <View style={{ flex: 0.9 }}>
+        {children}
       </View>
-      <NavigationBar navigation={navigation} style={styles.buttonsContainer} />
+      <View style={{ flex: 0.1 }}>
+        <NavigationBar navigation={navigation} />
+      </View>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  buttonsContainer: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 0,
-    height: '8%',
-    flexDirection: 'row',
-    width: '100%'
-  }
-});
 
 export default PageLayout;

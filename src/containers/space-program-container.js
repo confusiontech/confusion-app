@@ -23,7 +23,6 @@ const SpaceProgramContainer = ({ navigation, route }) => {
   React.useLayoutEffect(() => {
     navigation.setOptions({
       title: spaceName
-      // headerLeft: () => iconsMap.get('favorites')
     });
   }, [navigation, spaceName]);
 
@@ -75,7 +74,7 @@ const SpaceProgramContainer = ({ navigation, route }) => {
   );
 
   return (
-    <PageLayout navigation={navigation}>
+    <PageLayout navigation={navigation} showBackArrow>
       <View>
         {goButton}
         {(!selectedShows.length) ? noResults : program}

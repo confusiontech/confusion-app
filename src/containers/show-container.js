@@ -56,7 +56,7 @@ const ShowContainer = ({ route, navigation }) => {
   };
 
   return (
-    <PageLayout navigation={navigation}>
+    <PageLayout navigation={navigation} showBackArrow>
       <ScrollView style={styles.pageLayout}>
         <View style={styles.header}>
           <View style={styles.titleContainer}>
