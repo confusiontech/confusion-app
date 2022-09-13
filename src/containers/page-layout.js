@@ -13,12 +13,10 @@ const PageLayout = ({ children, navigation, showBackArrow }) => {
 
   return (
     <View style={{ flex: 1 }}>
-      <View style={{ flex: 0.9 }}>
+      <View style={{ flex: 1 }}>
         {children}
       </View>
-      <View style={{ flex: 0.1 }}>
-        <NavigationBar navigation={navigation} />
-      </View>
+      <NavigationBar navigation={navigation} />
     </View>
   );
 };

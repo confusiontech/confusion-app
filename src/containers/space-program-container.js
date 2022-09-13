@@ -58,13 +58,11 @@ const SpaceProgramContainer = ({ navigation, route }) => {
   );
 
   const program = (
-    <View>
-      <ShowList
-        flatListRef={flatListRef}
-        shows={selectedShows}
-        navigation={navigation}
-      />
-    </View>
+    <ShowList
+      flatListRef={flatListRef}
+      shows={selectedShows}
+      navigation={navigation}
+    />
   );
 
   const noResults = (
@@ -75,10 +73,8 @@ const SpaceProgramContainer = ({ navigation, route }) => {
 
   return (
     <PageLayout navigation={navigation} showBackArrow>
-      <View>
-        {goButton}
-        {(!selectedShows.length) ? noResults : program}
-      </View>
+      {goButton}
+      {(!selectedShows.length) ? noResults : program}
     </PageLayout>
   );
 };

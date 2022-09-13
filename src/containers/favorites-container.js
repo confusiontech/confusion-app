@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { View, Text } from 'react-native';
+import { Text } from 'react-native';
 
 import ShowList from '../components/show-list';
 import { ProgramContext } from '../services/program-context';
@@ -28,13 +28,11 @@ const FavoritesContainer = ({ navigation }) => {
   const flatListRef = React.createRef();
 
   const program = (
-    <View>
-      <ShowList
-        flatListRef={flatListRef}
-        shows={favoriteShows}
-        navigation={navigation}
-      />
-    </View>
+    <ShowList
+      flatListRef={flatListRef}
+      shows={favoriteShows}
+      navigation={navigation}
+    />
   );
 
   const noResults = (

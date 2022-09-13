@@ -39,7 +39,7 @@ const ProgramContainer = ({ navigation }) => {
   const goToNowEvent = useRef(null);
 
   const programContent = (
-    <View>
+    <View style={{ flex: 1 }}>
       <ProgramButtons navigation={navigation} goToNowEvent={goToNowEvent} />
       <Program
         navigation={navigation}
