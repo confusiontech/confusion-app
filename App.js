@@ -7,6 +7,7 @@ import ShowContainer from './src/containers/show-container';
 import MapContainer from './src/containers/map-container';
 import FavoritesContainer from './src/containers/favorites-container';
 import SpaceProgramContainer from './src/containers/space-program-container';
+import SpaceListContainer from './src/containers/space-list-container';
 import ProgramUpdater from './src/services/program-updater';
 import { ProgramContextProvider } from './src/services/program-context';
 import { NavigationContainer } from '@react-navigation/native';
@@ -28,6 +29,7 @@ export default function App() {
             <Stack.Screen name='Mapa' component={MapContainer} />
             <Stack.Screen name='Favoritos' component={FavoritesContainer} />
             <Stack.Screen name='ProgramaEspacio' component={SpaceProgramContainer} />
+            <Stack.Screen name='Espacios' component={SpaceListContainer} />
           </Stack.Navigator>
         </ProgramContextProvider>
       </NavigationContainer>

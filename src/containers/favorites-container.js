@@ -1,12 +1,16 @@
 import React, { useContext } from 'react';
-import { View, Text } from 'react-native';
+import { Text } from 'react-native';
 
 import ShowList from '../components/show-list';
 import { ProgramContext } from '../services/program-context';
 import { filterShows } from '../helpers/program-helpers';
 
+import PageLayout from './page-layout';
+
 const FavoritesContainer = ({ navigation }) => {
-  const { favorites, allShows } = useContext(ProgramContext);
+  const context = useContext(ProgramContext);
+
+  const { favorites, allShows } = context;
 
   const propertiesConditions = [
     {
@@ -24,13 +28,11 @@ const FavoritesContainer = ({ navigation }) => {
   const flatListRef = React.createRef();
 
   const program = (
-    <View>
-      <ShowList
-        flatListRef={flatListRef}
-        shows={favoriteShows}
-        navigation={navigation}
-      />
-    </View>
+    <ShowList
+      flatListRef={flatListRef}
+      shows={favoriteShows}
+      navigation={navigation}
+    />
   );
 
   const noResults = (
@@ -40,9 +42,9 @@ const FavoritesContainer = ({ navigation }) => {
   );
 
   return (
-    <View>
+    <PageLayout navigation={navigation}>
       {(!favoriteShows.length) ? noResults : program}
-    </View>
+    </PageLayout>
   );
 };
 

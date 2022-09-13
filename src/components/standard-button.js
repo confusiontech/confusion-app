@@ -17,12 +17,13 @@ const StandardButton = ({
     }}
     >
       <Button
-        transparent
+        variant='ghost'
         onPress={onPress}
         style={{
           ...styles.button,
           ...buttonStyle
         }}
+        px='1'
       >
         {children}
       </Button>

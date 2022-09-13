@@ -11,7 +11,7 @@ const ShowList = ({ shows, flatListRef, navigation, nowDt }) => {
   const renderItem = ({ item }) => <ProgramItem navigation={navigation} show={item} nowDt={nowDt} />;
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ flex: 1 }}>
       <FlatList
         data={shows}
         renderItem={renderItem}

@@ -16,9 +16,11 @@ import {
   PRIMARY_COLOR
 } from '../styles/colors';
 
+import PageLayout from './page-layout';
+
 const MAP_VIEW_DELTA = 0.0030;
 
-const ShowContainer = ({ route }) => {
+const ShowContainer = ({ route, navigation }) => {
   const show = route.params.show;
   const momentDate = getEsMoment(show.date);
   const momentStartTime = getEsMoment(parseInt(show.time[0]));
@@ -54,90 +56,92 @@ const ShowContainer = ({ route }) => {
   };
 
   return (
-    <ScrollView style={styles.pageLayout}>
-      <View style={styles.header}>
-        <View style={styles.titleContainer}>
-          <Text style={styles.title}>{show.title}</Text>
-        </View>
-        <View style={styles.favoritesIconContainer}>
-          <TouchableHighlight
-            onPress={toggleFavorite}
-            style={styles.favoritesIcon}
-            activeOpacity={0.9}
-            underlayColor={TOUCHABLE_UNDERLAY_COLOR}
-          >
-            {iconsMap.get(favoriteIconId, { size: 30, color: PRIMARY_COLOR })}
-          </TouchableHighlight>
-        </View>
-      </View>
-      <Text style={styles.artist}>{show.participant_name}</Text>
-      <Text style={styles.short_description}>{show.short_description}</Text>
-
-      {show.participant_subcategories.map(id =>
-        (
-          <View key={id} style={styles.grid}>
-            <View style={styles.categoryIcon}>
-              {iconsMap.get(id, { size: 16 })}
-            </View>
-            <Text style={styles.category}>
-              {getParticipantCategoryById(id)}
-            </Text>
+    <PageLayout navigation={navigation} showBackArrow>
+      <ScrollView style={styles.pageLayout}>
+        <View style={styles.header}>
+          <View style={styles.titleContainer}>
+            <Text style={styles.title}>{show.title}</Text>
           </View>
-        )
-      )}
+          <View style={styles.favoritesIconContainer}>
+            <TouchableHighlight
+              onPress={toggleFavorite}
+              style={styles.favoritesIcon}
+              activeOpacity={0.9}
+              underlayColor={TOUCHABLE_UNDERLAY_COLOR}
+            >
+              {iconsMap.get(favoriteIconId, { size: 30, color: PRIMARY_COLOR })}
+            </TouchableHighlight>
+          </View>
+        </View>
+        <Text style={styles.artist}>{show.participant_name}</Text>
+        <Text style={styles.short_description}>{show.short_description}</Text>
 
-      <Text style={styles.public}>{getPublic(show)}</Text>
-      <Text style={styles.dateTime}>
-        {capitalize(momentDate.format('dddd D'))} de {momentStartTime.format('HH:mm')}h a {momentEndTime.format('HH:mm')}h
-      </Text>
-      <TouchableHighlight
-        onPress={openMapUrl}
-        activeOpacity={0.9}
-        underlayColor={TOUCHABLE_UNDERLAY_COLOR}
-        style={styles.spaceContainer}
-      >
-        <View>
-          <View style={styles.grid}>
-            <View style={styles.spaceNumberContainer}>
-              <Text style={styles.spaceNumber}>
+        {show.participant_subcategories.map(id =>
+          (
+            <View key={id} style={styles.grid}>
+              <View style={styles.categoryIcon}>
+                {iconsMap.get(id, { size: 16 })}
+              </View>
+              <Text style={styles.category}>
+                {getParticipantCategoryById(id)}
+              </Text>
+            </View>
+          )
+        )}
+
+        <Text style={styles.public}>{getPublic(show)}</Text>
+        <Text style={styles.dateTime}>
+          {capitalize(momentDate.format('dddd D'))} de {momentStartTime.format('HH:mm')}h a {momentEndTime.format('HH:mm')}h
+        </Text>
+        <TouchableHighlight
+          onPress={openMapUrl}
+          activeOpacity={0.9}
+          underlayColor={TOUCHABLE_UNDERLAY_COLOR}
+          style={styles.spaceContainer}
+        >
+          <View>
+            <View style={styles.grid}>
+              <View style={styles.spaceNumberContainer}>
+                <Text style={styles.spaceNumber}>
+                  {`${parseInt(show.order) + 1}`}
+                </Text>
+              </View>
+              <Text style={styles.space}>
+                {show.host_name}
+              </Text>
+            </View>
+            <View style={styles.grid}>
+              <Text style={styles.address}>{getAddress(show)}</Text>
+              {iconsMap.get('external-link', { size: 16, color: LINK_COLOR })}
+            </View>
+          </View>
+        </TouchableHighlight>
+
+        <MapView
+          style={styles.mapStyle}
+          provider={PROVIDER_DEFAULT}
+          initialRegion={{
+            latitude,
+            longitude,
+            latitudeDelta: MAP_VIEW_DELTA,
+            longitudeDelta: MAP_VIEW_DELTA
+          }}
+        >
+          <Marker
+            coordinate={{ latitude, longitude }}
+            onPress={openMapUrl}
+            ref={setMarkerRef}
+            anchor={{ x: 0.5, y: 0.5 }}
+          >
+            <View style={styles.marker}>
+              <Text style={styles.markerText}>
                 {`${parseInt(show.order) + 1}`}
               </Text>
             </View>
-            <Text style={styles.space}>
-              {show.host_name}
-            </Text>
-          </View>
-          <View style={styles.grid}>
-            <Text style={styles.address}>{getAddress(show)}</Text>
-            {iconsMap.get('external-link', { size: 16, color: LINK_COLOR })}
-          </View>
-        </View>
-      </TouchableHighlight>
-
-      <MapView
-        style={styles.mapStyle}
-        provider={PROVIDER_DEFAULT}
-        initialRegion={{
-          latitude: latitude,
-          longitude: longitude,
-          latitudeDelta: MAP_VIEW_DELTA,
-          longitudeDelta: MAP_VIEW_DELTA
-        }}
-      >
-        <Marker
-          coordinate={{ latitude: latitude, longitude: longitude }}
-          onPress={openMapUrl}
-          ref={setMarkerRef}
-          anchor={{ x: 0.5, y: 0.5 }}
-        >
-          <View style={styles.marker}>
-            <Text style={styles.markerText}>
-              {`${parseInt(show.order) + 1}`}
-            </Text>
-          </View>
-        </Marker>
-      </MapView>
-    </ScrollView>
+          </Marker>
+        </MapView>
+      </ScrollView>
+    </PageLayout>
   );
 };
 
@@ -153,6 +157,7 @@ const textStyleBase = {
   paddingBottom: 4,
   fontSize: FONT_SIZES.NORMAL
 };
+
 const spaceNumberContainer = {
   justifyContent: 'center',
   alignItems: 'center',

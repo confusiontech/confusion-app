@@ -23,9 +23,10 @@ const renderItem = ({ item, textStyle, onClick, buttonsPerRow }) => {
         }]}
     >
       <Button
-        transparent
+        variant='ghost'
         onPress={onClick}
         style={styles.filterButton}
+        p='1'
       >
         <Text style={finalTextStyle}>{item.label}</Text>
       </Button>

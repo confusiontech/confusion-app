@@ -41,14 +41,12 @@ const Program = ({ navigation, shows, goToNowEvent, isFilterActive }) => {
   };
 
   const program = (
-    <View style={{ height: '92%' }}>
-      <ShowList
-        nowDt={nowDt}
-        flatListRef={flatListRef}
-        shows={shows}
-        navigation={navigation}
-      />
-    </View>
+    <ShowList
+      nowDt={nowDt}
+      flatListRef={flatListRef}
+      shows={shows}
+      navigation={navigation}
+    />
   );
 
   const noResults = (
@@ -57,11 +55,7 @@ const Program = ({ navigation, shows, goToNowEvent, isFilterActive }) => {
     </Text>
   );
 
-  return (
-    <View>
-      {(!shows.length && isFilterActive) ? noResults : program}
-    </View>
-  );
+  return (!shows.length && isFilterActive) ? noResults : program;
 };
 
 export default Program;
