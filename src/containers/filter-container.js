@@ -6,6 +6,7 @@ import { ProgramContext } from '../services/program-context';
 import { categories, dates, audiences } from '../helpers/program-helpers';
 import { iconsMap } from '../helpers/icon-helpers';
 import TextButton from '../components/text-button';
+import { HeaderBackButton } from '@react-navigation/stack';
 
 const FilterContainer = ({ navigation }) => {
   const { setFilter, filter } = useContext(ProgramContext);
@@ -13,6 +14,28 @@ const FilterContainer = ({ navigation }) => {
   const [selectedCategories, setSelectedCategories] = useState(filter.selectedCategories);
   const [selectedAudience, setSelectedAudience] = useState(filter.selectedAudience);
   const [selectedDate, setSelectedDate] = useState(filter.selectedDate);
+
+  const setFilterChangesAndNavigate = () => {
+    setFilter({
+      ...filter,
+      selectedCategories,
+      selectedAudience,
+      selectedDate
+    });
+    navigation.navigate('Programa');
+  };
+
+  React.useEffect(() => {
+    navigation.setOptions({
+      headerShown: true,
+      headerLeft: (props) => (
+        <HeaderBackButton
+          {...props}
+          onPress={setFilterChangesAndNavigate}
+        />
+      )
+    });
+  });
 
   const props = { size: 16, color: 'black', styleClass: styles.icon };
 
@@ -55,15 +78,7 @@ const FilterContainer = ({ navigation }) => {
         <TextButton
           iconKey='search'
           text='Ver'
-          onPress={() => {
-            setFilter({
-              ...filter,
-              selectedCategories,
-              selectedAudience,
-              selectedDate
-            });
-            navigation.navigate('Programa');
-          }}
+          onPress={setFilterChangesAndNavigate}
         />
       </View>
     </View>
