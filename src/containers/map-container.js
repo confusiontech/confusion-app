@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     width: '65%',
     backgroundColor:'rgba(255,255,255,0.6)',
-    paddingLeft: 4
+    padding: 4
   }
 });
 
