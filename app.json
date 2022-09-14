@@ -35,7 +35,8 @@
       },
       "permissions": [
         "INTERNET",
-        "WRITE_SETTINGS"
+        "WRITE_SETTINGS",
+        "ACCESS_FINE_LOCATION"
       ]
     }
   }
