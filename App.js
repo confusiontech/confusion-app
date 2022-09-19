@@ -8,6 +8,7 @@ import MapContainer from './src/containers/map-container';
 import FavoritesContainer from './src/containers/favorites-container';
 import SpaceProgramContainer from './src/containers/space-program-container';
 import SpaceListContainer from './src/containers/space-list-container';
+import InfoContainer from './src/containers/info-container';
 import ProgramUpdater from './src/services/program-updater';
 import { ProgramContextProvider } from './src/services/program-context';
 import { NavigationContainer } from '@react-navigation/native';

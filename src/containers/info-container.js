@@ -1,91 +1,128 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
-
+import { View, StyleSheet, Text, Linking, TouchableHighlight, FlatList, ScrollView } from 'react-native';
 import PageLayout from './page-layout';
+import { iconsMap } from '../helpers/icon-helpers';
 
+import {
+  LINK_COLOR,
+  TOUCHABLE_UNDERLAY_COLOR
+} from '../styles/colors';
 
 const InfoContainer = ({ navigation }) => {
-  const { allShows } = useContext(ProgramContext);
-
-  const spaces = getSpaceList(allShows);
+  const WEB_URL = 'https://beniconfusionfest.es/es/inicio'
+  const INSTAGRAM_URL = 'https://www.instagram.com/benimacletconfusion/'
+  const YOUTUBE_URL = 'https://www.youtube.com/c/conFusi%C3%B3nfest/featured'
 
   return (
     <PageLayout navigation={navigation}>
-      <View>
-        <Text style={styles.initialText}>
-          Pincha el marcador de un espacio para ver su programación
-        </Text>
-        <MapView
-          style={styles.mapStyle}
-          provider={PROVIDER_DEFAULT}
-          initialRegion={{
-            latitude: MAP_CENTER_LATITUDE,
-            longitude: MAP_CENTER_LONGITUDE,
-            latitudeDelta: MAP_VIEW_DELTA,
-            longitudeDelta: MAP_VIEW_DELTA
-          }}
-        >
-          {
-        spaces.map(space => {
-          return (
-            <MapMarker
-              navigation={navigation}
-              space={space}
-              key={space.address.location.lat + space.address.location.lng + space.order}
-            />
-          );
-        })
-        }
-        </MapView>
-      </View>
+      <ScrollView style={styles.mainScrollView}>
+        <View style={styles.textContainer}>
+          < Text style={styles.title}>
+            conFusión 2022 - IX edición
+          </Text>
+        </View> 
+        <View style={styles.linksContainer}>
+          <TouchableHighlight 
+            activeOpacity={0.9}
+            underlayColor={TOUCHABLE_UNDERLAY_COLOR} 
+            onPress={() => Linking.openURL(WEB_URL)}
+          >
+            <View  style={styles.linkContainer} >
+              <Text> {iconsMap.get('web', {color: LINK_COLOR })} </Text> 
+              <Text style={styles.link} > beniconfusionfest.es </Text>
+            </View>
+          </TouchableHighlight>
+          <TouchableHighlight 
+            activeOpacity={0.9}
+            underlayColor={TOUCHABLE_UNDERLAY_COLOR} 
+            onPress={() => Linking.openURL(INSTAGRAM_URL)}
+          >
+            <View  style={styles.linkContainer} >
+              <Text> {iconsMap.get('instagram', {color: LINK_COLOR })} </Text>
+              <Text style={styles.link} > @benimacletconfusion </Text>
+            </View>
+          </TouchableHighlight>
+          <TouchableHighlight 
+            activeOpacity={0.9}
+            underlayColor={TOUCHABLE_UNDERLAY_COLOR} 
+            onPress={() => Linking.openURL(YOUTUBE_URL)}
+          >
+            <View  style={styles.linkContainer} >
+              <Text> {iconsMap.get('youtube', {color: LINK_COLOR })} </Text>
+              <Text style={styles.link} > Benimaclet conFusión </Text>
+            </View>
+          </TouchableHighlight>
+        </View>    
+        <View style={styles.textContainer}>
+          <Text style={styles.normalText}>
+            conFusión es una plataforma de encuentro y diálogo abierta a todas las personas, una posibilidad para quien quiera transmitir y un estímulo para quien quiera escuchar.
+          </Text>
+          <Text style={styles.normalText}>
+            Es un evento sin ánimo de lucro. Las actividades tienen un carácter gratuito y no aceptamos publicidad. Funcionamos a través de colaboraciones y donativos de la gente que nos rodea para hacer posible cada edición. Todo el dinero obtenido se utiliza exclusivamente para cubrir los gastos de producción.
+          </Text>
+          <Text style={styles.subtitle}>
+            Principios: 
+          </Text>
+          <View style={styles.listContainer}>
+            {
+              [
+                'Compartir',
+                'Expresión Libre',
+                'Inclusión total',
+                'Igualdad',
+                'Participación',
+                'Comunidad',
+                'Responsabilidad civil',
+                'Cooperación'
+              ].map(el => <Text key={el} style={styles.bulletList}> {el} </Text>)
+            }
+          </View> 
+        </View>  
+      </ScrollView>
     </PageLayout>
   );
 };
 
-const MapMarker = ({ navigation, space }) => {
-  const latitude = parseFloat(space.address.location.lat);
-  const longitude = parseFloat(space.address.location.lng);
-
-  const openSpaceProgram = () => navigation.navigate('ProgramaEspacio', { space });
-
-  return (
-    <View>
-      <Marker
-        coordinate={{ latitude, longitude }}
-        onPress={openSpaceProgram}
-        anchor={{ x: 0.5, y: 0.5 }}
-      >
-        <View style={styles.marker}>
-          <Text style={styles.markerText}>
-            {`${parseInt(space.order) + 1}`}
-          </Text>
-        </View>
-      </Marker>
-    </View>
-  );
-};
-
-const spaceNumberContainer = {
-  justifyContent: 'center',
-  alignItems: 'center',
-  backgroundColor: BUTTON_ACTIVE_COLOR
-};
-
-const spaceNumber = {
-  textAlign: 'center',
-  color: BUTTON_TEXT_COLOR
+const generalTextStyle = {
+  fontSize: 18,
+  marginBottom: 8
 };
 
 const styles = StyleSheet.create({
-  initialText: {
+  textContainer: {
+    paddingHorizontal: 16
+  },
+  normalText: {
+    ...generalTextStyle
+  },
+  title: {
+    fontSize: 22,
+    marginBottom: 8,
     fontWeight: 'bold',
-    position: 'absolute',
-    top: 4,
-    right: 7,
-    zIndex: 9,
-    fontSize: 16,
-    textAlign: 'right',
-    width: '65%'
+    paddingTop: 12
+  },
+  link: {
+    fontWeight: 'bold',
+    color: LINK_COLOR,
+    fontSize: 14
+  },
+  linksContainer: {
+    paddingHorizontal: 12,
+    marginBottom: 12
+  },
+  linkContainer: {
+    flexDirection: 'row',
+    paddingVertical: 4,
+    alignItems:'center'
+  },
+  subtitle: {
+    fontSize: 18
+  },
+  bulletList: {
+    fontSize: 18
+  },
+  listContainer: {
+    paddingBottom:32
   }
 });
 
