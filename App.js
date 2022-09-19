@@ -30,6 +30,7 @@ export default function App() {
             <Stack.Screen name='Favoritos' component={FavoritesContainer} />
             <Stack.Screen name='ProgramaEspacio' component={SpaceProgramContainer} />
             <Stack.Screen name='Espacios' component={SpaceListContainer} />
+            <Stack.Screen name='Info' component={InfoContainer} />
           </Stack.Navigator>
         </ProgramContextProvider>
       </NavigationContainer>

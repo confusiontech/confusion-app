@@ -31,6 +31,7 @@ const NavigationBar = ({ navigation }) => {
       {NavButton({ routeName: 'Favoritos', buttonTitle: 'Favoritos', iconName: 'favorites-chosen' })}
       {NavButton({ routeName: 'Mapa', buttonTitle: 'Mapa', iconName: 'map' })}
       {NavButton({ routeName: 'Espacios', buttonTitle: 'Espacios', iconName: 'home' })}
+      {NavButton({ routeName: 'Info', buttonTitle: 'Info', iconName: 'info' })}
     </View>
   );
 };
