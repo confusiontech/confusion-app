@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, FlatList, StyleSheet, Dimensions, TouchableHighlight } from 'react-native';
-import { Button } from 'native-base';
 
 import {
   TOUCHABLE_UNDERLAY_COLOR,
+  BUTTON_ACTIVE_COLOR
 } from '../styles/colors';
-
-
-import { BUTTON_ACTIVE_COLOR } from '../styles/colors';
 
 const BUTTONS_PER_ROW = 3;
 

@@ -18,7 +18,7 @@ const NavigationBar = ({ navigation }) => {
           ? styles.selectedButtonContainer
           : styles.bottomButtonContainer}
       >
-         <Text style={styles.buttonIcon}>
+        <Text style={styles.buttonIcon}>
           {iconsMap.get(iconName, iconProps)}
         </Text>
         <Text style={styles.buttonText}>
@@ -41,7 +41,7 @@ const NavigationBar = ({ navigation }) => {
 
 const iconProps = { color: BUTTON_TEXT_COLOR, size: 18 };
 
-const NAV_BUTTON_WITH = '20%'
+const NAV_BUTTON_WITH = '20%';
 
 const styles = StyleSheet.create({
   buttonsContainer: {

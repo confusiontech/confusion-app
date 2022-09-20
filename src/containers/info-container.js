@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text, Linking, TouchableHighlight, FlatList, ScrollView } from 'react-native';
+import { View, StyleSheet, Text, Linking, TouchableHighlight, ScrollView } from 'react-native';
 import PageLayout from './page-layout';
 import { iconsMap } from '../helpers/icon-helpers';
 
@@ -9,50 +9,50 @@ import {
 } from '../styles/colors';
 
 const InfoContainer = ({ navigation }) => {
-  const WEB_URL = 'https://beniconfusionfest.es/es/inicio'
-  const INSTAGRAM_URL = 'https://www.instagram.com/benimacletconfusion/'
-  const YOUTUBE_URL = 'https://www.youtube.com/c/conFusi%C3%B3nfest/featured'
+  const WEB_URL = 'https://beniconfusionfest.es/es/inicio';
+  const INSTAGRAM_URL = 'https://www.instagram.com/benimacletconfusion/';
+  const YOUTUBE_URL = 'https://www.youtube.com/c/conFusi%C3%B3nfest/featured';
 
   return (
     <PageLayout navigation={navigation}>
       <ScrollView style={styles.mainScrollView}>
         <View style={styles.textContainer}>
-          < Text style={styles.title}>
+          <Text style={styles.title}>
             conFusión 2022 - IX edición
           </Text>
-        </View> 
+        </View>
         <View style={styles.linksContainer}>
-          <TouchableHighlight 
+          <TouchableHighlight
             activeOpacity={0.9}
-            underlayColor={TOUCHABLE_UNDERLAY_COLOR} 
+            underlayColor={TOUCHABLE_UNDERLAY_COLOR}
             onPress={() => Linking.openURL(WEB_URL)}
           >
-            <View  style={styles.linkContainer} >
-              <Text> {iconsMap.get('web', {color: LINK_COLOR })} </Text> 
-              <Text style={styles.link} > beniconfusionfest.es </Text>
+            <View style={styles.linkContainer}>
+              <Text> {iconsMap.get('web', { color: LINK_COLOR })} </Text>
+              <Text style={styles.link}> beniconfusionfest.es </Text>
             </View>
           </TouchableHighlight>
-          <TouchableHighlight 
+          <TouchableHighlight
             activeOpacity={0.9}
-            underlayColor={TOUCHABLE_UNDERLAY_COLOR} 
+            underlayColor={TOUCHABLE_UNDERLAY_COLOR}
             onPress={() => Linking.openURL(INSTAGRAM_URL)}
           >
-            <View  style={styles.linkContainer} >
-              <Text> {iconsMap.get('instagram', {color: LINK_COLOR })} </Text>
-              <Text style={styles.link} > @benimacletconfusion </Text>
+            <View style={styles.linkContainer}>
+              <Text> {iconsMap.get('instagram', { color: LINK_COLOR })} </Text>
+              <Text style={styles.link}> @benimacletconfusion </Text>
             </View>
           </TouchableHighlight>
-          <TouchableHighlight 
+          <TouchableHighlight
             activeOpacity={0.9}
-            underlayColor={TOUCHABLE_UNDERLAY_COLOR} 
+            underlayColor={TOUCHABLE_UNDERLAY_COLOR}
             onPress={() => Linking.openURL(YOUTUBE_URL)}
           >
-            <View  style={styles.linkContainer} >
-              <Text> {iconsMap.get('youtube', {color: LINK_COLOR })} </Text>
-              <Text style={styles.link} > Benimaclet conFusión </Text>
+            <View style={styles.linkContainer}>
+              <Text> {iconsMap.get('youtube', { color: LINK_COLOR })} </Text>
+              <Text style={styles.link}> Benimaclet conFusión </Text>
             </View>
           </TouchableHighlight>
-        </View>    
+        </View>
         <View style={styles.textContainer}>
           <Text style={styles.normalText}>
             conFusión es una plataforma de encuentro y diálogo abierta a todas las personas, una posibilidad para quien quiera transmitir y un estímulo para quien quiera escuchar.
@@ -61,7 +61,7 @@ const InfoContainer = ({ navigation }) => {
             Es un evento sin ánimo de lucro. Las actividades tienen un carácter gratuito y no aceptamos publicidad. Funcionamos a través de colaboraciones y donativos de la gente que nos rodea para hacer posible cada edición. Todo el dinero obtenido se utiliza exclusivamente para cubrir los gastos de producción.
           </Text>
           <Text style={styles.subtitle}>
-            Principios: 
+            Principios:
           </Text>
           <View style={styles.listContainer}>
             {
@@ -76,8 +76,8 @@ const InfoContainer = ({ navigation }) => {
                 'Cooperación'
               ].map(el => <Text key={el} style={styles.bulletList}> {el} </Text>)
             }
-          </View> 
-        </View>  
+          </View>
+        </View>
       </ScrollView>
     </PageLayout>
   );
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
   linkContainer: {
     flexDirection: 'row',
     paddingVertical: 4,
-    alignItems:'center'
+    alignItems: 'center'
   },
   subtitle: {
     fontSize: 18
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     fontSize: 18
   },
   listContainer: {
-    paddingBottom:32
+    paddingBottom: 32
   }
 });
 

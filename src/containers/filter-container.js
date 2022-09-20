@@ -21,7 +21,7 @@ const FilterContainer = ({ navigation }) => {
       ...filter,
       selectedCategories,
       selectedAudience,
-      selectedDate,
+      selectedDate
       // selectedFusion
     });
     navigation.navigate('Programa');
@@ -59,12 +59,11 @@ const FilterContainer = ({ navigation }) => {
     key: 'fusion',
     label: (
       < >
-        <Text> {iconsMap.get('fusion', {...iconStyle, size: 18 })}  </Text>
-        <Text style={{fontSize: 18, marginLeft: 18}}> Fusión </Text>
+        <Text> {iconsMap.get('fusion', { ...iconStyle, size: 18 })}  </Text>
+        <Text style={{ fontSize: 18, marginLeft: 18 }}> Fusión </Text>
       </>
     )
-  })
-
+  });
 
   return (
     <View style={{ flex: 1 }}>
