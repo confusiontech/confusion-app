@@ -77,16 +77,16 @@ const ShowContainer = ({ route, navigation }) => {
         <Text style={styles.short_description}>{show.short_description}</Text>
 
         {show.participant_subcategories.map(id =>
-        (
-          <View key={id} style={styles.grid}>
-            <View style={styles.categoryIcon}>
-              {iconsMap.get(id, { size: 16 })}
+          (
+            <View key={id} style={styles.grid}>
+              <View style={styles.categoryIcon}>
+                {iconsMap.get(id, { size: 16 })}
+              </View>
+              <Text style={styles.category}>
+                {getParticipantCategoryById(id)}
+              </Text>
             </View>
-            <Text style={styles.category}>
-              {getParticipantCategoryById(id)}
-            </Text>
-          </View>
-        )
+          )
         )}
 
         <Text style={styles.public}>{getPublic(show)}</Text>
@@ -120,7 +120,7 @@ const ShowContainer = ({ route, navigation }) => {
         <MapView
           style={styles.mapStyle}
           provider={PROVIDER_DEFAULT}
-          showsUserLocation={true}
+          showsUserLocation
           initialRegion={{
             latitude,
             longitude,
