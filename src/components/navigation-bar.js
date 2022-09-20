@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import StandardButton from '../components/standard-button';
 import { iconsMap } from '../helpers/icon-helpers';
 
-import { BUTTON_TEXT_COLOR } from '../styles/colors';
+import { BUTTON_TEXT_COLOR, SECONDARY_COLOR } from '../styles/colors';
 
 import { useRoute } from '@react-navigation/native';
 
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     width: NAV_BUTTON_WITH
   },
   selectedButtonContainer: {
-    backgroundColor: 'red',
+    backgroundColor: SECONDARY_COLOR,
     width: NAV_BUTTON_WITH
   },
   buttonText: {

@@ -1,20 +1,52 @@
 import React, { useState } from 'react';
 import { View, Text, FlatList, StyleSheet, Dimensions, TouchableHighlight } from 'react-native';
+import { iconsMap } from '../helpers/icon-helpers';
 
 import {
   TOUCHABLE_UNDERLAY_COLOR,
-  BUTTON_ACTIVE_COLOR
+  BUTTON_ACTIVE_COLOR,
+  BUTTON_TEXT_COLOR
 } from '../styles/colors';
 
 const BUTTONS_PER_ROW = 3;
 
-const renderItem = ({ item, textStyle, onClick, buttonsPerRow }) => {
+const renderItem = ({ item, textStyle, onClick, buttonsPerRow, withIcon }) => {
   const maxWidthPcnt = (0.999 * 100 / buttonsPerRow) + '%';
   const buttonHeight = Dimensions.get('window').height * 0.11;
-  const finalTextStyle = {
+  const itemTextStyle = {
     textAlign: 'center',
     ...textStyle
   };
+
+  if (withIcon) {
+    const color = item.selected ? BUTTON_TEXT_COLOR : 'black';
+    const iconStyle = { size: 16, color, styleClass: styles.icon };
+
+    if (item.value === 'fusion') {
+      item = {
+        ...item,
+        label: (
+          < >
+            <Text> {iconsMap.get(item.value, { ...iconStyle, size: 18 })}  </Text>
+            <Text style={{ fontSize: 18, marginLeft: 18 }}> {item.label} </Text>
+          </>
+        )
+      };
+    } else {
+      item = {
+        ...item,
+        label: (
+          <Text>
+            {iconsMap.get(item.value, iconStyle)}
+            {'\n'}
+            {item.label}
+          </Text>
+        )
+      };
+    }
+  }
+
+  const finalTextStyle = item.selected ? { ...itemTextStyle, color: BUTTON_TEXT_COLOR } : itemTextStyle;
 
   const itemStyle = styles[`itemStyle${item.value}`] || {};
 
@@ -44,13 +76,17 @@ export default function FilterGrid({
   selectedElementIds,
   setSelectedElementIds,
   contentStyle = {},
-  buttonsPerRow = BUTTONS_PER_ROW
+  buttonsPerRow = BUTTONS_PER_ROW,
+  withIcon
 }) {
-  const elementsToRender = elements.map(element => ({
-    ...element,
-    selected: selectedElementIds.includes(element.value)
-  })
-  );
+  const elementsToRender = elements.map(element => {
+    const selected = selectedElementIds.includes(element.value);
+    return {
+      ...element,
+      selected
+    };
+  });
+
   const [items, setItems] = useState(elementsToRender);
 
   // Creo que es imposible usar FlatList con dimensiones proporcionales, el % se aplica
@@ -84,7 +120,8 @@ export default function FilterGrid({
           item,
           textStyle: contentStyle.text,
           onClick: () => toggleSelect(item),
-          buttonsPerRow
+          buttonsPerRow,
+          withIcon
         })}
         keyExtractor={extractKey}
       />
@@ -120,5 +157,8 @@ const styles = StyleSheet.create({
   },
   itemStylefusion: {
     maxWidth: '100%'
+  },
+  icon: {
+    textAlign: 'center'
   }
 });
