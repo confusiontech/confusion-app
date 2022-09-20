@@ -12,6 +12,7 @@ const FilterContainer = ({ navigation }) => {
   const { setFilter, filter } = useContext(ProgramContext);
 
   const [selectedCategories, setSelectedCategories] = useState(filter.selectedCategories);
+  // const [selectedFusion, setSelectedFusion] = useState(filter.selectedCategories);
   const [selectedAudience, setSelectedAudience] = useState(filter.selectedAudience);
   const [selectedDate, setSelectedDate] = useState(filter.selectedDate);
 
@@ -21,6 +22,7 @@ const FilterContainer = ({ navigation }) => {
       selectedCategories,
       selectedAudience,
       selectedDate
+      // selectedFusion
     });
     navigation.navigate('Programa');
   };
@@ -37,20 +39,31 @@ const FilterContainer = ({ navigation }) => {
     });
   });
 
-  const props = { size: 16, color: 'black', styleClass: styles.icon };
+  const iconStyle = { size: 16, color: 'black', styleClass: styles.icon };
 
   const categoriesWithIcon = categories.map(category => (
     {
       ...category,
       label: (
         <Text>
-          {iconsMap.get(category.value, props)}
+          {iconsMap.get(category.value, iconStyle)}
           {'\n'}
           {category.label}
         </Text>
       )
     }
   ));
+
+  categoriesWithIcon.push({
+    value: 'fusion',
+    key: 'fusion',
+    label: (
+      < >
+        <Text> {iconsMap.get('fusion', { ...iconStyle, size: 18 })}  </Text>
+        <Text style={{ fontSize: 18, marginLeft: 18 }}> Fusión </Text>
+      </>
+    )
+  });
 
   return (
     <View style={{ flex: 1 }}>

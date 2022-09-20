@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, FlatList, StyleSheet, Dimensions } from 'react-native';
-import { Button } from 'native-base';
+import { View, Text, FlatList, StyleSheet, Dimensions, TouchableHighlight } from 'react-native';
 
-import { BUTTON_ACTIVE_COLOR } from '../styles/colors';
+import {
+  TOUCHABLE_UNDERLAY_COLOR,
+  BUTTON_ACTIVE_COLOR
+} from '../styles/colors';
 
 const BUTTONS_PER_ROW = 3;
 
@@ -14,22 +16,25 @@ const renderItem = ({ item, textStyle, onClick, buttonsPerRow }) => {
     ...textStyle
   };
 
+  const itemStyle = styles[`itemStyle${item.value}`] || {};
+
   return (
     <View
       style={[item.selected ? styles.selected : styles.normal,
         {
           maxWidth: maxWidthPcnt,
-          height: buttonHeight
+          height: buttonHeight,
+          ...itemStyle
         }]}
     >
-      <Button
-        variant='ghost'
+      <TouchableHighlight
         onPress={onClick}
         style={styles.filterButton}
-        p='1'
+        activeOpacity={0.9}
+        underlayColor={TOUCHABLE_UNDERLAY_COLOR}
       >
         <Text style={finalTextStyle}>{item.label}</Text>
-      </Button>
+      </TouchableHighlight>
     </View>
   );
 };
@@ -70,10 +75,9 @@ export default function FilterGrid({
   const extractKey = item => item.value;
 
   return (
-    <View style={{ marginBottom: 20 }}>
+    <View style={{ marginBottom: 20, ...contentStyle.gridContainer }}>
       <FlatList
         contentContainerStyle={styles.flatList}
-        columnWrapperStyle={{}}
         numColumns={buttonsPerRow}
         data={items}
         renderItem={({ item }) => renderItem({
@@ -113,5 +117,8 @@ const styles = StyleSheet.create({
   filterButton: {
     height: '100%',
     justifyContent: 'center'
+  },
+  itemStylefusion: {
+    maxWidth: '100%'
   }
 });

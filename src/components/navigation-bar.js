@@ -18,8 +18,11 @@ const NavigationBar = ({ navigation }) => {
           ? styles.selectedButtonContainer
           : styles.bottomButtonContainer}
       >
+        <Text style={styles.buttonIcon}>
+          {iconsMap.get(iconName, iconProps)}
+        </Text>
         <Text style={styles.buttonText}>
-          {iconsMap.get(iconName, iconProps)} {buttonTitle}
+          {buttonTitle}
         </Text>
       </StandardButton>
     );
@@ -30,12 +33,15 @@ const NavigationBar = ({ navigation }) => {
       {NavButton({ routeName: 'Programa', buttonTitle: 'Programa', iconName: 'book' })}
       {NavButton({ routeName: 'Favoritos', buttonTitle: 'Favoritos', iconName: 'favorites-chosen' })}
       {NavButton({ routeName: 'Mapa', buttonTitle: 'Mapa', iconName: 'map' })}
-      {NavButton({ routeName: 'Espacios', buttonTitle: 'Espacios', iconName: 'home' })}
+      {NavButton({ routeName: 'Espacios', buttonTitle: 'Espacios', iconName: 'space' })}
+      {NavButton({ routeName: 'Info', buttonTitle: 'Info', iconName: 'info' })}
     </View>
   );
 };
 
-const iconProps = { color: BUTTON_TEXT_COLOR, size: 16 };
+const iconProps = { color: BUTTON_TEXT_COLOR, size: 18 };
+
+const NAV_BUTTON_WITH = '20%';
 
 const styles = StyleSheet.create({
   buttonsContainer: {
@@ -43,16 +49,22 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   bottomButtonContainer: {
-    width: '25%'
+    width: NAV_BUTTON_WITH
+  },
+  selectedButtonContainer: {
+    backgroundColor: 'red',
+    width: NAV_BUTTON_WITH
   },
   buttonText: {
     color: BUTTON_TEXT_COLOR,
     fontWeight: 'bold',
-    letterSpacing: 0.5
+    letterSpacing: 0.5,
+    fontSize: 10,
+    marginTop: 2
   },
-  selectedButtonContainer: {
-    width: '25%',
-    backgroundColor: 'red'
+  buttonIcon: {
+    textAlign: 'center',
+    height: 20
   }
 });
 

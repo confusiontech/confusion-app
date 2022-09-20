@@ -74,7 +74,10 @@ export const filterShows = (allShows, favorites, propertiesConditionsObjs) => {
         } else if (properties.showProperty === 'participant_subcategories') {
           conditions.push(
             show => {
-              for (const category of show[properties.showProperty]) {
+              if (properties.stateProperty.includes('fusion') && show.participant_subcategories.length > 1) {
+                return true;
+              }
+              for (const category of show.participant_subcategories) {
                 if (properties.stateProperty.includes(category)) {
                   return true;
                 }
