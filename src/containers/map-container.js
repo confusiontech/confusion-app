@@ -29,6 +29,7 @@ const MapContainer = ({ navigation }) => {
         <MapView
           style={styles.mapStyle}
           provider={PROVIDER_DEFAULT}
+          showsUserLocation={true} 
           initialRegion={{
             latitude: MAP_CENTER_LATITUDE,
             longitude: MAP_CENTER_LONGITUDE,
@@ -106,11 +107,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     position: 'absolute',
     top: 4,
-    right: 7,
+    left: 4,
     zIndex: 9,
     fontSize: 16,
-    textAlign: 'right',
-    width: '65%'
+    textAlign: 'left',
+    width: '65%',
+    backgroundColor:'rgba(255,255,255,0.6)',
+    padding: 4
   }
 });
 
