@@ -33,7 +33,7 @@
     "android": {
       "package": "es.beniconfusionfest.confusion", 
       "adaptiveIcon": {
-        "foregroundImage": "assets/adaptive_icon_foreground.png",
+        "foregroundImage": "./assets/adaptive_icon_foreground.png",
         "backgroundColor": "#FFF4E2"
       },
       "permissions": [
