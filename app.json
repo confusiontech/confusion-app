@@ -31,7 +31,7 @@
       }
     },
     "android": {
-      "package": "es.beniconfusionfest.confusion", 
+      "package": "es.beniconfusionfest.confusion",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive_icon_foreground.png",
         "backgroundColor": "#FFF4E2"
