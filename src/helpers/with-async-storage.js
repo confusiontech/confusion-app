@@ -9,7 +9,8 @@ export const withAsyncStorage = (cacheKey, fallback) => {
   const retVal = async (...params) => {
     const storedValue = await Storage.get(cacheKey);
     const newValue = await fallback(...params, storedValue);
-    if (storedValue !== newValue) {
+
+    if (storedValue.program_timestamp !== newValue.program_timestamp) {
       await Storage.set(cacheKey, newValue);
       newValue.new = true;
     }

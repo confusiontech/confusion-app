@@ -5,10 +5,12 @@ import { ProgramContext } from './program-context';
 import { withAsyncStorage, Storage, PROGRAM_STORAGE_KEY, FAVORITES_STORAGE_KEY } from '../helpers/with-async-storage';
 import { programAdapter } from '../helpers/program-helpers';
 
+const UPDATE_INTERVALL_IN_MILLISEC = 600000; // 10 minutes
+
 const ProgramUpdater = () => {
   const { setAllShows, allShows, setFavorites } = useContext(ProgramContext);
-  const fetchProgram = withAsyncStorage(PROGRAM_STORAGE_KEY, async () => {
-    const response = await backendService.fetchProgram();
+  const fetchProgram = withAsyncStorage(PROGRAM_STORAGE_KEY, async (storedValue) => {
+    const response = await backendService.fetchProgram(storedValue);
     programAdapter(response.program);
     return response;
   });
@@ -42,7 +44,7 @@ const ProgramUpdater = () => {
 
     function updateProgram() {
       fetchProgram().then(function(response) {
-        if (!hasProgram() || response.new) {
+        if (!hasProgram() || !!response.new) {
           setAllShows(response.program);
         }
       });
@@ -52,7 +54,7 @@ const ProgramUpdater = () => {
 
     const taskId = setInterval(() => {
       updateProgram();
-    }, 600000);
+    }, UPDATE_INTERVALL_IN_MILLISEC);
 
     return () => {
       clearInterval(taskId);
