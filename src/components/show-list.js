@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { FlatList, SafeAreaView } from 'react-native';
 
