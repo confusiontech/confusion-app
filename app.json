@@ -28,10 +28,11 @@
       "bundleIdentifier": "es.beniconfusionfest.confusion",
       "infoPlist": {
         "NSLocationWhenInUseUsageDescription": "Mostraremos tu localización en los mapas para que ubiques los espacios más fácilmente"
-      }
+      },
+      "buildNumber": 18
     },
     "android": {
-      "package": "es.beniconfusionfest.confusion", 
+      "package": "es.beniconfusionfest.confusion",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive_icon_foreground.png",
         "backgroundColor": "#FFF4E2"
@@ -40,7 +41,13 @@
         "INTERNET",
         "WRITE_SETTINGS",
         "ACCESS_FINE_LOCATION"
-      ]
+      ],
+      "versionCode": 18
+    },
+    "extra": {
+      "eas": {
+        "projectId": "728863cd-f38c-4412-a4fa-befa5bbb9696"
+      }
     }
   }
 }

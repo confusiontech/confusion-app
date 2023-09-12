@@ -80,3 +80,4 @@ web-build/
 
 #Pietro tokens
 .github_pietro_auth_token
+eas.json
