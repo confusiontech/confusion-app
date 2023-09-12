@@ -36,19 +36,13 @@ const FilterContainer = ({ navigation }) => {
     });
   });
 
-  const categoryFusion = {
-    value: 'fusion',
-    key: 'fusion',
-    label: 'Fusión'
-  };
-
   return (
     <View style={{ flex: 1 }}>
       <View>
         <FilterGrid
           selectedElementIds={selectedCategories}
           setSelectedElementIds={setSelectedCategories}
-          elements={[...categories, categoryFusion]}
+          elements={[...categories]}
           withIcon
         />
         <FilterGrid

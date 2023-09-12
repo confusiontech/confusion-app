@@ -26,13 +26,11 @@ class BackendService {
   async fetchProgram(storedValue) {
     storedValue = storedValue || {};
     const programUrl = this._getUrl(PROGRAM_PATH);
-
     const response = await fetch(programUrl, {
       method: 'POST',
       headers: PROGRAM_HEADERS,
       body: this._requestBody(storedValue.program_timestamp)
     });
-
     if (response.status === NOT_MODIFIED_STATUS_CODE) {
       return storedValue;
     }
