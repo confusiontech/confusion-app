@@ -29,7 +29,7 @@
       "infoPlist": {
         "NSLocationWhenInUseUsageDescription": "Mostraremos tu localización en los mapas para que ubiques los espacios más fácilmente"
       },
-      "buildNumber": 18
+      "buildNumber": 19
     },
     "android": {
       "package": "es.beniconfusionfest.confusion",
@@ -42,7 +42,7 @@
         "WRITE_SETTINGS",
         "ACCESS_FINE_LOCATION"
       ],
-      "versionCode": 18
+      "versionCode": 19
     },
     "extra": {
       "eas": {
