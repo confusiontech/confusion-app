@@ -18,7 +18,7 @@ const InfoContainer = ({ navigation }) => {
       <ScrollView style={styles.mainScrollView}>
         <View style={styles.textContainer}>
           <Text style={styles.title}>
-            conFusión 2022 - IX edición
+            conFusión
           </Text>
         </View>
         <View style={styles.linksContainer}>

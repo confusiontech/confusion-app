@@ -5,7 +5,7 @@ import { ProgramContext } from './program-context';
 import { withAsyncStorage, Storage, PROGRAM_STORAGE_KEY, FAVORITES_STORAGE_KEY } from '../helpers/with-async-storage';
 import { programAdapter } from '../helpers/program-helpers';
 
-const UPDATE_INTERVALL_IN_MILLISEC = 600000; // 10 minutes
+const UPDATE_INTERVALL_IN_MILLISEC = 600000; // 600000 == 10 minutes
 
 const ProgramUpdater = () => {
   const { setAllShows, allShows, setFavorites } = useContext(ProgramContext);

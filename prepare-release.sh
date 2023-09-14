@@ -12,5 +12,5 @@ trap cleanup EXIT
 
 ln -sf app.config.source.js app.config.js
 
-expo build:android -t app-bundle
-expo build:ios -t archive
+eas build --platform android
+eas build --platform ios
