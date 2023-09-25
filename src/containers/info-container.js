@@ -1,17 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, Text, Linking, TouchableHighlight, ScrollView } from 'react-native';
 import PageLayout from './page-layout';
 import { iconsMap } from '../helpers/icon-helpers';
+import DrawAttentionView from '../components/draw-attention-view';
 
 import {
   LINK_COLOR,
   TOUCHABLE_UNDERLAY_COLOR
 } from '../styles/colors';
 
+import {
+  CROWDFUNDING_URL,
+  CROWDFUNDING_START,
+  CROWDFUNDING_END,
+  WEB_URL,
+  INSTAGRAM_URL,
+  YOUTUBE_URL
+} from '../event-properties';
+import { getEsMoment } from '../helpers/date-helpers';
+import { getNow } from '../helpers/program-helpers';
+
 const InfoContainer = ({ navigation }) => {
-  const WEB_URL = 'https://beniconfusionfest.es/es/inicio';
-  const INSTAGRAM_URL = 'https://www.instagram.com/benimacletconfusion/';
-  const YOUTUBE_URL = 'https://www.youtube.com/c/conFusi%C3%B3nfest/featured';
+  const [crowdfundintActive, setCrowdfundingActive] = useState(false);
+
+  useEffect(() => {
+    const nowDt = getEsMoment(getNow());
+    if (nowDt >= getEsMoment(CROWDFUNDING_START) && nowDt < getEsMoment(CROWDFUNDING_END)) {
+      setCrowdfundingActive(true);
+    } else {
+      setCrowdfundingActive(false);
+    }
+  });
 
   return (
     <PageLayout navigation={navigation}>
@@ -38,7 +57,7 @@ const InfoContainer = ({ navigation }) => {
             onPress={() => Linking.openURL(INSTAGRAM_URL)}
           >
             <View style={styles.linkContainer}>
-              <Text> {iconsMap.get('instagram', { color: LINK_COLOR })} </Text>
+              <Text>{iconsMap.get('instagram', { color: LINK_COLOR })}</Text>
               <Text style={styles.link}> @benimacletconfusion </Text>
             </View>
           </TouchableHighlight>
@@ -52,6 +71,17 @@ const InfoContainer = ({ navigation }) => {
               <Text style={styles.link}> Benimaclet conFusión </Text>
             </View>
           </TouchableHighlight>
+          {crowdfundintActive &&
+            <TouchableHighlight
+              activeOpacity={0.9}
+              underlayColor={TOUCHABLE_UNDERLAY_COLOR}
+              onPress={() => Linking.openURL(CROWDFUNDING_URL)}
+            >
+              <View style={styles.linkContainer}>
+                <DrawAttentionView duration='1000'><Text> {iconsMap.get('crowdfunding', { color: LINK_COLOR, size: 28 })} </Text></DrawAttentionView>
+                <Text style={styles.linkImportant}> Ayúdanos participando en el crowdfunding! </Text>
+              </View>
+            </TouchableHighlight>}
         </View>
         <View style={styles.textContainer}>
           <Text style={styles.normalText}>
@@ -105,6 +135,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: LINK_COLOR,
     fontSize: 14
+  },
+  linkImportant: {
+    fontWeight: 'bold',
+    color: LINK_COLOR,
+    fontSize: 16
   },
   linksContainer: {
     paddingHorizontal: 12,

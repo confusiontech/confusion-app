@@ -1,5 +1,5 @@
 import React from 'react';
-import { Feather, FontAwesome5, MaterialCommunityIcons, AntDesign, Ionicons, Entypo } from '@expo/vector-icons';
+import { Feather, FontAwesome5, MaterialIcons, MaterialCommunityIcons, AntDesign, Ionicons, Entypo } from '@expo/vector-icons';
 
 const values = new Map([
   ['0', ({ size, color, styleClass }) => <FontAwesome5 name='theater-masks' size={size} color={color} style={styleClass} key='theater-masks' />],
@@ -27,7 +27,8 @@ const values = new Map([
   ['fusion', ({ size, color, styleClass }) => <FontAwesome5 name='users' size={size} color={color} style={styleClass} solid key='users' />],
   ['instagram', ({ size, color, styleClass }) => <FontAwesome5 name='instagram' size={size} color={color} style={styleClass} solid key='instagram' />],
   ['youtube', ({ size, color, styleClass }) => <Ionicons name='logo-youtube' size={size} color={color} style={styleClass} solid key='logo-youtube' />],
-  ['web', ({ size, color, styleClass }) => <MaterialCommunityIcons name='web' size={size} color={color} style={styleClass} solid key='web' />]
+  ['web', ({ size, color, styleClass }) => <MaterialCommunityIcons name='web' size={size} color={color} style={styleClass} solid key='web' />],
+  ['crowdfunding', ({ size, color, styleClass }) => <MaterialIcons name='volunteer-activism' size={size} color={color} style={styleClass} solid key='volunteer-activism' />]
 ]);
 
 export const iconsMap = {

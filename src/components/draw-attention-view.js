@@ -5,17 +5,19 @@ import { Animated } from 'react-native';
 export default function DrawAttentionView(props) {
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
+  const duration = props.duration || 666;
+
   useEffect(() => {
     Animated.loop(
       Animated.sequence([
         Animated.timing(fadeAnim, {
           toValue: 1,
-          duration: 666,
+          duration,
           useNativeDriver: true
         }),
         Animated.timing(fadeAnim, {
           toValue: 0.0,
-          duration: 666,
+          duration,
           useNativeDriver: true
         })
       ])
