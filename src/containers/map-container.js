@@ -11,9 +11,9 @@ import {
 
 import PageLayout from './page-layout';
 
-const MAP_VIEW_DELTA = 0.0092;
-const MAP_CENTER_LATITUDE = 39.487282;
-const MAP_CENTER_LONGITUDE = -0.358120;
+const MAP_VIEW_DELTA = 0.0105;
+const MAP_CENTER_LATITUDE = 39.488882;
+const MAP_CENTER_LONGITUDE = -0.359420;
 
 const MapContainer = ({ navigation }) => {
   const { allShows } = useContext(ProgramContext);
