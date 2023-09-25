@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TouchableHighlight, Linking } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Center, Button, Modal } from 'native-base';
+import { Center, Modal } from 'native-base';
 import { CROWDFUNDING_URL, CROWDFUNDING_START, CROWDFUNDING_END } from '../event-properties';
 import { getNow } from '../helpers/program-helpers';
 import { getEsMoment } from '../helpers/date-helpers';
@@ -46,9 +46,9 @@ const Announcement = ({ navigationRef }) => {
       <Modal isOpen={showAnnouncement} onClose={() => setShowAnnouncement(false)} size='lg'>
         <Modal.Content>
           <Modal.CloseButton />
-          <Modal.Header><Text style={styles.headerText}>Información Importante!</Text></Modal.Header>
+          <Modal.Header><Text style={styles.headerText}>¡Tenemos crowdfunding!</Text></Modal.Header>
           <Modal.Body>
-            <Text style={styles.bodyText}>Este año tenemos crowdfunding...</Text>
+            <Text style={styles.bodyText}>Todas las actividades son gratuitas, y no aceptamos publicidad. Así que tu apoyo hace posible conFusión.</Text>
             <TouchableHighlight
               activeOpacity={0.9}
               underlayColor={TOUCHABLE_UNDERLAY_COLOR}
@@ -56,18 +56,14 @@ const Announcement = ({ navigationRef }) => {
             >
               <View style={styles.linkContainer}>
                 <Text> {iconsMap.get('crowdfunding', { color: LINK_COLOR })} </Text>
-                <Text style={styles.link}> Ir a Crowdfunding </Text>
+                <Text style={styles.link}>Participa y elige tu recompensa </Text>
               </View>
             </TouchableHighlight>
-
-            <Text style={styles.bodyText}>
-              Si no quieres visitar la página ahora, puedes encontrar el enlace en la pantalla de <Text style={styles.inlineLink} onPress={() => openInfo()}>Info {iconsMap.get('info', { size: 14, color: LINK_COLOR })}</Text>
-            </Text>
           </Modal.Body>
           <Modal.Footer>
-            <Button.Group space={2}>
-              <Button style={styles.buttonText} onPress={() => setShowAnnouncement(false)}>Cerrar</Button>
-            </Button.Group>
+            <Text style={styles.bodyText}>
+              Si quieres apoyar más tarde, puedes hacerlo en la pestaña de <Text style={styles.inlineLink} onPress={() => openInfo()}>Info {iconsMap.get('info', { size: 14, color: LINK_COLOR })}</Text>
+            </Text>
           </Modal.Footer>
         </Modal.Content>
       </Modal>
@@ -91,12 +87,13 @@ const styles = StyleSheet.create({
   linkContainer: {
     flexDirection: 'row',
     paddingVertical: 4,
+    marginVertical: 4,
     alignItems: 'center'
   },
   link: {
     fontWeight: 'bold',
     color: LINK_COLOR,
-    fontSize: 16
+    fontSize: 18
   },
   inlineLink: {
     color: LINK_COLOR

@@ -79,7 +79,7 @@ const InfoContainer = ({ navigation }) => {
             >
               <View style={styles.linkContainer}>
                 <DrawAttentionView duration='1000'><Text> {iconsMap.get('crowdfunding', { color: LINK_COLOR, size: 28 })} </Text></DrawAttentionView>
-                <Text style={styles.linkImportant}> Ayúdanos participando en el crowdfunding! </Text>
+                <Text style={styles.linkImportant}> ¡Apóyanos participando en el crowdfunding! </Text>
               </View>
             </TouchableHighlight>}
         </View>
