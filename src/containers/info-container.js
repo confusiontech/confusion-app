@@ -41,6 +41,22 @@ const InfoContainer = ({ navigation }) => {
           </Text>
         </View>
         <View style={styles.linksContainer}>
+          {crowdfundintActive &&
+            <TouchableHighlight
+              activeOpacity={0.9}
+              underlayColor={TOUCHABLE_UNDERLAY_COLOR}
+              onPress={() => Linking.openURL(CROWDFUNDING_URL)}
+              style={styles.crowdFunding}
+            >
+              <View style={styles.linkContainer}>
+                <DrawAttentionView duration='1000'>
+                  <Text>
+                    {iconsMap.get('crowdfunding', { color: LINK_COLOR, size: 28 })}
+                  </Text>
+                </DrawAttentionView>
+                <Text style={styles.linkImportant}> ¡Apóyanos participando en el crowdfunding! </Text>
+              </View>
+            </TouchableHighlight>}
           <TouchableHighlight
             activeOpacity={0.9}
             underlayColor={TOUCHABLE_UNDERLAY_COLOR}
@@ -57,7 +73,7 @@ const InfoContainer = ({ navigation }) => {
             onPress={() => Linking.openURL(INSTAGRAM_URL)}
           >
             <View style={styles.linkContainer}>
-              <Text>{iconsMap.get('instagram', { color: LINK_COLOR })}</Text>
+              <Text> {iconsMap.get('instagram', { color: LINK_COLOR })}</Text>
               <Text style={styles.link}> @benimacletconfusion </Text>
             </View>
           </TouchableHighlight>
@@ -71,17 +87,6 @@ const InfoContainer = ({ navigation }) => {
               <Text style={styles.link}> Benimaclet conFusión </Text>
             </View>
           </TouchableHighlight>
-          {crowdfundintActive &&
-            <TouchableHighlight
-              activeOpacity={0.9}
-              underlayColor={TOUCHABLE_UNDERLAY_COLOR}
-              onPress={() => Linking.openURL(CROWDFUNDING_URL)}
-            >
-              <View style={styles.linkContainer}>
-                <DrawAttentionView duration='1000'><Text> {iconsMap.get('crowdfunding', { color: LINK_COLOR, size: 28 })} </Text></DrawAttentionView>
-                <Text style={styles.linkImportant}> ¡Apóyanos participando en el crowdfunding! </Text>
-              </View>
-            </TouchableHighlight>}
         </View>
         <View style={styles.textContainer}>
           <Text style={styles.normalText}>
@@ -143,12 +148,17 @@ const styles = StyleSheet.create({
   },
   linksContainer: {
     paddingHorizontal: 12,
-    marginBottom: 12
+    marginBottom: 12,
+    maxWidth: '90%'
   },
   linkContainer: {
     flexDirection: 'row',
-    paddingVertical: 4,
+    paddingVertical: 6,
     alignItems: 'center'
+  },
+  crowdFunding: {
+    paddingBottom: 10,
+    paddingTop: 5
   },
   subtitle: {
     fontSize: 18
