@@ -43,8 +43,8 @@ const Announcement = ({ navigationRef }) => {
 
   return (
     <Center>
-      <Modal isOpen={showAnnouncement} onClose={() => setShowAnnouncement(false)} size='lg'>
-        <Modal.Content>
+      <Modal isOpen={showAnnouncement} onClose={() => setShowAnnouncement(false)}>
+        <Modal.Content width="90%">
           <Modal.CloseButton />
           <Modal.Header><Text style={styles.headerText}>¡Tenemos crowdfunding!</Text></Modal.Header>
           <Modal.Body>
@@ -86,9 +86,11 @@ const styles = StyleSheet.create({
   },
   linkContainer: {
     flexDirection: 'row',
-    paddingVertical: 4,
-    marginVertical: 4,
-    alignItems: 'center'
+    paddingTop: 6,
+    paddingBottom: 2,
+    marginVertical: 10,
+    alignItems: 'center',
+    maxWidth: '98%'
   },
   link: {
     fontWeight: 'bold',

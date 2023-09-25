@@ -1,5 +1,5 @@
 export const PRIMARY_COLOR = '#EB148B';
-export const SECONDARY_COLOR = '#00008B';
+export const SECONDARY_COLOR = 'black';
 
 export const CREAM_COLOR = '#FFF4E2';
 export const LIGHT_GREY = '#DDDDDD';

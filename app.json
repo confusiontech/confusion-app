@@ -10,12 +10,12 @@
     ],
     "version": "0.1.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "splash": {
-      "image": "./assets/splash.png",
+    "icon": "./assets/icon.png", // showed by default as icon of the app -> 1024x1024 
+    "splash": {  
+      "image": "./assets/splash.png", // displayed while loading the app on full screen (transparent background) -> 1024x1024 
       "resizeMode": "contain",
       "adaptiveIcon": true,
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#000000"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -29,20 +29,26 @@
       "infoPlist": {
         "NSLocationWhenInUseUsageDescription": "Mostraremos tu localización en los mapas para que ubiques los espacios más fácilmente"
       },
-      "buildNumber": 19
+      "buildNumber": "19"
     },
     "android": {
-      "package": "es.beniconfusionfest.confusion",
+      "package": "es.beniconfusionfest.confusion", 
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive_icon_foreground.png",
-        "backgroundColor": "#FFF4E2"
+        "foregroundImage": "./assets/adaptive_icon_foreground.png", // overwrite default icon of the app for android  -> 1024x1024 
+        "backgroundColor": "#000000"
       },
       "permissions": [
         "INTERNET",
         "WRITE_SETTINGS",
         "ACCESS_FINE_LOCATION"
       ],
-      "versionCode": 19
+      "versionCode": 20,
+      "config": {
+        "googleMaps": {
+          "apiKey": "<API_KEY>"
+        }
+      }
+
     },
     "extra": {
       "eas": {
