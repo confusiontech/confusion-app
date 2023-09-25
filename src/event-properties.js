@@ -25,3 +25,11 @@ export const EVENT_CATEGORIES_INFO = [
 export const EVENT_CATEGORIES = EVENT_CATEGORIES_INFO.map(categoryInfo =>
   [categoryInfo.id, categoryInfo.name]
 );
+
+export const CROWDFUNDING_URL = 'https://vkm.is/confusion10';
+export const CROWDFUNDING_START = '2023-10-01';
+export const CROWDFUNDING_END = '2023-10-16';
+
+export const WEB_URL = 'https://beniconfusionfest.es/es/inicio';
+export const INSTAGRAM_URL = 'https://www.instagram.com/benimacletconfusion/';
+export const YOUTUBE_URL = 'https://www.youtube.com/c/conFusi%C3%B3nfest/featured';
