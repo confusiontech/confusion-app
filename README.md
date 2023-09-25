@@ -31,7 +31,7 @@ MAC IS NEEDED
 - In `app.json` define a new version number in `ios.buildNumber` (must be a string) and add the googleMaps key in `ios.config.googleMapsApiKey` (get the key from Google console https://console.cloud.google.com/apis/credentials?project=active-cove-284317)
 - Create the bundle by runnning `eas build --platform ios`. You will be asked to log in with the possibility apple credential. 2 factor authentication with code by phone is needed as well as being enrolled (paid 99€) to the apple developer program.
 - When the build finished, download from https://expo.dev/accounts/diegov/projects/confusionapp/builds the bundle
-- Go to Apple Developer Concole....
+- Go to Apple Developer Console....
 
 Contacto
 =========
