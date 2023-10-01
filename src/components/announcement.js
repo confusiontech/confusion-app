@@ -44,7 +44,7 @@ const Announcement = ({ navigationRef }) => {
   return (
     <Center>
       <Modal isOpen={showAnnouncement} onClose={() => setShowAnnouncement(false)}>
-        <Modal.Content width="90%">
+        <Modal.Content width='90%'>
           <Modal.CloseButton />
           <Modal.Header><Text style={styles.headerText}>¡Tenemos crowdfunding!</Text></Modal.Header>
           <Modal.Body>
@@ -60,7 +60,7 @@ const Announcement = ({ navigationRef }) => {
               </View>
             </TouchableHighlight>
           </Modal.Body>
-          <Modal.Footer>
+          <Modal.Footer justifyContent='flex-start'>
             <Text style={styles.bodyText}>
               Si quieres apoyar más tarde, puedes hacerlo en la pestaña de <Text style={styles.inlineLink} onPress={() => openInfo()}>Info {iconsMap.get('info', { size: 14, color: LINK_COLOR })}</Text>
             </Text>
