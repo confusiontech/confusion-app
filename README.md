@@ -2,9 +2,9 @@ Como arrancar la aplicación
 ===========================
 
 1. Instalar expo cli
-2. Instalar la version 14.17 de nodejs desde https://nodejs.org
+2. Instalar la version 16.20.2 de nodejs desde https://nodejs.org
 3. npm install
-4. expo start
+4. npx expo start
 
 Esto lanzará la aplicación y mostrará un codigo QR que podrá ser leido con la aplicacion movil de Expo. 
 
