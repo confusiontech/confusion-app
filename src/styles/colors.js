@@ -1,13 +1,27 @@
-export const PRIMARY_COLOR = '#EB148B';
-export const SECONDARY_COLOR = 'black';
+const IDENTITY_COLOR = '#E0FA4E'; // 2024
+const IDENTITY_COLOR_2 = '#b62682';
+const LIGHT_GREY = '#DDDDDD';
+// const BLUE_LINK = '#3366BB';
 
-export const CREAM_COLOR = '#FFF4E2';
-export const LIGHT_GREY = '#DDDDDD';
-export const BLUE_LINK = '#3366BB';
+export const PRIMARY_COLOR = IDENTITY_COLOR;
+export const SECONDARY_COLOR = IDENTITY_COLOR_2;
 
 export const TOUCHABLE_UNDERLAY_COLOR = LIGHT_GREY;
-export const LINK_COLOR = PRIMARY_COLOR;
+export const LAYOUT_COLOR = 'transparent';
+
+export const LINK_COLOR = IDENTITY_COLOR_2;
+
 export const BUTTON_COLOR = PRIMARY_COLOR;
-export const BUTTON_TEXT_COLOR = 'white';
 export const BUTTON_ACTIVE_COLOR = SECONDARY_COLOR;
-export const LAYOUT_COLOR = CREAM_COLOR;
+export const BUTTON_TEXT_COLOR = SECONDARY_COLOR;
+export const BUTTON_ACTIVE_TEXT_COLOR = PRIMARY_COLOR;
+
+export const GRID_BUTTON_COLOR = 'transparent';
+export const GRID_SELECTED_BUTTON_COLOR = PRIMARY_COLOR;
+export const GRID_TEXT_COLOR = SECONDARY_COLOR;
+export const GRID_SELECTED_TEXT_COLOR = SECONDARY_COLOR;
+
+export const SPACE_NUMBER_CIRCLE_COLOR = PRIMARY_COLOR;
+export const SPACE_NUMBER_TEXT_COLOR = SECONDARY_COLOR;
+
+export const FAVORITE_BUTTON_COLOR = IDENTITY_COLOR_2;

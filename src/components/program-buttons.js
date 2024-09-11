@@ -3,7 +3,7 @@ import { View, StyleSheet, Text } from 'react-native';
 
 import StandardButton from './standard-button';
 import { ProgramContext } from '../services/program-context';
-import { BUTTON_COLOR, BUTTON_ACTIVE_COLOR, BUTTON_TEXT_COLOR } from '../styles/colors';
+import { BUTTON_COLOR, BUTTON_ACTIVE_COLOR, BUTTON_TEXT_COLOR, BUTTON_ACTIVE_TEXT_COLOR } from '../styles/colors';
 
 import { iconsMap } from '../helpers/icon-helpers';
 
@@ -24,6 +24,9 @@ const ProgramButtons = ({ navigation, goToNowEvent }) => {
 
   const navigateToFilter = () => navigation.navigate('Filtro');
 
+  const iconProps = { color: BUTTON_TEXT_COLOR, size: 16 };
+  const textColorFilterActive = isFilterSelected ? BUTTON_ACTIVE_TEXT_COLOR : BUTTON_TEXT_COLOR;
+
   return (
     <View style={styles.buttonsContainer}>
       <StandardButton
@@ -33,8 +36,15 @@ const ProgramButtons = ({ navigation, goToNowEvent }) => {
           backgroundColor: isFilterSelected ? BUTTON_ACTIVE_COLOR : BUTTON_COLOR
         }}
       >
-        <Text style={styles.buttonText}>
-          {iconsMap.get('filter', iconProps)} Filtro
+        <Text style={{
+          ...styles.buttonText,
+          color: textColorFilterActive
+        }}
+        >
+          {iconsMap.get(
+            'filter',
+            { ...iconProps, color: textColorFilterActive }
+          )} Filtro
         </Text>
       </StandardButton>
       <StandardButton
@@ -48,8 +58,6 @@ const ProgramButtons = ({ navigation, goToNowEvent }) => {
     </View>
   );
 };
-
-const iconProps = { color: BUTTON_TEXT_COLOR, size: 16 };
 
 const styles = StyleSheet.create({
   buttonsContainer: {
