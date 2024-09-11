@@ -7,8 +7,12 @@
 // export const EVENT_ID = '880c990f-0ce9-48ed-8359-f1cb07467d6a'; // 2022
 // export const EVENT_DATES = ['2022-10-15', '2022-10-16']; // 2022
 
-export const EVENT_ID = '8f153391-0458-4e50-839d-9edd2346249f'; // 2023
-export const EVENT_DATES = ['2023-10-14', '2023-10-15']; // 2023
+// export const EVENT_ID = '8f153391-0458-4e50-839d-9edd2346249f'; // 2023
+// export const EVENT_DATES = ['2023-10-14', '2023-10-15']; // 2023
+
+export const EVENT_ID = '46fa14de-319c-4907-a31f-0c1cd44849ec'; // 2024
+export const EVENT_DATES = ['2024-10-19', '2024-10-20']; // 2024
+
 
 export const EVENT_CATEGORIES_INFO = [
   { id: '0', name: 'Artes Escénicas', keys: ['ESCENICAS', 'ARTES_ESCENICAS'] },
