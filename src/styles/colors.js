@@ -1,12 +1,10 @@
-
 const IDENTITY_COLOR = '#E0FA4E'; // 2024
-const IDENTITY_COLOR_2 = '#b62682' 
+const IDENTITY_COLOR_2 = '#b62682';
 const LIGHT_GREY = '#DDDDDD';
 // const BLUE_LINK = '#3366BB';
 
 export const PRIMARY_COLOR = IDENTITY_COLOR;
 export const SECONDARY_COLOR = IDENTITY_COLOR_2;
-
 
 export const TOUCHABLE_UNDERLAY_COLOR = LIGHT_GREY;
 export const LAYOUT_COLOR = 'transparent';
