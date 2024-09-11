@@ -5,8 +5,8 @@ import { getSpaceList } from '../helpers/program-helpers';
 
 import { ProgramContext } from '../services/program-context';
 import {
-  BUTTON_ACTIVE_COLOR,
-  BUTTON_TEXT_COLOR
+  SPACE_NUMBER_CIRCLE_COLOR,
+  SPACE_NUMBER_TEXT_COLOR
 } from '../styles/colors';
 
 import PageLayout from './page-layout';
@@ -80,12 +80,12 @@ const MapMarker = ({ navigation, space }) => {
 const spaceNumberContainer = {
   justifyContent: 'center',
   alignItems: 'center',
-  backgroundColor: BUTTON_ACTIVE_COLOR
+  backgroundColor: SPACE_NUMBER_CIRCLE_COLOR
 };
 
 const spaceNumber = {
   textAlign: 'center',
-  color: BUTTON_TEXT_COLOR
+  color: SPACE_NUMBER_TEXT_COLOR
 };
 
 const styles = StyleSheet.create({

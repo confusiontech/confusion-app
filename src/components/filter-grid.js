@@ -4,8 +4,10 @@ import { iconsMap } from '../helpers/icon-helpers';
 
 import {
   TOUCHABLE_UNDERLAY_COLOR,
-  BUTTON_ACTIVE_COLOR,
-  BUTTON_TEXT_COLOR
+  GRID_BUTTON_COLOR,
+  GRID_SELECTED_BUTTON_COLOR,
+  GRID_TEXT_COLOR,
+  GRID_SELECTED_TEXT_COLOR
 } from '../styles/colors';
 
 const BUTTONS_PER_ROW = 3;
@@ -15,11 +17,12 @@ const renderItem = ({ item, textStyle, onClick, buttonsPerRow, withIcon }) => {
   const buttonHeight = Dimensions.get('window').height * 0.11;
   const itemTextStyle = {
     textAlign: 'center',
-    ...textStyle
+    ...textStyle,
+    color: GRID_TEXT_COLOR
   };
 
   if (withIcon) {
-    const color = item.selected ? BUTTON_TEXT_COLOR : 'black';
+    const color = item.selected ? GRID_SELECTED_TEXT_COLOR : GRID_TEXT_COLOR;
     const iconStyle = { size: 16, color, styleClass: styles.icon };
 
     if (item.value === 'fusion') {
@@ -46,7 +49,7 @@ const renderItem = ({ item, textStyle, onClick, buttonsPerRow, withIcon }) => {
     }
   }
 
-  const finalTextStyle = item.selected ? { ...itemTextStyle, color: BUTTON_TEXT_COLOR } : itemTextStyle;
+  const finalTextStyle = item.selected ? { ...itemTextStyle, color: GRID_SELECTED_TEXT_COLOR } : itemTextStyle;
 
   const itemStyle = styles[`itemStyle${item.value}`] || {};
 
@@ -146,10 +149,11 @@ const styles = StyleSheet.create({
   },
   selected: {
     ...generalBoxStyle,
-    backgroundColor: BUTTON_ACTIVE_COLOR
+    backgroundColor: GRID_SELECTED_BUTTON_COLOR
   },
   normal: {
-    ...generalBoxStyle
+    ...generalBoxStyle,
+    backgroundColor: GRID_BUTTON_COLOR
   },
   filterButton: {
     height: '100%',

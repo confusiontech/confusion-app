@@ -1,6 +1,10 @@
 import React from 'react';
 import { TouchableHighlight, Text, View, StyleSheet } from 'react-native';
-import { TOUCHABLE_UNDERLAY_COLOR, LINK_COLOR, BUTTON_TEXT_COLOR } from '../styles/colors';
+import {
+  TOUCHABLE_UNDERLAY_COLOR,
+  SPACE_NUMBER_CIRCLE_COLOR,
+  SPACE_NUMBER_TEXT_COLOR
+} from '../styles/colors';
 
 const SpaceItem = React.memo(({ navigation, space }) => {
   const openSpaceProgram = () => navigation.navigate('ProgramaEspacio', { space });
@@ -58,14 +62,14 @@ const styles = StyleSheet.create({
     width: 34,
     height: 34,
     borderRadius: 17,
-    backgroundColor: LINK_COLOR,
+    backgroundColor: SPACE_NUMBER_CIRCLE_COLOR,
     justifyContent: 'center',
     marginLeft: 8
   },
   spaceNumber: {
     textAlign: 'center',
     fontSize: 20,
-    color: BUTTON_TEXT_COLOR
+    color: SPACE_NUMBER_TEXT_COLOR
   },
   spaceNameAndAddressContainer: {
     width: '85%',

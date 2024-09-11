@@ -12,8 +12,9 @@ import { Storage, FAVORITES_STORAGE_KEY } from '../helpers/with-async-storage';
 import {
   LINK_COLOR,
   TOUCHABLE_UNDERLAY_COLOR,
-  BUTTON_TEXT_COLOR,
-  PRIMARY_COLOR
+  SPACE_NUMBER_CIRCLE_COLOR,
+  SPACE_NUMBER_TEXT_COLOR,
+  FAVORITE_BUTTON_COLOR
 } from '../styles/colors';
 
 import PageLayout from './page-layout';
@@ -69,7 +70,7 @@ const ShowContainer = ({ route, navigation }) => {
               activeOpacity={0.9}
               underlayColor={TOUCHABLE_UNDERLAY_COLOR}
             >
-              {iconsMap.get(favoriteIconId, { size: 30, color: PRIMARY_COLOR })}
+              {iconsMap.get(favoriteIconId, { size: 30, color: FAVORITE_BUTTON_COLOR })}
             </TouchableHighlight>
           </View>
         </View>
@@ -162,12 +163,12 @@ const textStyleBase = {
 const spaceNumberContainer = {
   justifyContent: 'center',
   alignItems: 'center',
-  backgroundColor: LINK_COLOR
+  backgroundColor: SPACE_NUMBER_CIRCLE_COLOR
 };
 
 const spaceNumber = {
   textAlign: 'center',
-  color: BUTTON_TEXT_COLOR
+  color: SPACE_NUMBER_TEXT_COLOR
 };
 
 const grid = {
