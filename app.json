@@ -42,7 +42,7 @@
         "WRITE_SETTINGS",
         "ACCESS_FINE_LOCATION"
       ],
-      "versionCode": 20,
+      "versionCode": 23,
       "config": {
         "googleMaps": {
           "apiKey": "<API_KEY>"
