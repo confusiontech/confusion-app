@@ -2,7 +2,7 @@ Como arrancar la aplicación
 ===========================
 
 1. Instalar expo cli
-2. Instalar la version 16.20.2 de nodejs desde https://nodejs.org
+2. Instalar la version 18.20.4 de nodejs desde https://nodejs.org
 3. npm install
 4. npx expo start
 
