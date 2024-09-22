@@ -15,7 +15,7 @@
       "image": "./assets/splash.png", // displayed while loading the app on full screen (transparent background) -> 1024x1024 
       "resizeMode": "contain",
       "adaptiveIcon": true,
-      "backgroundColor": "#000000"
+      "backgroundColor": "#E0FA4E"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -35,7 +35,7 @@
       "package": "es.beniconfusionfest.confusion", 
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive_icon_foreground.png", // overwrite default icon of the app for android  -> 1024x1024 
-        "backgroundColor": "#000000"
+        "backgroundColor": "#E0FA4E"
       },
       "permissions": [
         "INTERNET",
