@@ -1,4 +1,4 @@
-const IDENTITY_COLOR = '#E0FA4E'; // 2024
+const IDENTITY_COLOR = '#e1f56e'; // 2024
 const IDENTITY_COLOR_2 = '#b62682';
 const LIGHT_GREY = '#DDDDDD';
 // const BLUE_LINK = '#3366BB';
