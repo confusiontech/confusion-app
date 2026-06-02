@@ -1,18 +1,44 @@
 Como arrancar la aplicación
 ===========================
 
-1. Instalar expo cli
-2. Instalar la version 18.20.4 de nodejs desde https://nodejs.org
-3. npm install
-4. npx expo start
+1. Instalar la versión **22.11.0** de Node.js desde https://nodejs.org (o usar `nvm use` si tienes [nvm](https://github.com/nvm-sh/nvm) instalado — el proyecto incluye un `.nvmrc`)
+2. Instalar las dependencias: `npm install`
+3. Arrancar el servidor de desarrollo: `npx expo start`
 
-Esto lanzará la aplicación y mostrará un codigo QR que podrá ser leido con la aplicacion movil de Expo. 
+Esto lanzará la aplicación y mostrará un código QR que podrá ser leído con la aplicación móvil de Expo.
 
-Como ejecutar la aplicación el el móvil
+**Versiones principales**
+
+| Herramienta | Versión |
+|---|---|
+| Node.js | 22.11.0 (LTS) |
+| Expo SDK | 56 |
+| React Native | 0.85.3 |
+| React | 19.2.3 |
+
+Como ejecutar la aplicación en el móvil
 =======================================
 
 Hace falta descargar la aplicación "Expo" para Android o iOS: https://expo.io/tools#client
-Una vez descargada, hay que escanear el código QR que se muestra despues de correr la app en el terminal. 
+Una vez descargada, hay que escanear el código QR que se muestra después de correr la app en el terminal.
+
+Como ejecutar los tests y el linter
+=====================================
+
+Ejecutar los tests unitarios:
+```
+npm run test:unit
+```
+
+Ejecutar el linter (ESLint):
+```
+npm run lint
+```
+
+Corregir automáticamente los errores del linter:
+```
+npm run lint:fix
+```
 
 Como subir la app a AppleStore y PlayStore
 =======================================
@@ -40,4 +66,3 @@ contacta@beniconfusionfest.es
 Licencia
 ========
 GNU General Public License v3.0
-
