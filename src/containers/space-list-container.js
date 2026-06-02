@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
-import { SafeAreaView, FlatList } from 'react-native';
+import { FlatList } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import SpaceItem from '../components/space-item';
 import { ProgramContext } from '../services/program-context';

@@ -1,5 +1,6 @@
 import React from 'react';
-import { FlatList, SafeAreaView } from 'react-native';
+import { FlatList } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import ProgramItem from './program-item';
 

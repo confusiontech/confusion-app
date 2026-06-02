@@ -4,7 +4,7 @@ import { Feather, FontAwesome5, MaterialIcons, MaterialCommunityIcons, AntDesign
 const values = new Map([
   ['0', ({ size, color, styleClass }) => <FontAwesome5 name='theater-masks' size={size} color={color} style={styleClass} key='theater-masks' />],
   ['1', ({ size, color, styleClass }) => <MaterialCommunityIcons name='spray' size={size} color={color} style={styleClass} key='spray' />],
-  ['2', ({ size, color, styleClass }) => <AntDesign name='videocamera' size={size} color={color} style={styleClass} key='videocamera' />],
+  ['2', ({ size, color, styleClass }) => <MaterialIcons name='videocam' size={size} color={color} style={styleClass} key='videocam' />],
   ['3', ({ size, color, styleClass }) => <AntDesign name='picture' size={size} color={color} style={styleClass} key='picture' />],
   ['4', ({ size, color, styleClass }) => <Feather name='music' size={size} color={color} style={styleClass} key='music' />],
   ['5', ({ size, color, styleClass }) => <FontAwesome5 name='lightbulb' size={size} color={color} style={styleClass} key='lightbulb' />],

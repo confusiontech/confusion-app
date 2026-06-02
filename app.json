@@ -18,7 +18,8 @@
           "resizeMode": "contain",
           "backgroundColor": "#E0FA4E"
         }
-      ]
+      ],
+      "expo-font"
     ],
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -35,9 +36,9 @@
       "buildNumber": "19"
     },
     "android": {
-      "package": "es.beniconfusionfest.confusion", 
+      "package": "es.beniconfusionfest.confusion",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive_icon_foreground.png", // overwrite default icon of the app for android  -> 1024x1024 
+        "foregroundImage": "./assets/adaptive_icon_foreground.png",
         "backgroundColor": "#E0FA4E"
       },
       "permissions": [
@@ -51,7 +52,6 @@
           "apiKey": "<API_KEY>"
         }
       }
-
     },
     "extra": {
       "eas": {

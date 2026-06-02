@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.10.2",
-    "@expo/config": "^3.3.22",
+    "@expo/config": "^56.0.0",
     "@expo/vector-icons": "^15.0.2",
     "@react-native-async-storage/async-storage": "2.2.0",
     "@react-native-community/masked-view": "*",
@@ -25,13 +25,13 @@
     "@react-navigation/stack": "^5.5.1",
     "@types/react": "~18.2.79",
     "expo": "^56.0.8",
-    "expo-splash-screen": "^55.0.21",
+    "expo-font": "~56.0.5",
+    "expo-splash-screen": "~56.0.10",
     "expo-status-bar": "~56.0.4",
     "expo-updates": "~56.0.17",
     "fastest-levenshtein": "1.0.12",
     "local-cors-proxy": "^1.1.0",
     "moment": "^2.27.0",
-    "native-base": "^2.15.2",
     "patch-package": "^8.0.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
@@ -44,6 +44,7 @@
     "react-native-svg": "15.15.4",
     "react-native-web": "^0.21.2",
     "react-native-worklets": "0.8.3",
+    "react-native-paper": "^5.10.0",
     "remove-accents": "0.4.2"
   },
   "devDependencies": {
