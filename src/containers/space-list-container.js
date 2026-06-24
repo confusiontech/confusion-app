@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
-import { FlatList } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { View, FlatList } from 'react-native';
 
 import SpaceItem from '../components/space-item';
 import { ProgramContext } from '../services/program-context';
@@ -19,7 +18,7 @@ const SpaceListContainer = ({ navigation }) => {
 
   return (
     <PageLayout navigation={navigation}>
-      <SafeAreaView>
+      <View style={{ flex: 1 }}>
         <FlatList
           data={spaces}
           renderItem={renderItem}
@@ -30,7 +29,7 @@ const SpaceListContainer = ({ navigation }) => {
             index
           })}
         />
-      </SafeAreaView>
+      </View>
     </PageLayout>
   );
 };
