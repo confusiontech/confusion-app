@@ -1,0 +1,119 @@
+diff --git a/node_modules/@react-native/debugger-shell/dist/node/index.js b/node_modules/@react-native/debugger-shell/dist/node/index.js
+index 288a98d..61e24e7 100644
+--- a/node_modules/@react-native/debugger-shell/dist/node/index.js
++++ b/node_modules/@react-native/debugger-shell/dist/node/index.js
+@@ -23,10 +23,19 @@ async function unstable_spawnDebuggerShellWithArgs(
+     silent = process.env.NODE_ENV === "test",
+   } = {},
+ ) {
+-  const [binaryPath, baseArgs] = getShellBinaryAndArgs(
++  let [binaryPath, baseArgs] = getShellBinaryAndArgs(
+     flavor,
+     prebuiltBinaryPath,
+   );
++  if (flavor === "prebuilt" && process.platform === "linux") {
++    const manifestPath = prebuiltBinaryPath ?? DEVTOOLS_BINARY_DOTSLASH_FILE;
++    const fixedPath = resolveAndFixSpaces(manifestPath);
++    if (fixedPath) {
++      binaryPath = fixedPath;
++      baseArgs = [];
++      process.env.ELECTRON_DISABLE_SANDBOX = "1";
++    }
++  }
+   return new Promise((resolve, reject) => {
+     const { ELECTRON_RUN_AS_NODE: _, ...env } = process.env;
+     const child = spawn(binaryPath, [...baseArgs, ...args], {
+@@ -116,13 +125,23 @@ async function unstable_prepareDebuggerShell({
+       default:
+         throw new Error(`Unknown flavor: ${flavor}`);
+     }
+-    const [binaryPath, baseArgs] = getShellBinaryAndArgs(
++    let [binaryPath, baseArgs] = getShellBinaryAndArgs(
+       flavor,
+       prebuiltBinaryPath,
+     );
++    let verifyArgs = [...baseArgs, "--version"];
++    if (flavor === "prebuilt" && process.platform === "linux") {
++      const manifestPath = prebuiltBinaryPath ?? DEVTOOLS_BINARY_DOTSLASH_FILE;
++      const fixedPath = resolveAndFixSpaces(manifestPath);
++      if (fixedPath) {
++        binaryPath = fixedPath;
++        verifyArgs = ["--version"];
++        process.env.ELECTRON_DISABLE_SANDBOX = "1";
++      }
++    }
+     const { code, stderr } = await (0, _LaunchUtils.spawnAndGetStderr)(
+       binaryPath,
+-      [...baseArgs, "--version"],
++      verifyArgs,
+     );
+     if (code !== 0) {
+       return {
+@@ -153,3 +172,67 @@ function getShellBinaryAndArgs(flavor, prebuiltBinaryPath) {
+       throw new Error(`Unknown flavor: ${flavor}`);
+   }
+ }
++
++function resolveAndFixSpaces(manifestPath) {
++  try {
++    const fs = require('fs');
++    const path = require('path');
++    const { execFileSync } = require('child_process');
++    const dotslashBin = require('fb-dotslash');
++    
++    const resolvedPath = execFileSync(dotslashBin, ['--', 'fetch', manifestPath], { encoding: 'utf8' }).trim();
++    if (!resolvedPath.includes(' ')) {
++      return null;
++    }
++    
++    const cacheDir = execFileSync(dotslashBin, ['--', 'cache-dir'], { encoding: 'utf8' }).trim();
++    if (!resolvedPath.startsWith(cacheDir)) {
++      return null;
++    }
++    
++    const cacheFixedDir = cacheDir + '-fixed';
++    const relativePath = resolvedPath.substring(cacheDir.length);
++    const targetResolvedPath = cacheFixedDir + relativePath.replace(/ /g, '_');
++    
++    const sourceDir = path.dirname(resolvedPath);
++    const targetDir = path.dirname(targetResolvedPath);
++    
++    if (!fs.existsSync(targetResolvedPath)) {
++      linkRecursive(sourceDir, targetDir);
++    }
++    
++    return targetResolvedPath;
++  } catch (err) {
++    return null;
++  }
++}
++
++function linkRecursive(src, dest) {
++  const fs = require('fs');
++  const path = require('path');
++  const stats = fs.statSync(src);
++  if (stats.isDirectory()) {
++    if (!fs.existsSync(dest)) {
++      fs.mkdirSync(dest, { recursive: true });
++    }
++    const entries = fs.readdirSync(src);
++    for (const entry of entries) {
++      const srcEntry = path.join(src, entry);
++      const destEntry = path.join(dest, entry.replace(/ /g, '_'));
++      linkRecursive(srcEntry, destEntry);
++    }
++  } else {
++    try {
++      if (fs.existsSync(dest)) {
++        fs.unlinkSync(dest);
++      }
++      fs.linkSync(src, dest);
++    } catch (err) {
++      try {
++        fs.copyFileSync(src, dest);
++      } catch (copyErr) {
++        // ignore
++      }
++    }
++  }
++}
