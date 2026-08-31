@@ -2,16 +2,13 @@ import { Platform } from 'react-native';
 
 import { EVENT_ID } from '../event-properties';
 
-const NOT_MODIFIED_STATUS_CODE = 304;
-
 // Usamos el proxy para tema de CORS
 const PROXY_URL = 'http://localhost:8010/proxy/';
 const BACKEND_BASE_URL = 'https://www.orfheo.org/';
 
-const PROGRAM_PATH = 'search/results_program';
-const PROGRAM_HEADERS = {
-  'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-};
+const NOT_MODIFIED_STATUS_CODE = 304;
+
+const PROGRAM_API_PATH = `api/v1/events/${EVENT_ID}/program?lang=es`;
 
 class BackendService {
   constructor() {
@@ -24,13 +21,12 @@ class BackendService {
   }
 
   async fetchProgram(storedValue) {
-    storedValue = storedValue || {};
-    const programUrl = this._getUrl(PROGRAM_PATH);
-    const response = await fetch(programUrl, {
-      method: 'POST',
-      headers: PROGRAM_HEADERS,
-      body: this._requestBody(storedValue.program_timestamp)
-    });
+    const programUrl = this._getUrl(PROGRAM_API_PATH);
+    const headers = {};
+    if (storedValue && storedValue.program_timestamp) {
+      headers['If-Modified-Since'] = new Date(storedValue.program_timestamp).toUTCString();
+    }
+    const response = await fetch(programUrl, { headers });
     if (response.status === NOT_MODIFIED_STATUS_CODE) {
       return storedValue;
     }
@@ -41,10 +37,6 @@ class BackendService {
 
   _getUrl(path) {
     return this.urlBase + path;
-  }
-
-  _requestBody(timestamp) {
-    return `event_id=${EVENT_ID}&lang=es&program_timestamp=${timestamp}`;
   }
 }
 
