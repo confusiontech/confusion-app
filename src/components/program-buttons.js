@@ -72,7 +72,8 @@ const styles = StyleSheet.create({
   buttonText: {
     color: BUTTON_TEXT_COLOR,
     fontWeight: 'bold',
-    letterSpacing: 0.5
+    letterSpacing: 0.5,
+    paddingVertical: 4
   }
 });
 

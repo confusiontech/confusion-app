@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
-import { NativeBaseProvider } from 'native-base';
+import { Provider as PaperProvider } from 'react-native-paper';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import 'react-native-gesture-handler';
 import ProgramContainer from './src/containers/program-container';
 import FilterContainer from './src/containers/filter-container';
@@ -22,23 +23,25 @@ export default function App() {
   const navigationRef = useRef(null);
 
   return (
-    <NativeBaseProvider>
-      <NavigationContainer ref={navigationRef}>
-        <ProgramContextProvider>
-          <ProgramUpdater />
-          <Stack.Navigator>
-            <Stack.Screen name='Programa' component={ProgramContainer} />
-            <Stack.Screen name='Filtro' component={FilterContainer} />
-            <Stack.Screen name='Evento' component={ShowContainer} />
-            <Stack.Screen name='Mapa' component={MapContainer} />
-            <Stack.Screen name='Favoritos' component={FavoritesContainer} />
-            <Stack.Screen name='ProgramaEspacio' component={SpaceProgramContainer} />
-            <Stack.Screen name='Espacios' component={SpaceListContainer} />
-            <Stack.Screen name='Info' component={InfoContainer} />
-          </Stack.Navigator>
-          <Announcement navigationRef={navigationRef} />
-        </ProgramContextProvider>
-      </NavigationContainer>
-    </NativeBaseProvider>
+    <SafeAreaProvider>
+      <PaperProvider>
+        <NavigationContainer ref={navigationRef}>
+          <ProgramContextProvider>
+            <ProgramUpdater />
+            <Stack.Navigator>
+              <Stack.Screen name='Programa' component={ProgramContainer} />
+              <Stack.Screen name='Filtro' component={FilterContainer} />
+              <Stack.Screen name='Evento' component={ShowContainer} />
+              <Stack.Screen name='Mapa' component={MapContainer} />
+              <Stack.Screen name='Favoritos' component={FavoritesContainer} />
+              <Stack.Screen name='ProgramaEspacio' component={SpaceProgramContainer} />
+              <Stack.Screen name='Espacios' component={SpaceListContainer} />
+              <Stack.Screen name='Info' component={InfoContainer} />
+            </Stack.Navigator>
+            <Announcement navigationRef={navigationRef} />
+          </ProgramContextProvider>
+        </NavigationContainer>
+      </PaperProvider>
+    </SafeAreaProvider>
   );
 }

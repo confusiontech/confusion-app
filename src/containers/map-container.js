@@ -38,16 +38,16 @@ const MapContainer = ({ navigation }) => {
           }}
         >
           {
-        spaces.map(space => {
-          return (
-            <MapMarker
-              navigation={navigation}
-              space={space}
-              key={space.address.location.lat + space.address.location.lng + space.order}
-            />
-          );
-        })
-        }
+            spaces.map(space => {
+              return (
+                <MapMarker
+                  navigation={navigation}
+                  space={space}
+                  key={space.address.location.lat + space.address.location.lng + space.order}
+                />
+              );
+            })
+          }
         </MapView>
       </View>
     </PageLayout>

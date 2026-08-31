@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import StandardButton from '../components/standard-button';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { iconsMap } from '../helpers/icon-helpers';
 
 import {
@@ -12,36 +11,37 @@ import {
 
 import { useRoute } from '@react-navigation/native';
 
+const NAV_BUTTON_WIDTH = '20%';
+
 const NavigationBar = ({ navigation }) => {
   const route = useRoute();
 
   const iconProps = { color: BUTTON_TEXT_COLOR, size: 18 };
 
   const NavButton = ({ routeName, buttonTitle, iconName }) => {
+    const isActive = route.name === routeName;
     return (
-      <StandardButton
+      <TouchableOpacity
         onPress={() => navigation.navigate(routeName)}
-        buttonContainerStyle={route.name === routeName
-          ? styles.selectedButtonContainer
-          : styles.bottomButtonContainer}
+        style={[
+          styles.buttonContainer,
+          isActive ? styles.selectedButtonContainer : styles.bottomButtonContainer
+        ]}
       >
-        <Text style={styles.buttonIcon}>
-          {iconsMap.get(
-            iconName,
-            {
-              ...iconProps,
-              color: route.name === routeName ? BUTTON_ACTIVE_TEXT_COLOR : BUTTON_TEXT_COLOR
-            }
-          )}
+        <Text style={[styles.buttonIcon, { color: isActive ? BUTTON_ACTIVE_TEXT_COLOR : BUTTON_TEXT_COLOR }]}>
+          {iconsMap.get(iconName, {
+            ...iconProps,
+            color: isActive ? BUTTON_ACTIVE_TEXT_COLOR : BUTTON_TEXT_COLOR
+          })}
         </Text>
-        <Text style={{
-          ...styles.buttonText,
-          color: route.name === routeName ? BUTTON_ACTIVE_TEXT_COLOR : BUTTON_TEXT_COLOR
-        }}
+        <Text style={[
+          styles.buttonText,
+          { color: isActive ? BUTTON_ACTIVE_TEXT_COLOR : BUTTON_TEXT_COLOR }
+        ]}
         >
           {buttonTitle}
         </Text>
-      </StandardButton>
+      </TouchableOpacity>
     );
   };
 
@@ -56,28 +56,27 @@ const NavigationBar = ({ navigation }) => {
   );
 };
 
-const NAV_BUTTON_WITH = '20%';
-
 const styles = StyleSheet.create({
   buttonsContainer: {
     flexDirection: 'row',
     width: '100%'
   },
+  buttonContainer: {
+    width: NAV_BUTTON_WIDTH,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 9
+  },
   bottomButtonContainer: {
-    width: NAV_BUTTON_WITH,
-    backgroundColor: BUTTON_COLOR,
-    color: BUTTON_TEXT_COLOR
+    backgroundColor: BUTTON_COLOR
   },
   selectedButtonContainer: {
-    backgroundColor: BUTTON_ACTIVE_COLOR,
-    width: NAV_BUTTON_WITH,
-    color: BUTTON_ACTIVE_TEXT_COLOR
+    backgroundColor: BUTTON_ACTIVE_COLOR
   },
   buttonText: {
-    color: BUTTON_TEXT_COLOR,
     fontWeight: 'bold',
     letterSpacing: 0.5,
-    fontSize: 10,
+    fontSize: 12,
     marginTop: 2
   },
   buttonIcon: {

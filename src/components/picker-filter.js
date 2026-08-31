@@ -1,5 +1,5 @@
 import React from 'react';
-import { Picker } from 'native-base';
+import { Picker } from '@react-native-picker/picker';
 
 export default function PickerFilter({ elements, selectedElement, setSelectedElement }) {
   const setElementState = itemValue => setSelectedElement(itemValue);

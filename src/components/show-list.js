@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, SafeAreaView } from 'react-native';
+import { View, FlatList } from 'react-native';
 
 import ProgramItem from './program-item';
 
@@ -10,7 +10,7 @@ const ShowList = ({ shows, flatListRef, navigation, nowDt }) => {
   const renderItem = ({ item }) => <ProgramItem navigation={navigation} show={item} nowDt={nowDt} />;
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <View style={{ flex: 1 }}>
       <FlatList
         data={shows}
         renderItem={renderItem}
@@ -22,7 +22,7 @@ const ShowList = ({ shows, flatListRef, navigation, nowDt }) => {
           index
         })}
       />
-    </SafeAreaView>
+    </View>
   );
 };
 

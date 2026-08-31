@@ -1,0 +1,61 @@
+diff --git a/node_modules/@react-navigation/stack/lib/commonjs/views/Stack/Card.js b/node_modules/@react-navigation/stack/lib/commonjs/views/Stack/Card.js
+index c8d2ba5..c4840ed 100644
+--- a/node_modules/@react-navigation/stack/lib/commonjs/views/Stack/Card.js
++++ b/node_modules/@react-navigation/stack/lib/commonjs/views/Stack/Card.js
+@@ -8,6 +8,7 @@ exports.default = void 0;
+ var React = _interopRequireWildcard(require("react"));
+ 
+ var _reactNative = require("react-native");
++var InteractionManager = undefined;
+ 
+ var _color = _interopRequireDefault(require("color"));
+ 
+@@ -149,14 +150,14 @@ class Card extends React.Component {
+     });
+ 
+     _defineProperty(this, "handleStartInteraction", () => {
+-      if (this.interactionHandle === undefined) {
+-        this.interactionHandle = _reactNative.InteractionManager.createInteractionHandle();
++      if (InteractionManager != null && this.interactionHandle === undefined) {
++        this.interactionHandle = InteractionManager.createInteractionHandle();
+       }
+     });
+ 
+     _defineProperty(this, "handleEndInteraction", () => {
+-      if (this.interactionHandle !== undefined) {
+-        _reactNative.InteractionManager.clearInteractionHandle(this.interactionHandle);
++      if (InteractionManager != null && this.interactionHandle !== undefined) {
++        InteractionManager.clearInteractionHandle(this.interactionHandle);
+ 
+         this.interactionHandle = undefined;
+       }
+diff --git a/node_modules/@react-navigation/stack/lib/module/views/Stack/Card.js b/node_modules/@react-navigation/stack/lib/module/views/Stack/Card.js
+index f76e723..acc6539 100644
+--- a/node_modules/@react-navigation/stack/lib/module/views/Stack/Card.js
++++ b/node_modules/@react-navigation/stack/lib/module/views/Stack/Card.js
+@@ -3,7 +3,8 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
+ function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+ 
+ import * as React from 'react';
+-import { Animated, View, StyleSheet, Platform, InteractionManager } from 'react-native';
++import { Animated, View, StyleSheet, Platform } from 'react-native';
++const InteractionManager = undefined;
+ import Color from 'color';
+ import CardSheet from './CardSheet';
+ import { PanGestureHandler, GestureState } from '../GestureHandler';
+@@ -126,13 +127,13 @@ export default class Card extends React.Component {
+     });
+ 
+     _defineProperty(this, "handleStartInteraction", () => {
+-      if (this.interactionHandle === undefined) {
++      if (InteractionManager != null && this.interactionHandle === undefined) {
+         this.interactionHandle = InteractionManager.createInteractionHandle();
+       }
+     });
+ 
+     _defineProperty(this, "handleEndInteraction", () => {
+-      if (this.interactionHandle !== undefined) {
++      if (InteractionManager != null && this.interactionHandle !== undefined) {
+         InteractionManager.clearInteractionHandle(this.interactionHandle);
+         this.interactionHandle = undefined;
+       }

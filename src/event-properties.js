@@ -13,7 +13,6 @@
 export const EVENT_ID = '46fa14de-319c-4907-a31f-0c1cd44849ec'; // 2024
 export const EVENT_DATES = ['2024-10-19', '2024-10-20']; // 2024
 
-
 export const EVENT_CATEGORIES_INFO = [
   { id: '0', name: 'Artes Escénicas', keys: ['ESCENICAS', 'ARTES_ESCENICAS'] },
   { id: '1', name: 'Arte Urbano', keys: ['ARTE_URBANO'] },

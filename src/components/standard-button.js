@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Button } from 'native-base';
+import { Button } from 'react-native-paper';
 
 import { BUTTON_COLOR } from '../styles/colors';
 
@@ -17,13 +17,14 @@ const StandardButton = ({
     }}
     >
       <Button
-        variant='ghost'
+        mode='text'
         onPress={onPress}
-        style={{
+        contentStyle={{
           ...styles.button,
           ...buttonStyle
         }}
-        px='1'
+        labelStyle={styles.buttonLabel}
+        uppercase={false}
       >
         {children}
       </Button>
@@ -38,6 +39,9 @@ const styles = StyleSheet.create({
   },
   button: {
     justifyContent: 'center'
+  },
+  buttonLabel: {
+    textTransform: 'none'
   }
 });
 
