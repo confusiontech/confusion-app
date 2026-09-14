@@ -1,6 +1,6 @@
-const IDENTITY_COLOR = '#e1f56e'; // 2024
-const IDENTITY_COLOR_2 = '#b62682';
-const LIGHT_GREY = '#DDDDDD';
+const IDENTITY_COLOR = '#099cd8'; // 2026
+const IDENTITY_COLOR_2 = '#2d2219'; // 2026
+const LIGHT_GREY = '#DDDDDD'; // background color for touchable underlay
 // const BLUE_LINK = '#3366BB';
 
 export const PRIMARY_COLOR = IDENTITY_COLOR;

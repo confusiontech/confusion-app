@@ -16,7 +16,7 @@
         {
           "image": "./assets/splash.png",
           "resizeMode": "contain",
-          "backgroundColor": "#E0FA4E"
+          "backgroundColor": "#099cd8"
         }
       ],
       "expo-font"
@@ -39,7 +39,7 @@
       "package": "es.beniconfusionfest.confusion",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive_icon_foreground.png",
-        "backgroundColor": "#E0FA4E"
+        "backgroundColor": "#099cd8"
       },
       "permissions": [
         "INTERNET",
