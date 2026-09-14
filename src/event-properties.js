@@ -10,8 +10,8 @@
 // export const EVENT_ID = '8f153391-0458-4e50-839d-9edd2346249f'; // 2023
 // export const EVENT_DATES = ['2023-10-14', '2023-10-15']; // 2023
 
-export const EVENT_ID = '46fa14de-319c-4907-a31f-0c1cd44849ec'; // 2024
-export const EVENT_DATES = ['2024-10-19', '2024-10-20']; // 2024
+export const EVENT_ID = 'af89a3a6-55c1-4e6b-be48-98a3ff14c426'; // 2026
+export const EVENT_DATES = ['2026-10-17', '2026-10-18']; // 2026
 
 export const EVENT_CATEGORIES_INFO = [
   { id: '0', name: 'Artes Escénicas', keys: ['ESCENICAS', 'ARTES_ESCENICAS'] },
@@ -19,10 +19,9 @@ export const EVENT_CATEGORIES_INFO = [
   { id: '2', name: 'Audiovisual', keys: ['AUDIOVISUAL'] },
   { id: '3', name: 'Exposición', keys: ['EXPOSICION', 'EXPO'] },
   { id: '4', name: 'Música', keys: ['MUSICA'] },
-  { id: '5', name: 'Otros', keys: ['OTROS'] },
-  { id: '6', name: 'Poesía', keys: ['POESIA'] },
-  { id: '7', name: 'Talleres / Charlas', keys: ['TALLERES', 'CHARLAS', 'TALLERES_CHARLAS', 'CHARLAS_TALLERES'] },
-  { id: '8', name: 'Instalaciones Urbanas', keys: ['INSTALACIONES', 'INSTALACIONES_URBANAS'] }
+  { id: '5', name: 'Talleres / Charlas', keys: ['TALLERES', 'CHARLAS', 'TALLERES_CHARLAS', 'CHARLAS_TALLERES'] },
+  { id: '6', name: 'Deportes y Juegos', keys: ['OTROS'] },
+  { id: '7', name: 'Poesía', keys: ['POESIA'] },
 ];
 
 export const EVENT_CATEGORIES = EVENT_CATEGORIES_INFO.map(categoryInfo =>
@@ -33,6 +32,6 @@ export const CROWDFUNDING_URL = 'https://vkm.is/confusion10';
 export const CROWDFUNDING_START = '2023-10-01';
 export const CROWDFUNDING_END = '2023-10-16';
 
-export const WEB_URL = 'https://beniconfusionfest.es/es/inicio';
+export const WEB_URL = 'https://confusion.possibilitats.org/es/';
 export const INSTAGRAM_URL = 'https://www.instagram.com/benimacletconfusion/';
 export const YOUTUBE_URL = 'https://www.youtube.com/c/conFusi%C3%B3nfest/featured';
