@@ -2,6 +2,7 @@
   "expo": {
     "name": "conFusión",
     "slug": "confusionapp",
+    "owner": "pietrgalls-team",
     "platforms": [
       "ios",
       "android",
@@ -9,14 +10,14 @@
     ],
     "version": "0.1.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/icon.png", // image displayed on the device, for both android and ios
     "plugins": [
       [
         "expo-splash-screen",
         {
-          "image": "./assets/splash.png",
+          "image": "./assets/splash.png", // image displayed while the app is loading
           "resizeMode": "contain",
-          "backgroundColor": "#E0FA4E"
+          "backgroundColor": "#2d2219"
         }
       ],
       "expo-font"
@@ -37,10 +38,10 @@
     },
     "android": {
       "package": "es.beniconfusionfest.confusion",
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive_icon_foreground.png",
-        "backgroundColor": "#E0FA4E"
-      },
+      // "adaptiveIcon": {
+      //   "foregroundImage": "./assets/adaptive_icon_foreground.png", // image displayed on the device, just for android
+      //   "backgroundColor": "#2d2219"
+      // },
       "permissions": [
         "INTERNET",
         "WRITE_SETTINGS",
@@ -55,7 +56,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "728863cd-f38c-4412-a4fa-befa5bbb9696"
+        "projectId": "3713b59a-b78e-40c8-bf96-f2e9834e5a34"
       }
     }
   }
