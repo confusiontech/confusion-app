@@ -2,25 +2,31 @@
   "expo": {
     "name": "conFusión",
     "slug": "confusionapp",
-    "owner": "pietrgalls-team",
     "platforms": [
       "ios",
       "android",
       "web"
     ],
-    "version": "0.1.0",
+    "version": "1.26.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png", // image displayed on the device, for both android and ios
+    "icon": "./assets/icon.png",
     "plugins": [
       [
         "expo-splash-screen",
         {
-          "image": "./assets/splash.png", // image displayed while the app is loading
+          "image": "./assets/splash.png",
           "resizeMode": "contain",
           "backgroundColor": "#2d2219"
         }
       ],
-      "expo-font"
+      "expo-font",
+       [
+        "react-native-maps",
+        {
+          "iosGoogleMapsApiKey": "GOOGLE_MAPS_API_KEY",
+          "androidGoogleMapsApiKey": "GOOGLE_MAPS_API_KEY"
+        }
+      ]
     ],
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -30,33 +36,34 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "es.beniconfusionfest.confusion",
+      "bundleIdentifier": "es.beniconfusionfest.confusionapp", // cambiamos el bundleIdentifier y aparecerá como una app nueva en la App Store
       "infoPlist": {
-        "NSLocationWhenInUseUsageDescription": "Mostraremos tu localización en los mapas para que ubiques los espacios más fácilmente"
+        "NSLocationWhenInUseUsageDescription": "Mostraremos tu localización en los mapas para que ubiques los espacios más fácilmente",
+        "ITSAppUsesNonExemptEncryption": false
       },
-      "buildNumber": "19"
+      "buildNumber": "20"
+      // "config": {
+      //   "googleMapsApiKey": "GOOGLE_MAPS_API_KEY"
+      // }
     },
     "android": {
-      "package": "es.beniconfusionfest.confusion",
-      // "adaptiveIcon": {
-      //   "foregroundImage": "./assets/adaptive_icon_foreground.png", // image displayed on the device, just for android
-      //   "backgroundColor": "#2d2219"
-      // },
+      "package": "es.beniconfusionfest.confusion", // mismo como todos los años para que no haya problemas con las actualizaciones
       "permissions": [
         "INTERNET",
         "WRITE_SETTINGS",
         "ACCESS_FINE_LOCATION"
       ],
-      "versionCode": 23,
-      "config": {
-        "googleMaps": {
-          "apiKey": "<API_KEY>"
-        }
-      }
+      "versionCode": 26
+      // "config": {
+      //   "googleMaps": {
+      //     "apiKey": "GOOGLE_MAPS_API_KEY"
+      //   }
+      // }
     },
     "extra": {
       "eas": {
-        "projectId": "3713b59a-b78e-40c8-bf96-f2e9834e5a34"
+//        "projectId": "3713b59a-b78e-40c8-bf96-f2e9834e5a34"  // Pietro eas account
+        "projectId": "728863cd-f38c-4412-a4fa-befa5bbb9696"
       }
     }
   }

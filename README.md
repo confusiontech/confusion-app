@@ -297,7 +297,116 @@ https://console.cloud.google.com/apis/credentials?project=active-cove-284317
 
 ## IOS
 
-**Se necesita un Mac para generar el build localmente, aunque EAS permite realizar el build de iOS en la nube.**
+**Se necesita una cuenta de desarrolador de Apple. Se pedirán usuario y contraseña a la hora de hacer el build**
+
+Antes de hacer el build, comprobar que la configuración de iOS es correcta en app.json / app.config.*, especialmente:
+
+ios.bundleIdentifier
+ios.buildNumber
+version
+extra.eas.projectId
+
+### 1. Crear el build de iOS
+
+Desde Linux:
+
+```bash
+eas build --platform ios --profile production
+```
+
+EAS realizará la compilación remotamente utilizando el entorno de build de Apple.
+
+Cuando termine, EAS proporcionará el resultado del build y un enlace al .ipa.
+
+Para consultar los builds:
+```bash
+eas build:list --platform ios
+```
+
+### 2. Subir el build a App Store Connect
+
+El `.ipa` se puede subir directamente desde Linux. No es necesario un Mac.
+
+Ejecutar:
+```bash
+eas submit --platform ios --profile production
+```
+
+EAS solicitará autenticación con la cuenta de Apple Developer/App Store Connect si todavía no está configurada. La cuenta de Apple utilizada debe tener permisos sobre el Apple Developer Team propietario de la aplicación.
+
+La cuenta de Expo/EAS y la cuenta de Apple Developer no tienen por qué utilizar el mismo email.
+
+### 3. Comprobar el build en App Store Connect
+
+Acceder a: https://appstoreconnect.apple.com/
+
+Ir a: My Apps → conFusión → TestFlight
+
+El build aparecerá inicialmente como Processing. Una vez finalizado el procesamiento, estará disponible para TestFlight y para asociarlo a la versión de la aplicación.
+
+### Version vs. Build Number
+
+version es la versión visible para el usuario:
+
+{
+  "version": "1.26.0"
+}
+
+ios.buildNumber es el número interno del build de iOS:
+
+{
+  "ios": {
+    "buildNumber": "20"
+  }
+}
+
+Cada nuevo build que se suba a App Store Connect debe tener un buildNumber superior al anterior para esa versión.
+
+Si eas.json utiliza:
+
+{
+  "cli": {
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "production": {
+      "autoIncrement": true
+    }
+  }
+}
+
+EAS puede incrementar automáticamente el buildNumber en los builds de producción.
+
+Flujo habitual
+
+El flujo completo desde Linux es:
+
+# 1. Iniciar sesión en Expo
+eas login
+
+# 2. Crear el build de iOS
+eas build --platform ios --profile production
+
+# 3. Subir el build a App Store Connect
+eas submit --platform ios --profile production
+
+Después, desde App Store Connect:
+
+TestFlight
+    ↓
+Esperar a que el build termine de procesarse
+    ↓
+Probar con TestFlight (opcional)
+    ↓
+Seleccionar el build para la versión
+    ↓
+Completar metadata y App Review Information
+    ↓
+Enviar a App Review
+    ↓
+Publicar
+
+No es necesario un Mac ni Xcode para este proceso.
 
 Antes de crear el build:
 
