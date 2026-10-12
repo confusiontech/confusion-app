@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "conFusión",
+//    "name": "conFusión 2026 Orriols-Benimaclet", // Por si Apple Store pide cambio de los metadatas
     "slug": "confusionapp",
     "platforms": [
       "ios",
@@ -42,9 +43,6 @@
         "ITSAppUsesNonExemptEncryption": false
       },
       "buildNumber": "20"
-      // "config": {
-      //   "googleMapsApiKey": "GOOGLE_MAPS_API_KEY"
-      // }
     },
     "android": {
       "package": "es.beniconfusionfest.confusion", // mismo como todos los años para que no haya problemas con las actualizaciones
@@ -54,11 +52,6 @@
         "ACCESS_FINE_LOCATION"
       ],
       "versionCode": 26
-      // "config": {
-      //   "googleMaps": {
-      //     "apiKey": "GOOGLE_MAPS_API_KEY"
-      //   }
-      // }
     },
     "extra": {
       "eas": {

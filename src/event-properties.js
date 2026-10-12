@@ -33,5 +33,5 @@ export const CROWDFUNDING_START = '2023-10-01';
 export const CROWDFUNDING_END = '2023-10-16';
 
 export const WEB_URL = 'https://confusion.possibilitats.org/es/';
-export const INSTAGRAM_URL = 'https://www.instagram.com/benimacletconfusion/';
+export const INSTAGRAM_URL = 'https://www.instagram.com/festivalconfusion/';
 export const YOUTUBE_URL = 'https://www.youtube.com/c/conFusi%C3%B3nfest/featured';
