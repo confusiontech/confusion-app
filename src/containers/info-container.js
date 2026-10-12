@@ -64,7 +64,7 @@ const InfoContainer = ({ navigation }) => {
           >
             <View style={styles.linkContainer}>
               <Text> {iconsMap.get('web', { color: LINK_COLOR })} </Text>
-              <Text style={styles.link}> beniconfusionfest.es </Text>
+              <Text style={styles.link}>confusion.possibilitats.org </Text>
             </View>
           </TouchableHighlight>
           <TouchableHighlight
@@ -74,7 +74,7 @@ const InfoContainer = ({ navigation }) => {
           >
             <View style={styles.linkContainer}>
               <Text> {iconsMap.get('instagram', { color: LINK_COLOR })}</Text>
-              <Text style={styles.link}> @benimacletconfusion </Text>
+              <Text style={styles.link}> @festivalconfusion </Text>
             </View>
           </TouchableHighlight>
           <TouchableHighlight
@@ -84,7 +84,7 @@ const InfoContainer = ({ navigation }) => {
           >
             <View style={styles.linkContainer}>
               <Text> {iconsMap.get('youtube', { color: LINK_COLOR })} </Text>
-              <Text style={styles.link}> Benimaclet conFusión </Text>
+              <Text style={styles.link}>conFusión </Text>
             </View>
           </TouchableHighlight>
         </View>

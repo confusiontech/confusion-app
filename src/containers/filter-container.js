@@ -1,11 +1,14 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { View } from 'react-native';
 
+import { SafeAreaView } from 'react-native-safe-area-context';
+
 import FilterGrid from '../components/filter-grid';
 import { ProgramContext } from '../services/program-context';
 import { categories, dates, audiences } from '../helpers/program-helpers';
 import TextButton from '../components/text-button';
 import { HeaderBackButton } from '@react-navigation/stack';
+import { BUTTON_COLOR } from '../styles/colors';
 
 const FilterContainer = ({ navigation }) => {
   const { setFilter, filter } = useContext(ProgramContext);
@@ -59,13 +62,16 @@ const FilterContainer = ({ navigation }) => {
           buttonsPerRow={2}
         />
       </View>
-      <View style={{ position: 'absolute', left: 0, right: 0, bottom: 0 }}>
+      <SafeAreaView
+        edges={['bottom']}
+        style={{ position: 'absolute', left: 0, right: 0, bottom: 0, backgroundColor: BUTTON_COLOR }}
+      >
         <TextButton
           iconKey='search'
           text='Ver'
           onPress={setFilterChangesAndNavigate}
         />
-      </View>
+      </SafeAreaView>
     </View>
   );
 };
